@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   handle_problems.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wluedara <Warintorn_L@outlook.com>         +#+  +:+       +#+        */
+/*   By: wluedara <wluedara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 15:11:40 by wluedara          #+#    #+#             */
-/*   Updated: 2023/03/31 14:08:02 by wluedara         ###   ########.fr       */
+/*   Updated: 2023/05/03 14:31:49 by wluedara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "hell.h"
-#include "colours.h"
 
 int	is_space(char c)
 {

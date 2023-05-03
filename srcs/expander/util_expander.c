@@ -1,26 +1,51 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   builtin_env.c                                      :+:      :+:    :+:   */
+/*   util_expander.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wluedara <wluedara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/01 15:09:20 by wluedara          #+#    #+#             */
-/*   Updated: 2023/05/03 14:31:42 by wluedara         ###   ########.fr       */
+/*   Created: 2023/05/03 16:37:16 by wluedara          #+#    #+#             */
+/*   Updated: 2023/05/03 17:30:21 by wluedara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "hell.h"
 
-void	builtin_env(t_cmd *cmd, char **envp)
+char	*copy_str(char *s, int len, char *old)
 {
-	int	i;
+	int		i;
+	char	*new;
 
-	(void)cmd;
+	new = malloc(len + 1);
+	if (!new)
+		return (0);
 	i = 0;
-	while (envp[i])
+	while (i < len)
 	{
-		printf(GRN"%s\n"RESET, envp[i]);
+		new[i] = s[i];
 		i++;
 	}
+	new[i] = '\0';
+	free(old);
+	return (new);
+}
+
+int	len_quote(char *s)
+{
+	int	i;
+	int	len;
+
+	i = 0;
+	len = ft_strlen(s);
+	if (s[i] == '\'' | s[i] == '\"')
+		len -= 2;
+	return (len);
+}
+
+int	is_dollar(char c)
+{
+	if (c == '$')
+		return (1);
+	return (0);
 }

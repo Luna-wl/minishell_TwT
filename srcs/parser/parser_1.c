@@ -3,22 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   parser_1.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wluedara <Warintorn_L@outlook.com>         +#+  +:+       +#+        */
+/*   By: wluedara <wluedara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 15:49:47 by wluedara          #+#    #+#             */
-/*   Updated: 2023/03/31 14:00:11 by wluedara         ###   ########.fr       */
+/*   Updated: 2023/05/03 15:17:44 by wluedara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "hell.h"
-#include "colours.h"
 
 int	find_pipe(t_lexer *list, t_cmd *cmd)
 {
 	t_lexer	*tmp;
 	int		num;
-	(void)cmd;
 
+	(void)cmd;
 	tmp = list;
 	num = 1;
 	g_num.num_pipe = 0;
@@ -82,8 +81,8 @@ t_cmd	*list_cmd(t_lexer *list, t_cmd *cmd)
 		create_list_cmd(&cmd, new);
 		word = find_cmd_num(new);
 		next_cmd(&new, word);
-		insert_index(&new, stack_lenght(&new));
 		i++;
 	}
 	return (cmd);
+	// return (add_fd_redi(cmd));
 }
