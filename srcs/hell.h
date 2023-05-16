@@ -30,12 +30,17 @@ typedef struct s_cmd
 	char			**str;
 	int				i;
 	int				num_pipe;
-	int				num_redirect;
 	struct s_cmd	*next;
 }	t_cmd;
 
+typedef struct s_mini
+{
+	char	**env;
+	t_cmd	*cmd;
+}	t_mini;
+
 t_int		g_i;
-t_cmd	g_num;
+t_cmd		g_num;
 
 // main.c
 void		lexer_to_parser(char **str, t_lexer *lexer, t_cmd *cmd, char **envp);

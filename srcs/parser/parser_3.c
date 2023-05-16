@@ -6,7 +6,7 @@
 /*   By: wluedara <Warintorn_L@outlook.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 18:25:35 by wluedara          #+#    #+#             */
-/*   Updated: 2023/03/31 14:00:42 by wluedara         ###   ########.fr       */
+/*   Updated: 2023/04/26 18:12:17 by wluedara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	check_redirect(char *s)
 
 	i = 0;
 	j = 0;
-	g_num.num_redirect = 0;
+	// g_num.num_redirect = 0;
 	while (s[i])
 	{
 		while (j < 4)
@@ -39,11 +39,3 @@ int	check_redirect(char *s)
 	}
 	return (-1);
 }
-
-// int	check_buildin(t_lexer *list)
-// {
-// 	t_lexer	*tmp;
-
-// 	tmp = list;
-
-// }
