@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   parser_2.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wluedara <Warintorn_L@outlook.com>         +#+  +:+       +#+        */
+/*   By: wluedara <wluedara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 16:03:55 by wluedara          #+#    #+#             */
-/*   Updated: 2023/03/31 14:00:36 by wluedara         ###   ########.fr       */
+/*   Updated: 2023/05/03 16:39:10 by wluedara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "hell.h"
-#include "colours.h"
 
 int	stack_lenght(t_lexer **list)
 {
@@ -26,26 +25,6 @@ int	stack_lenght(t_lexer **list)
 		len++;
 	}
 	return (len);
-}
-
-char	*copy_str(char *str)
-{
-	char	*s;
-	int		len;
-	int		i;
-
-	len = ft_strlen(str);
-	s = malloc(sizeof(char) * (len + 1));
-	if (!s)
-		return (0);
-	i = 0;
-	while (i < len)
-	{
-		s[i] = str[i];
-		i++;
-	}
-	s[i] = '\0';
-	return (s);
 }
 
 char	**copy_two_stars(t_lexer **list)
@@ -63,7 +42,7 @@ char	**copy_two_stars(t_lexer **list)
 	tmp = *list;
 	while (i < len && tmp != NULL)
 	{
-		new[i++] = copy_str(tmp->str);
+		new[i++] = ft_strdup(tmp->str);
 		tmp = tmp->next;
 	}
 	new[i] = NULL;

@@ -6,72 +6,26 @@
 /*   By: wluedara <Warintorn_L@outlook.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 18:26:04 by wluedara          #+#    #+#             */
-/*   Updated: 2023/04/26 18:11:49 by wluedara         ###   ########.fr       */
+/*   Updated: 2023/05/16 20:22:33 by wluedara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "hell.h"
-#include "colours.h"
 
-void	into_builtin2(t_cmd *cmd, int i, char **envp)
+void	init_mimi(t_main *main)
 {
-	if (ft_strncmp(cmd->str[i], "echo", 4) == 0)
-		builtin_echo(cmd);
-	// else if (ft_strncmp(cmd->str[i], "cd", 2) == 0)
-	// 	builtin_cd(cmd);
-	else if (ft_strncmp(cmd->str[i], "pwd", 3) == 0)
-		builtin_pwd(cmd);
-	// else if (ft_strncmp(cmd->str[i], "export", 6) == 0)
-	// 	builtin_export(cmd);
-	// else if (ft_strncmp(cmd->str[i], "unset", 5) == 0)
-	// 	builtin_unset(cmd);
-	else if (ft_strncmp(cmd->str[i], "env", 3) == 0)
-		builtin_env(cmd, envp);
-	// else if (ft_strncmp(cmd->str[i], "exit", 4) == 0)
-	// 	builtin_exit(cmd);
-}
-
-void	into_builtin(t_cmd *cmd, char **envp)
-{
-	t_cmd	*tmp;
-	int		j;
-
-	tmp = cmd;
-	while (tmp != NULL)
-	{
-		j = 0;
-		while (tmp->str[j])
-		{
-			into_builtin2(tmp, j, envp);
-			j++;
-		}
-		tmp = tmp->next;
-	}
-}
-
-void	lexer_to_cmd(char **str, t_lexer *lexer, t_cmd *cmd, char **envp)
-{
-	lexer = spilt_to_list(str, lexer);
-	cmd = list_cmd(lexer, cmd);
-	del_list_lexer(&lexer);
-	pim_cmd(cmd);
-	into_builtin(cmd, envp);
-	// del_cmd(&cmd);
-	// printf("cmd pipe = %d\n", g_num.num_pipe);
+	main->lexer = NULL;
+	main->cmd = NULL;
 }
 
 int	main(int argc, char **argv, char **envp)
 {
 	char		*str;
-	char		**new;
-	t_lexer		*lexer;
-	t_cmd		*cmd;
-	(void)argv;
+	t_main		main;
 
+	(void)argv;
 	if (argc > 1)
 		print_str(YEL"You put the wrong input\n"RESET);
-	lexer = NULL;
-	cmd = NULL;
 	printf(YEL"====> ~ HELLO WELCOME ~ <====\n"RESET);
 	while (1)
 	{
@@ -83,8 +37,10 @@ int	main(int argc, char **argv, char **envp)
 			printf(BCYN"========= ~Bye Bye~ =========\n"RESET);
 			break ;
 		}
-		new = cut_cmd(str);
-		lexer_to_cmd(new, lexer, cmd, envp);
+		init_mimi(&main);
+		copy_info(&main, str, envp);
+		get_cmd(&main);
+		expander(&main);
 		free(str);
 	}
 	return (0);

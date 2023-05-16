@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "hell.h"
-#include "colours.h"
 
 void	del_list_lexer(t_lexer **list)
 {

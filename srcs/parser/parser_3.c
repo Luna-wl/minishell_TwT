@@ -6,12 +6,11 @@
 /*   By: wluedara <Warintorn_L@outlook.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 18:25:35 by wluedara          #+#    #+#             */
-/*   Updated: 2023/04/26 18:12:17 by wluedara         ###   ########.fr       */
+/*   Updated: 2023/05/16 20:23:05 by wluedara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "hell.h"
-#include "colours.h"
 
 int	check_redirect(char *s)
 {
@@ -20,7 +19,6 @@ int	check_redirect(char *s)
 
 	i = 0;
 	j = 0;
-	// g_num.num_redirect = 0;
 	while (s[i])
 	{
 		while (j < 4)
@@ -38,4 +36,28 @@ int	check_redirect(char *s)
 		i++;
 	}
 	return (-1);
+}
+
+void	add_fd_redi(t_cmd *cmd)
+{
+	t_cmd	*tmp;
+	int		i;
+
+	tmp = cmd;
+	while (tmp != NULL)
+	{
+		i = 0;
+		while (tmp->str[i])
+		{
+			if (check_redirect(tmp->str[i]) == 1)
+				cmd->num_redirect = 0;
+			else if (check_redirect(tmp->str[i]) == 2)
+				cmd->num_redirect = 0;
+			else if (check_redirect(tmp->str[i]) == 3)
+				cmd->num_redirect = 2;
+			else if (check_redirect(tmp->str[i]) == 4)
+				cmd->num_redirect = 0;
+		}
+		tmp = tmp->next;
+	}
 }

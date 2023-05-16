@@ -3,21 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   print_sth.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wluedara <Warintorn_L@outlook.com>         +#+  +:+       +#+        */
+/*   By: wluedara <wluedara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 14:49:04 by wluedara          #+#    #+#             */
-/*   Updated: 2023/03/31 14:06:13 by wluedara         ###   ########.fr       */
+/*   Updated: 2023/05/03 14:31:27 by wluedara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "hell.h"
-#include "colours.h"
 
 void	pim_cmd(t_cmd *cmd)
 {
 	t_cmd	*tmp;
-	int			i;
-	int			j;
+	int		i;
+	int		j;
 
 	tmp = cmd;
 	i = 0;

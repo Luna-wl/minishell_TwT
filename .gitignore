@@ -1,5 +1,9 @@
 # Prerequisites
 *.d
+*.dSYM
+.DS_Store
+minishell
+.vscode
 
 # Object files
 *.o

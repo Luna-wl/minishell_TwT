@@ -11,6 +11,7 @@
 # include "./ft_printf.h"
 # include <readline/readline.h>
 # include <readline/history.h>
+# include "colours.h"
 
 typedef struct s_int
 {
@@ -28,8 +29,7 @@ typedef struct s_lexer
 typedef struct s_cmd
 {
 	char			**str;
-	int				i;
-	int				num_pipe;
+	int				num_redirect;
 	struct s_cmd	*next;
 }	t_cmd;
 
@@ -39,11 +39,28 @@ typedef struct s_mini
 	t_cmd	*cmd;
 }	t_mini;
 
-t_int		g_i;
-t_cmd		g_num;
+typedef struct s_main
+{
+	char	**env;
+	char	*input;
+	char	**str_cmd;
+	int		num_pipe;
+	t_cmd	*cmd;
+	t_lexer	*lexer;
+	char	*pwd;
+	char	*old_pwd;
+	struct s_command	*command;
+}	t_main;
 
-// main.c
-void		lexer_to_parser(char **str, t_lexer *lexer, t_cmd *cmd, char **envp);
+typedef struct s_command
+{
+	char					**cmd;
+	struct s_command		*next;
+}	t_command;
+
+t_int	g_i;
+t_main	g_num;
+
 // lexer1
 void		init_int(void);
 int			check_quote(char **s);
@@ -80,10 +97,8 @@ int			stack_lenght(t_lexer **list);
 char		**copy_two_stars(t_lexer **list);
 void		add_last_cmd(t_cmd **cmd, t_cmd *last);
 void		create_list_cmd(t_cmd **cmd, t_lexer *list);
-char		*copy_str(char *str);
 // parser_3.c
 int			check_redirect(char *s);
-// int			check_redirect(char *s);
 // print_sth.c
 void		pim_cmd(t_cmd *cmd);
 void		pim_split(char **s);
@@ -91,10 +106,23 @@ void		pim_list(t_lexer *list);
 // signal.c
 void		init_signal(void);
 void		sig_handler_c(int sig);
+// builtin.c
+void		into_builtin(t_main *main);
+void		into_builtin2(t_cmd *cmd, int i, char **envp);
 // buildin.c
 void		print_word(char *str);
 void		builtin_echo(t_cmd *cmd);
 void		builtin_env(t_cmd *cmd, char **envp);
 void		builtin_pwd(t_cmd *cmd);
+// main.c
+void		get_cmd(t_main *main);
+void		copy_info(t_main *main, char *str, char **envp);
+// expander.c
+void		expander(t_main *main);
+char		*cut_quote(char *str, char *new);
+// util_expan
+char		*copy_str(char *s, int len, char *old);
+int			len_quote(char *s);
+int			is_dollar(char c);
 
 #endif
