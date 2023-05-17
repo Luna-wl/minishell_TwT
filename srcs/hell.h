@@ -106,17 +106,18 @@ void		into_builtin2(t_cmd *cmd, int i, char **envp);
 // buildin.c
 void		print_word(char *str);
 void		builtin_echo(t_cmd *cmd);
-void		builtin_env(t_cmd *cmd, char **envp);
+void		builtin_env(char **envp);
 void		builtin_pwd(t_cmd *cmd);
 // main.c
 void		get_cmd(t_main *main);
 void		copy_info(t_main *main, char *str, char **envp);
 // expander.c
 void		expander(t_main *main);
-char		*cut_quote(char *str, char *new);
+// char		*cut_quote(char *str, char *new);
+char		*cut_quote(char *str);
 // util_expan
-char		*copy_str(char *s, int len, char *old);
+// char		*copy_str(char *s, int len, char *old);
+char		*copy_str(char *s, int len);
 int			len_quote(char *s);
-int			is_dollar(char c);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: wluedara <wluedara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 21:13:32 by wluedara          #+#    #+#             */
-/*   Updated: 2023/05/03 14:32:22 by wluedara         ###   ########.fr       */
+/*   Updated: 2023/05/08 15:09:02 by wluedara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	into_builtin2(t_cmd *cmd, int i, char **envp)
 	// else if (ft_strncmp(cmd->str[i], "unset", 5) == 0)
 	// 	builtin_unset(cmd);
 	else if (ft_strncmp(cmd->str[i], "env", 3) == 0)
-		builtin_env(cmd, envp);
+		builtin_env(envp);
 	// else if (ft_strncmp(cmd->str[i], "exit", 4) == 0)
 	// 	builtin_exit(cmd);
 }

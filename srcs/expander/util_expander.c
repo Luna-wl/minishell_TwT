@@ -6,13 +6,13 @@
 /*   By: wluedara <wluedara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 16:37:16 by wluedara          #+#    #+#             */
-/*   Updated: 2023/05/03 17:30:21 by wluedara         ###   ########.fr       */
+/*   Updated: 2023/05/08 14:11:08 by wluedara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "hell.h"
 
-char	*copy_str(char *s, int len, char *old)
+char	*copy_str(char *s, int len)
 {
 	int		i;
 	char	*new;
@@ -20,14 +20,10 @@ char	*copy_str(char *s, int len, char *old)
 	new = malloc(len + 1);
 	if (!new)
 		return (0);
-	i = 0;
-	while (i < len)
-	{
+	i = -1;
+	while (++i < len)
 		new[i] = s[i];
-		i++;
-	}
 	new[i] = '\0';
-	free(old);
 	return (new);
 }
 
@@ -41,11 +37,4 @@ int	len_quote(char *s)
 	if (s[i] == '\'' | s[i] == '\"')
 		len -= 2;
 	return (len);
-}
-
-int	is_dollar(char c)
-{
-	if (c == '$')
-		return (1);
-	return (0);
 }
