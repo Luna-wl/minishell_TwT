@@ -33,6 +33,12 @@ typedef struct s_cmd
 	struct s_cmd	*next;
 }	t_cmd;
 
+typedef struct s_mini
+{
+	char	**env;
+	t_cmd	*cmd;
+}	t_mini;
+
 typedef struct s_main
 {
 	char	**env;

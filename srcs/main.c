@@ -6,7 +6,7 @@
 /*   By: wluedara <wluedara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 18:26:04 by wluedara          #+#    #+#             */
-/*   Updated: 2023/05/08 14:13:18 by wluedara         ###   ########.fr       */
+/*   Updated: 2023/05/17 13:39:47 by wluedara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	main(int argc, char **argv, char **envp)
 	printf(YEL"====> ~ HELLO WELCOME ~ <====\n"RESET);
 	while (1)
 	{
-		// init_signal();
+		init_signal();
 		str = readline(RED"mini(s)hell >> "RESET);
 		add_history(str);
 		if (!str)
