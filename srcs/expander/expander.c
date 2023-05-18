@@ -6,7 +6,7 @@
 /*   By: wluedara <Warintorn_L@outlook.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 14:29:53 by wluedara          #+#    #+#             */
-/*   Updated: 2023/05/18 20:28:07 by wluedara         ###   ########.fr       */
+/*   Updated: 2023/05/18 20:50:40 by wluedara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,6 @@ void	expander(t_main *main)
 		{
 			expan = expander_handel(main, tmp->str[i]);
 			printf("In expan main value = %s\n", expan);
-			// tmp->str[i] = cut_quote(tmp->str[i]);
 		}
 		tmp = tmp->next;
 	}
