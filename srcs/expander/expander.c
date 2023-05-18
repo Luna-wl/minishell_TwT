@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expander.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wluedara <wluedara@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wluedara <Warintorn_L@outlook.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 14:29:53 by wluedara          #+#    #+#             */
-/*   Updated: 2023/05/03 17:32:12 by wluedara         ###   ########.fr       */
+/*   Updated: 2023/05/16 20:25:20 by wluedara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,10 @@ char	*cut_quote(char *str, char *new)
 	return (new);
 }
 
-int	dollar_sign()
-{
+// int	dollar_sign()
+// {
 
-}
+// }
 
 void	expander(t_main *main)
 {
