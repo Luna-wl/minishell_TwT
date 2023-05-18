@@ -119,20 +119,24 @@ void		builtin_env();
 void		builtin_pwd(t_cmd *cmd);
 // main.c
 void		get_cmd(t_main *main);
-void		copy_info(t_main *main, char *str);
+// void		copy_info(t_main *main, char *str);
 // expander.c
 void		expander(t_main *main);
 // char		*cut_quote(char *str, char *new);
 char		*cut_quote(char *str);
+char	*detact_dollar(char *str, t_main *main);
 // util_expan
-// char		*copy_str(char *s, int len, char *old);
 char		*copy_str(char *s, int len);
 int			len_quote(char *s);
 // util_info
 char		**get_path();
 int			find_path2(char *str);
 char		*find_path(char *str);
+//handle_quote.c
+char		*cut_quote(char *str);
+char		*detact_quote(char *str, t_main *main, char *val);
+char		*detact_quote2(char *str, t_main *main, char *val);
 
-char	**get_envp();
+char		**get_envp();
 
 #endif

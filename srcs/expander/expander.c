@@ -6,34 +6,36 @@
 /*   By: wluedara <Warintorn_L@outlook.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 14:29:53 by wluedara          #+#    #+#             */
-/*   Updated: 2023/05/18 13:57:26 by wluedara         ###   ########.fr       */
+/*   Updated: 2023/05/18 20:28:07 by wluedara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "hell.h"
 
-char	*cut_quote(char *str)
+char	*detact_dollar(char *str, t_main *main)
 {
-	int		i;
-	char	*new;
+	char	*val;
+	int		len;
 
-	i = len_quote(str);
-	if (str[0] == '\'' | str[0] == '\"')
-		new = copy_str(&str[1], i);
-	else
-		new = copy_str(str, i);
-	free(str);
-	return (new);
-}
-
-char	*detact_dollar(char *str)
-{
-	int	i;
-
-	i = 0;
-	if (ft_isdigit(str[i + 1]))
-		return (&str[i + 1]);
-	// if (&str[i + 1])
+	g_i.i = 0;
+	g_i.j = 0;
+	len = ft_strlen(main->path[g_i.j]);
+	if (ft_isdigit(str[g_i.i + 1]))
+		return (&str[g_i.i + 1]);
+	else if (ft_isalpha(str[g_i.i + 1]))
+	{
+		while (main->path[g_i.j])
+		{
+			if (ft_strncmp(&str[g_i.i + 1], main->path[g_i.j], len) == 0)
+			{
+				val = getenv(main->path[g_i.j]);
+				return (val);
+			}
+			g_i.j++;
+		}
+	}
+	// else if (str[g_i.i + 1] == '?')
+	// 	find_exit_code();
 	return (0);
 }
 
@@ -41,14 +43,17 @@ char	*expander_handel(t_main *main, char *str)
 {
 	char	*val;
 
-	(void)main;
-	if (str[0] == '\'')
-		val = one_quote(str);
+	val = ft_strdup("\0");
+	if (str[0] == '$')
+		val = ft_strjoin(val, detact_dollar(str, main));
 	else if (str[0] == '\"')
-		val = double_quote(str);
-	else if (str[0] == '$')
-		val = detact_dollar(str);
-	return (0);
+		val = ft_strjoin(val, detact_quote(str, main, val));
+	else if (str[0] == '\'')
+	{
+		str = cut_quote(str);
+		val = ft_strjoin(val, str);
+	}
+	return (val);
 }
 
 void	expander(t_main *main)
@@ -57,7 +62,6 @@ void	expander(t_main *main)
 	int		i;
 	char	*expan;
 
-	(void)main;
 	tmp = main->cmd;
 	while (tmp != NULL)
 	{
@@ -65,7 +69,7 @@ void	expander(t_main *main)
 		while (tmp->str[++i])
 		{
 			expan = expander_handel(main, tmp->str[i]);
-			// printf("value = %s\n", expan);
+			printf("In expan main value = %s\n", expan);
 			// tmp->str[i] = cut_quote(tmp->str[i]);
 		}
 		tmp = tmp->next;

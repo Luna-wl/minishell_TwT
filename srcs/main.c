@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wluedara <wluedara@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wluedara <Warintorn_L@outlook.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 18:26:04 by wluedara          #+#    #+#             */
-/*   Updated: 2023/05/17 21:56:33 by wluedara         ###   ########.fr       */
+/*   Updated: 2023/05/18 14:41:06 by wluedara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	main(int argc, char **argv)
 	printf(YEL"====> ~ HELLO WELCOME ~ <====\n"RESET);
 	while (1)
 	{
-		// init_signal();
+		init_signal();
 		str = readline(RED"mini(s)hell >> "RESET);
 		add_history(str);
 		if (!str)
