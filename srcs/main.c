@@ -6,19 +6,22 @@
 /*   By: wluedara <wluedara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 18:26:04 by wluedara          #+#    #+#             */
-/*   Updated: 2023/05/17 13:39:47 by wluedara         ###   ########.fr       */
+/*   Updated: 2023/05/17 21:56:33 by wluedara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "hell.h"
 
-void	init_mimi(t_main *main)
+void	init_mimi(t_main *main, char *str)
 {
 	main->lexer = NULL;
 	main->cmd = NULL;
+	main->input = ft_strdup(str);
+	environ = get_envp();
+	main->path = get_path();
 }
 
-int	main(int argc, char **argv, char **envp)
+int	main(int argc, char **argv)
 {
 	char		*str;
 	t_main		main;
@@ -29,7 +32,7 @@ int	main(int argc, char **argv, char **envp)
 	printf(YEL"====> ~ HELLO WELCOME ~ <====\n"RESET);
 	while (1)
 	{
-		init_signal();
+		// init_signal();
 		str = readline(RED"mini(s)hell >> "RESET);
 		add_history(str);
 		if (!str)
@@ -37,11 +40,11 @@ int	main(int argc, char **argv, char **envp)
 			printf(BCYN"========= ~Bye Bye~ =========\n"RESET);
 			break ;
 		}
-		init_mimi(&main);
-		copy_info(&main, str, envp);
+		init_mimi(&main, str);
 		get_cmd(&main);
 		expander(&main);
-		free(str);
+		// into_builtin(&main);
+		// free(str);
 	}
 	return (0);
 }

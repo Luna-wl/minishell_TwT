@@ -49,6 +49,7 @@ typedef struct s_main
 	t_lexer	*lexer;
 	char	*pwd;
 	char	*old_pwd;
+	char	**path;
 	struct s_command	*command;
 }	t_main;
 
@@ -60,6 +61,8 @@ typedef struct s_command
 
 t_int	g_i;
 t_main	g_num;
+
+extern char **environ;
 
 // lexer1
 void		init_int(void);
@@ -108,15 +111,15 @@ void		init_signal(void);
 void		sig_handler_c(int sig);
 // builtin.c
 void		into_builtin(t_main *main);
-void		into_builtin2(t_cmd *cmd, int i, char **envp);
+void		into_builtin2(t_cmd *cmd, int i);
 // buildin.c
 void		print_word(char *str);
 void		builtin_echo(t_cmd *cmd);
-void		builtin_env(char **envp);
+void		builtin_env();
 void		builtin_pwd(t_cmd *cmd);
 // main.c
 void		get_cmd(t_main *main);
-void		copy_info(t_main *main, char *str, char **envp);
+void		copy_info(t_main *main, char *str);
 // expander.c
 void		expander(t_main *main);
 // char		*cut_quote(char *str, char *new);
@@ -125,5 +128,11 @@ char		*cut_quote(char *str);
 // char		*copy_str(char *s, int len, char *old);
 char		*copy_str(char *s, int len);
 int			len_quote(char *s);
+// util_info
+char		**get_path();
+int			find_path2(char *str);
+char		*find_path(char *str);
+
+char	**get_envp();
 
 #endif

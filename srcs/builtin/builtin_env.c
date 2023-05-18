@@ -6,20 +6,17 @@
 /*   By: wluedara <wluedara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 15:09:20 by wluedara          #+#    #+#             */
-/*   Updated: 2023/05/08 15:09:42 by wluedara         ###   ########.fr       */
+/*   Updated: 2023/05/17 20:22:43 by wluedara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "hell.h"
 
-void	builtin_env(char **env)
+void	builtin_env()
 {
 	int	i;
 
-	i = 0;
-	while (env[i])
-	{
-		printf(GRN"%s\n"RESET, env[i]);
-		i++;
-	}
+	i = -1;
+	while (environ[++i])
+		printf(GRN"%s\n"RESET, environ[i]);
 }
