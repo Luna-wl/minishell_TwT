@@ -6,7 +6,7 @@
 /*   By: wluedara <wluedara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 11:45:01 by wluedara          #+#    #+#             */
-/*   Updated: 2023/05/03 14:31:40 by wluedara         ###   ########.fr       */
+/*   Updated: 2023/05/08 14:12:27 by wluedara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@ void	print_word(char *str)
 	i = 0;
 	while (str[i])
 	{
-		if (str[i] == '\'' || str[i] == '\"')
-			i++;
 		write(1, &str[i], 1);
 		i++;
 	}
