@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_1.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wluedara <wluedara@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wluedara <Warintorn_L@outlook.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 15:49:47 by wluedara          #+#    #+#             */
-/*   Updated: 2023/05/17 20:28:15 by wluedara         ###   ########.fr       */
+/*   Updated: 2023/05/18 22:55:12 by wluedara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,13 @@ int	find_pipe(t_lexer *list, t_cmd *cmd)
 	(void)cmd;
 	tmp = list;
 	num = 1;
-	g_num.num_pipe = 0;
+	g_i.pipe = 0;
 	while (tmp != NULL)
 	{
 		if (ft_strncmp(tmp->str, "|", 1) == 0)
 		{
 			num++;
-			g_num.num_pipe++;
+			g_i.pipe++;
 		}
 		tmp = tmp->next;
 	}

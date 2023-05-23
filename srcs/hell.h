@@ -17,6 +17,7 @@ typedef struct s_int
 {
 	int	i;
 	int	j;
+	int	pipe;
 }	t_int;
 
 typedef struct s_lexer
@@ -41,7 +42,6 @@ typedef struct s_mini
 
 typedef struct s_main
 {
-	char	**env;
 	char	*input;
 	char	**str_cmd;
 	int		num_pipe;
@@ -60,7 +60,6 @@ typedef struct s_command
 }	t_command;
 
 t_int	g_i;
-t_main	g_num;
 
 extern char **environ;
 
