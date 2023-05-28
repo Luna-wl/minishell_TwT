@@ -6,7 +6,7 @@
 /*   By: wluedara <Warintorn_L@outlook.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 18:25:35 by wluedara          #+#    #+#             */
-/*   Updated: 2023/05/16 20:23:05 by wluedara         ###   ########.fr       */
+/*   Updated: 2023/05/25 14:24:34 by wluedara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int	check_redirect(char *s)
 {
-	int			i;
-	int			j;
+	int	i;
+	int	j;
 
 	i = 0;
 	j = 0;
@@ -52,11 +52,13 @@ void	add_fd_redi(t_cmd *cmd)
 			if (check_redirect(tmp->str[i]) == 1)
 				cmd->num_redirect = 0;
 			else if (check_redirect(tmp->str[i]) == 2)
-				cmd->num_redirect = 0;
+				cmd->num_redirect = -2;
 			else if (check_redirect(tmp->str[i]) == 3)
-				cmd->num_redirect = 2;
+				cmd->num_redirect = 1;
 			else if (check_redirect(tmp->str[i]) == 4)
-				cmd->num_redirect = 0;
+				cmd->num_redirect = -3;
+			else
+				cmd->num_redirect = -1;
 		}
 		tmp = tmp->next;
 	}
