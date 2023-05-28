@@ -55,8 +55,8 @@ typedef struct s_main
 
 typedef struct s_command
 {
-	char					**cmd;
-	struct s_command		*next;
+	char				**cmd;
+	struct s_command	*next;
 }	t_command;
 
 t_int	g_i;
