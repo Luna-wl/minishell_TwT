@@ -6,7 +6,7 @@
 /*   By: wluedara <wluedara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 21:51:22 by wluedara          #+#    #+#             */
-/*   Updated: 2023/05/26 13:49:18 by wluedara         ###   ########.fr       */
+/*   Updated: 2023/05/29 17:14:57 by wluedara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,16 +30,20 @@ char	*find_path(char *str)
 {
 	char	*path;
 	int		len;
+	int		i;
+	int		j;
 
+	i = 0;
+	j = 0;
 	len = find_path2(str);
 	path = malloc(len + 1);
 	if (!path)
 		return (0);
-	g_i.i = 0;
-	g_i.j = 0;
-	while (g_i.i < len)
-		path[g_i.j++] = str[g_i.i++];
-	path[g_i.j] = '\0';
+	i = 0;
+	j = 0;
+	while (i < len)
+		path[j++] = str[i++];
+	path[j] = '\0';
 	return (path);
 }
 

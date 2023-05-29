@@ -71,9 +71,10 @@ char		**cut_cmd(char *s);
 // lexer2
 int			check_word_2(char *s);
 int			count_len_quote(char *s);
-int			check_word(char *s, int len);
-int			count_letter_split(char *s);
+int			check_word(char *s, int len, int i);
+int			count_letter_split(char *s, int i);
 int			count_letter(char *s);
+int			count_letter2(char *s, int i, int j);
 // lexer3
 int			find_len_split(char **s);
 void		add_last(t_lexer **list, t_lexer *last);

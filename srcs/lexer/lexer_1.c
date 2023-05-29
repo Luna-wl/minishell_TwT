@@ -3,20 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   lexer_1.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wluedara <Warintorn_L@outlook.com>         +#+  +:+       +#+        */
+/*   By: wluedara <wluedara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 14:29:35 by wluedara          #+#    #+#             */
-/*   Updated: 2023/05/23 21:29:52 by wluedara         ###   ########.fr       */
+/*   Updated: 2023/05/29 17:10:23 by wluedara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "hell.h"
-
-void	init_int(void)
-{
-	g_i.i = 0;
-	g_i.j = 0;
-}
 
 int	check_quote(char **s)
 {
@@ -45,7 +39,8 @@ char	*my_split(char *s)
 	int		j;
 
 	s2 = ft_strtrim(s, " ");
-	letter = count_letter_split(s2);
+	i = 0;
+	letter = count_letter_split(s2, i);
 	str = malloc(sizeof(char) * (letter + 1));
 	if (!str)
 		return (0);
@@ -81,7 +76,8 @@ char	**cut_cmd(char *s)
 	if (!s)
 		return (0);
 	check_pipe(s);
-	word = check_word(s, ft_strlen(s));
+	i = 0;
+	word = check_word(s, ft_strlen(s), i);
 	new = malloc(sizeof(char *) * (word + 1));
 	if (!new)
 		return (0);

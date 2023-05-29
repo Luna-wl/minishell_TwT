@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expander.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wluedara <Warintorn_L@outlook.com>         +#+  +:+       +#+        */
+/*   By: wluedara <wluedara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 14:29:53 by wluedara          #+#    #+#             */
-/*   Updated: 2023/05/18 20:50:40 by wluedara         ###   ########.fr       */
+/*   Updated: 2023/05/29 17:13:44 by wluedara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,25 +16,27 @@ char	*detact_dollar(char *str, t_main *main)
 {
 	char	*val;
 	int		len;
+	int		i;
+	int		j;
 
-	g_i.i = 0;
-	g_i.j = 0;
-	len = ft_strlen(main->path[g_i.j]);
-	if (ft_isdigit(str[g_i.i + 1]))
-		return (&str[g_i.i + 1]);
-	else if (ft_isalpha(str[g_i.i + 1]))
+	i = 0;
+	j = 0;
+	len = ft_strlen(main->path[j]);
+	if (ft_isdigit(str[i + 1]))
+		return (&str[i + 1]);
+	else if (ft_isalpha(str[i + 1]))
 	{
-		while (main->path[g_i.j])
+		while (main->path[j])
 		{
-			if (ft_strncmp(&str[g_i.i + 1], main->path[g_i.j], len) == 0)
+			if (ft_strncmp(&str[i + 1], main->path[j], len) == 0)
 			{
-				val = getenv(main->path[g_i.j]);
+				val = getenv(main->path[j]);
 				return (val);
 			}
-			g_i.j++;
+			j++;
 		}
 	}
-	// else if (str[g_i.i + 1] == '?')
+	// else if (str[i + 1] == '?')
 	// 	find_exit_code();
 	return (0);
 }

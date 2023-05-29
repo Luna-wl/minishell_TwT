@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_quote.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wluedara <Warintorn_L@outlook.com>         +#+  +:+       +#+        */
+/*   By: wluedara <wluedara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 14:36:06 by wluedara          #+#    #+#             */
-/*   Updated: 2023/05/18 17:06:21 by wluedara         ###   ########.fr       */
+/*   Updated: 2023/05/29 17:12:51 by wluedara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ char	*detact_quote2(char *str, t_main *main, char *val)
 	char	*tmp;
 	char	*tmp2;
 	int		len;
+	int		i;
+	int		j;
 
 	tmp2 = detact_quote(str, main, val);
 	len = ft_strlen(tmp2);
@@ -38,12 +40,12 @@ char	*detact_quote2(char *str, t_main *main, char *val)
 	if (!tmp)
 		return (0);
 	tmp[0] = '\'';
-	g_i.i = 1;
-	g_i.j = 0;
-	while (g_i.i <= len)
-		tmp[g_i.i++] = tmp2[g_i.j++];
-	tmp[g_i.i] = '\'';
-	tmp[g_i.i + 1] = '\0';
+	i = 1;
+	j = 0;
+	while (i <= len)
+		tmp[i++] = tmp2[j++];
+	tmp[i] = '\'';
+	tmp[i + 1] = '\0';
 	return (tmp);
 }
 

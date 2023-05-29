@@ -6,7 +6,7 @@
 /*   By: wluedara <wluedara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 18:26:04 by wluedara          #+#    #+#             */
-/*   Updated: 2023/05/26 13:48:10 by wluedara         ###   ########.fr       */
+/*   Updated: 2023/05/29 16:17:53 by wluedara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	main(int argc, char **argv)
 		}
 		init_mimi(&main, str);
 		get_cmd(&main);
-		expander(&main);
+		// expander(&main);
 		// into_builtin(&main);
 		// free(str);
 	}
