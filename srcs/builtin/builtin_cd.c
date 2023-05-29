@@ -6,7 +6,7 @@
 /*   By: wluedara <wluedara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 15:10:12 by wluedara          #+#    #+#             */
-/*   Updated: 2023/05/03 14:31:38 by wluedara         ###   ########.fr       */
+/*   Updated: 2023/05/29 17:14:29 by wluedara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,9 @@
 // void	builtin_cd(t_cmd *cmd)
 // {
 // 	DIR	*dir;
+//	int	i;
 
-// 	g_i.i = 1;
-// 	if (ft_strncmp(cmd->str[g_i.i], ".", 1) == 0)
+// 	i = 1;
+// 	if (ft_strncmp(cmd->str[i], ".", 1) == 0)
 // 		dir;
 // }
