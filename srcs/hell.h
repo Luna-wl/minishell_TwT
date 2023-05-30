@@ -13,13 +13,6 @@
 # include <readline/history.h>
 # include "colours.h"
 
-typedef struct s_int
-{
-	int	i;
-	int	j;
-	int	pipe;
-}	t_int;
-
 typedef struct s_lexer
 {
 	char			*str;
@@ -59,12 +52,9 @@ typedef struct s_command
 	struct s_command	*next;
 }	t_command;
 
-t_int	g_i;
-
 extern char **environ;
 
 // lexer1
-void		init_int(void);
 int			check_quote(char **s);
 char		*my_split(char *s);
 char		**cut_cmd(char *s);

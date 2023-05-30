@@ -6,7 +6,7 @@
 /*   By: wluedara <wluedara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 16:03:55 by wluedara          #+#    #+#             */
-/*   Updated: 2023/05/03 16:39:10 by wluedara         ###   ########.fr       */
+/*   Updated: 2023/05/29 17:42:26 by wluedara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,8 @@ void	create_list_cmd(t_cmd **cmd, t_lexer *list)
 	t_cmd	*tmp;
 
 	tmp = malloc(sizeof(t_cmd));
+	if (!tmp)
+		return ;
 	tmp->str = copy_two_stars(&list);
 	tmp->next = NULL;
 	add_last_cmd(cmd, tmp);

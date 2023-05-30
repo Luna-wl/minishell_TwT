@@ -6,7 +6,7 @@
 /*   By: wluedara <wluedara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 16:21:40 by wluedara          #+#    #+#             */
-/*   Updated: 2023/05/29 16:31:18 by wluedara         ###   ########.fr       */
+/*   Updated: 2023/05/30 15:05:55 by wluedara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,10 @@ void	get_cmd(t_main *main)
 {
 	main->str_cmd = cut_cmd(main->input);
 	main->lexer = spilt_to_list(main->str_cmd, main->lexer);
-	pim_list(main->lexer);
-	// main->cmd = list_cmd(main->lexer, main->cmd);
-	// del_list_lexer(&main->lexer);
-	// pim_cmd(main->cmd);
+	// pim_list(main->lexer);
+	main->cmd = list_cmd(main->lexer, main->cmd);
+	del_list_lexer(&main->lexer);
+	pim_cmd(main->cmd);
 	// expander(main);
 	// into_builtin(main);
 	// del_cmd(&main->cmd);

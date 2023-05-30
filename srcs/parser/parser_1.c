@@ -6,7 +6,7 @@
 /*   By: wluedara <wluedara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 15:49:47 by wluedara          #+#    #+#             */
-/*   Updated: 2023/05/29 17:11:47 by wluedara         ###   ########.fr       */
+/*   Updated: 2023/05/30 15:05:34 by wluedara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ void	next_cmd(t_lexer **list, int index)
 		else
 			break ;
 	}
+	insert_index(&tmp, stack_lenght(&tmp));
 	*list = tmp;
 }
 

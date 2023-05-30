@@ -6,7 +6,7 @@
 /*   By: wluedara <wluedara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 15:06:28 by wluedara          #+#    #+#             */
-/*   Updated: 2023/05/29 17:06:42 by wluedara         ###   ########.fr       */
+/*   Updated: 2023/05/29 17:27:39 by wluedara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,32 +104,3 @@ int	count_letter_split(char *s, int i)
 	}
 	return (i);
 }
-
-// int	count_letter(char *s)
-// {
-// 	init_int();
-// 	while (s[g_i.i] && is_space(s[g_i.i]) == 1)
-// 	{
-// 		g_i.i++;
-// 		g_i.j++;
-// 	}
-// 	while (s[g_i.i] && is_tokens(s[g_i.i]) != -1 && is_space(s[g_i.i]) == 0)
-// 	{
-// 		g_i.i++;
-// 		if (is_tokens(s[g_i.i]) == -1)
-// 			return (g_i.i);
-// 	}
-// 	while (s[g_i.i] && is_quote(s[g_i.i]) > 0)
-// 	{
-// 		g_i.j++;
-// 		if (is_quote(s[g_i.i]) == is_quote(s[g_i.j]))
-// 			return (g_i.j + 1);
-// 	}
-// 	while (s[g_i.i] && is_tokens(s[g_i.i]) == -1 && is_space(s[g_i.i]) == 0)
-// 	{
-// 		g_i.i++;
-// 		if (is_quote(s[g_i.i]) > 0)
-// 			return (g_i.i);
-// 	}
-// 	return (g_i.i);
-// }
