@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   util_info.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wluedara <wluedara@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wluedara <Warintorn_L@outlook.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 21:51:22 by wluedara          #+#    #+#             */
-/*   Updated: 2023/05/29 17:14:57 by wluedara         ###   ########.fr       */
+/*   Updated: 2023/06/03 18:02:08 by wluedara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,10 +59,10 @@ char	**get_path()
 	path = malloc(sizeof(char *) * (i + 1));
 	if (!path)
 		return (0);
-	i = -1;
-	j = -1;
-	while (environ[++i])
-		path[++j] = find_path(environ[i]);
+	i = 0;
+	j = 0;
+	while (environ[i])
+		path[j++] = find_path(environ[i++]);
 	path[j] = NULL;
 	return (path);
 }

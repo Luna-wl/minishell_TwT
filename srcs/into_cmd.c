@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   into_cmd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wluedara <wluedara@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wluedara <Warintorn_L@outlook.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 16:21:40 by wluedara          #+#    #+#             */
-/*   Updated: 2023/05/30 15:05:55 by wluedara         ###   ########.fr       */
+/*   Updated: 2023/06/03 18:12:22 by wluedara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,5 @@ void	get_cmd(t_main *main)
 	// pim_list(main->lexer);
 	main->cmd = list_cmd(main->lexer, main->cmd);
 	del_list_lexer(&main->lexer);
-	pim_cmd(main->cmd);
-	// expander(main);
-	// into_builtin(main);
-	// del_cmd(&main->cmd);
+	// pim_cmd(main->cmd);
 }

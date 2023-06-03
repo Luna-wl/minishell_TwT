@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wluedara <wluedara@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wluedara <Warintorn_L@outlook.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 18:26:04 by wluedara          #+#    #+#             */
-/*   Updated: 2023/05/29 16:17:53 by wluedara         ###   ########.fr       */
+/*   Updated: 2023/06/03 18:09:36 by wluedara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ int	main(int argc, char **argv)
 	char		*str;
 	t_main		main;
 
-	(void)argv;
 	if (argc > 1)
 		print_str(YEL"You put the wrong input\n"RESET);
 	printf(YEL"====> ~ HELLO WELCOME ~ <====\n"RESET);
@@ -42,9 +41,10 @@ int	main(int argc, char **argv)
 		}
 		init_mimi(&main, str);
 		get_cmd(&main);
-		// expander(&main);
+		expander(&main);
 		// into_builtin(&main);
-		// free(str);
+		free(str);
+		free_all(&main);
 	}
 	return (0);
 }

@@ -129,4 +129,7 @@ char		*detact_quote2(char *str, t_main *main, char *val);
 
 char		**get_envp();
 
+//del everything
+void		free_all(t_main *main);
+
 #endif
