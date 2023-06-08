@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   into_cmd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wluedara <Warintorn_L@outlook.com>         +#+  +:+       +#+        */
+/*   By: wluedara <wluedara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 16:21:40 by wluedara          #+#    #+#             */
-/*   Updated: 2023/06/03 18:12:22 by wluedara         ###   ########.fr       */
+/*   Updated: 2023/06/08 21:39:06 by wluedara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	get_cmd(t_main *main)
 	main->str_cmd = cut_cmd(main->input);
 	main->lexer = spilt_to_list(main->str_cmd, main->lexer);
 	// pim_list(main->lexer);
-	main->cmd = list_cmd(main->lexer, main->cmd);
+	main->cmd = list_cmd(main);
 	del_list_lexer(&main->lexer);
 	// pim_cmd(main->cmd);
 }

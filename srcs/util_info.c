@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   util_info.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wluedara <Warintorn_L@outlook.com>         +#+  +:+       +#+        */
+/*   By: wluedara <wluedara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 21:51:22 by wluedara          #+#    #+#             */
-/*   Updated: 2023/06/03 18:02:08 by wluedara         ###   ########.fr       */
+/*   Updated: 2023/06/06 15:51:46 by wluedara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "hell.h"
 
-int	find_path2(char *str)
+int	find_envp2(char *str)
 {
 	int	i;
 
@@ -26,7 +26,7 @@ int	find_path2(char *str)
 	return (i);
 }
 
-char	*find_path(char *str)
+char	*find_envp(char *str)
 {
 	char	*path;
 	int		len;
@@ -35,7 +35,7 @@ char	*find_path(char *str)
 
 	i = 0;
 	j = 0;
-	len = find_path2(str);
+	len = find_envp2(str);
 	path = malloc(len + 1);
 	if (!path)
 		return (0);
@@ -47,7 +47,7 @@ char	*find_path(char *str)
 	return (path);
 }
 
-char	**get_path()
+char	**get_envp2()
 {
 	char	**path;
 	int		i;
@@ -62,7 +62,7 @@ char	**get_path()
 	i = 0;
 	j = 0;
 	while (environ[i])
-		path[j++] = find_path(environ[i++]);
+		path[j++] = find_envp(environ[i++]);
 	path[j] = NULL;
 	return (path);
 }

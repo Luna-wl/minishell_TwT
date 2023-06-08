@@ -42,7 +42,19 @@ typedef struct s_main
 	t_lexer	*lexer;
 	char	*pwd;
 	char	*old_pwd;
+	char	**envp;
+
 	char	**path;
+	pid_t	*pid;
+	int		heredoc;
+	int		cur;
+	int		fd_file;
+	int		tmp_fd;
+	int		found_path;
+	int		pfd[2];
+	int		status;
+	int		cmd_nbr;
+
 	struct s_command	*command;
 }	t_main;
 
@@ -81,10 +93,10 @@ void		print_str(char *s);
 void		del_list_lexer(t_lexer **list);
 void		del_cmd(t_cmd **cmd);
 // parser_1.c
-int			find_pipe(t_lexer *list, t_cmd *cmd);
+int			find_pipe(t_main *main);
 int			find_cmd_num(t_lexer *list);
 void		next_cmd(t_lexer **list, int index);
-t_cmd		*list_cmd(t_lexer *list, t_cmd *cmd);
+t_cmd		*list_cmd(t_main *main);
 // parser_2.c
 int			stack_lenght(t_lexer **list);
 char		**copy_two_stars(t_lexer **list);
@@ -119,9 +131,9 @@ char	*detact_dollar(char *str, t_main *main);
 char		*copy_str(char *s, int len);
 int			len_quote(char *s);
 // util_info
-char		**get_path();
-int			find_path2(char *str);
-char		*find_path(char *str);
+char		**get_envp2();
+int			find_envp2(char *str);
+char		*find_envp(char *str);
 //handle_quote.c
 char		*cut_quote(char *str);
 char		*detact_quote(char *str, t_main *main, char *val);
