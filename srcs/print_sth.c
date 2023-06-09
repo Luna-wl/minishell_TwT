@@ -6,7 +6,7 @@
 /*   By: wluedara <wluedara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 14:49:04 by wluedara          #+#    #+#             */
-/*   Updated: 2023/05/03 14:31:27 by wluedara         ###   ########.fr       */
+/*   Updated: 2023/06/08 22:14:01 by wluedara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ void	pim_cmd(t_cmd *cmd)
 	i = 0;
 	while (tmp != NULL)
 	{
-		printf(BYEL"str[%d]\n"RESET, i);
+		printf(BYEL"str[%d]\n", i);
+		// printf(BYEL"heredoc_file = %s\n", cmd->heredoc_file);
 		j = 0;
 		while (tmp->str[j])
 		{

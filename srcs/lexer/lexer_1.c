@@ -6,7 +6,7 @@
 /*   By: wluedara <wluedara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 14:29:35 by wluedara          #+#    #+#             */
-/*   Updated: 2023/05/29 17:10:23 by wluedara         ###   ########.fr       */
+/*   Updated: 2023/06/09 17:19:26 by wluedara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	check_quote(char **s)
 	return (1);
 }
 
-char	*my_split(char *s)
+char	*my_split_lexer(char *s)
 {
 	char	*str;
 	char	*s2;
@@ -77,7 +77,7 @@ char	**cut_cmd(char *s)
 		return (0);
 	check_pipe(s);
 	i = 0;
-	word = check_word(s, ft_strlen(s), i);
+	word = check_word_lexer(s, ft_strlen(s), i);
 	new = malloc(sizeof(char *) * (word + 1));
 	if (!new)
 		return (0);
@@ -85,8 +85,8 @@ char	**cut_cmd(char *s)
 	j = 0;
 	while (i < word)
 	{
-		new[i++] = my_split(&s[j]);
-		letter = count_letter(&s[j]);
+		new[i++] = my_split_lexer(&s[j]);
+		letter = count_letter_lexer(&s[j]);
 		j += letter;
 	}
 	new[i] = NULL;

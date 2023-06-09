@@ -24,14 +24,16 @@ typedef struct s_cmd
 {
 	char			**str;
 	int				num_redirect;
+	char			*infile;
+	char			*heredoc_file;
 	struct s_cmd	*next;
 }	t_cmd;
 
-typedef struct s_mini
-{
-	char	**env;
-	t_cmd	*cmd;
-}	t_mini;
+// typedef struct s_mini
+// {
+// 	char	**env;
+// 	t_cmd	*cmd;
+// }	t_mini;
 
 typedef struct s_main
 {
@@ -43,8 +45,8 @@ typedef struct s_main
 	char	*pwd;
 	char	*old_pwd;
 	char	**envp;
-
 	char	**path;
+
 	pid_t	*pid;
 	int		heredoc;
 	int		cur;
@@ -68,14 +70,14 @@ extern char **environ;
 
 // lexer1
 int			check_quote(char **s);
-char		*my_split(char *s);
+char		*my_split_lexer(char *s);
 char		**cut_cmd(char *s);
 // lexer2
 int			check_word_2(char *s);
 int			count_len_quote(char *s);
-int			check_word(char *s, int len, int i);
+int			check_word_lexer(char *s, int len, int i);
 int			count_letter_split(char *s, int i);
-int			count_letter(char *s);
+int			count_letter_lexer(char *s);
 int			count_letter2(char *s, int i, int j);
 // lexer3
 int			find_len_split(char **s);
@@ -103,7 +105,7 @@ char		**copy_two_stars(t_lexer **list);
 void		add_last_cmd(t_cmd **cmd, t_cmd *last);
 void		create_list_cmd(t_cmd **cmd, t_lexer *list);
 // parser_3.c
-int			check_redirect(char *s);
+void		check_heredoc(t_cmd *cmd);
 // print_sth.c
 void		pim_cmd(t_cmd *cmd);
 void		pim_split(char **s);
@@ -134,6 +136,7 @@ int			len_quote(char *s);
 char		**get_envp2();
 int			find_envp2(char *str);
 char		*find_envp(char *str);
+char		**get_path(char **envp);
 //handle_quote.c
 char		*cut_quote(char *str);
 char		*detact_quote(char *str, t_main *main, char *val);

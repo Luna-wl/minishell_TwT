@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wluedara <Warintorn_L@outlook.com>         +#+  +:+       +#+        */
+/*   By: wluedara <wluedara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 13:09:28 by wluedara          #+#    #+#             */
-/*   Updated: 2023/03/31 14:54:32 by wluedara         ###   ########.fr       */
+/*   Updated: 2023/06/08 22:09:24 by wluedara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,3 @@ int	ft_strncmp(char *s1, char *s2, size_t n)
 	}
 	return (0);
 }
-
-/*
-echo with option -n.
-cd with only a relative or absolute path.
-pwd (no flags).
-export (no flags).
-unset (no flags).
-env (no flags or arguments).
-exit (no flags).
-*/

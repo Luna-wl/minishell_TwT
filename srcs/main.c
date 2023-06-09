@@ -6,7 +6,7 @@
 /*   By: wluedara <wluedara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 18:26:04 by wluedara          #+#    #+#             */
-/*   Updated: 2023/06/08 21:35:50 by wluedara         ###   ########.fr       */
+/*   Updated: 2023/06/09 17:10:22 by wluedara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,13 @@ void	init_mimi(t_main *main, char *str)
 	main->num_pipe = 0;
 	environ = get_envp();
 	main->envp = get_envp2();
-	main->cur = 0;
-	main->fd_file = 0;
-	main->tmp_fd = 0;
-	main->heredoc = 0;
-	main->path = NULL;
-	main->found_path = -1;
+	// main->cur = 0;
+	// main->fd_file = 0;
+	// main->tmp_fd = 0;
+	// main->heredoc = 0;
+	// main->found_path = -1;
+	main->path = get_path(main->envp);
+	pim_split(main->path);
 }
 
 int	main(int argc, char **argv)
@@ -68,3 +69,14 @@ int	main(int argc, char **argv)
 // if '' / "" not complete pair ret"urn ERROR in lexer.
 
 //fd inout of redirect
+
+
+/*
+echo with option -n.
+cd with only a relative or absolute path.
+pwd (no flags).
+export (no flags).
+unset (no flags).
+env (no flags or arguments).
+exit (no flags).
+*/

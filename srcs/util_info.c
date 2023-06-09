@@ -6,7 +6,7 @@
 /*   By: wluedara <wluedara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 21:51:22 by wluedara          #+#    #+#             */
-/*   Updated: 2023/06/06 15:51:46 by wluedara         ###   ########.fr       */
+/*   Updated: 2023/06/09 17:23:34 by wluedara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,5 +64,22 @@ char	**get_envp2()
 	while (environ[i])
 		path[j++] = find_envp(environ[i++]);
 	path[j] = NULL;
+	return (path);
+}
+
+char	**get_path(char **envp)
+{
+	int		i;
+	char	**path;
+
+	i = -1;
+	path = NULL;
+	while (envp[++i])
+	{
+		if (ft_strncmp(environ[i], "PATH", 4) == 0)
+		{
+			path = ft_split(&environ[i][5], ':');
+		}
+	}
 	return (path);
 }

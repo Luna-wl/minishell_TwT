@@ -6,7 +6,7 @@
 /*   By: wluedara <wluedara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 15:06:28 by wluedara          #+#    #+#             */
-/*   Updated: 2023/05/29 17:27:39 by wluedara         ###   ########.fr       */
+/*   Updated: 2023/06/09 17:19:43 by wluedara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	count_len_quote(char *s)
 	return (i);
 }
 
-int	check_word(char *s, int len, int i)
+int	check_word_lexer(char *s, int len, int i)
 {
 	int	count;
 

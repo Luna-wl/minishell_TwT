@@ -6,13 +6,13 @@
 /*   By: wluedara <wluedara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 17:06:14 by wluedara          #+#    #+#             */
-/*   Updated: 2023/05/29 17:08:42 by wluedara         ###   ########.fr       */
+/*   Updated: 2023/06/09 17:20:00 by wluedara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "hell.h"
 
-int	count_letter(char *s)
+int	count_letter_lexer(char *s)
 {
 	int	i;
 	int	j;
