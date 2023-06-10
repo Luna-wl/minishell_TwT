@@ -40,6 +40,7 @@ typedef struct s_cmd
 	char			**outfile_name;
 	char			**heredoc_file;
 	char			**append_file;
+	int				fd_redirect;
 	struct s_cmd	*next;
 }	t_cmd;
 
@@ -80,6 +81,7 @@ extern char **environ;
 int			check_quote(char **s);
 char		*my_split_lexer(char *s);
 char		**cut_cmd(char *s);
+int		check_error(char *s);
 // lexer2
 int			check_word_2(char *s);
 int			count_len_quote(char *s);

@@ -6,7 +6,7 @@
 /*   By: wluedara <wluedara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 16:03:55 by wluedara          #+#    #+#             */
-/*   Updated: 2023/06/10 21:22:40 by wluedara         ###   ########.fr       */
+/*   Updated: 2023/06/10 21:27:34 by wluedara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,11 +63,6 @@ void	add_last_cmd(t_cmd **cmd, t_cmd *last)
 		tmp->next = last;
 	}
 }
-
-// char			**infile_name;
-// 	char			**outfile_name;
-// 	char			**heredoc_file;
-// 	char			**append_file;
 
 void	create_list_cmd(t_cmd **cmd, t_lexer *list)
 {
