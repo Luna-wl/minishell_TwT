@@ -6,7 +6,7 @@
 /*   By: wluedara <wluedara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 16:21:40 by wluedara          #+#    #+#             */
-/*   Updated: 2023/06/09 17:07:06 by wluedara         ###   ########.fr       */
+/*   Updated: 2023/06/10 19:01:11 by wluedara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,5 +40,5 @@ void	get_cmd(t_main *main)
 	// pim_list(main->lexer);
 	main->cmd = list_cmd(main);
 	del_list_lexer(&main->lexer);
-	// pim_cmd(main->cmd);
+	pim_cmd(main->cmd);
 }

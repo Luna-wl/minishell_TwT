@@ -6,28 +6,70 @@
 /*   By: wluedara <wluedara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 18:25:35 by wluedara          #+#    #+#             */
-/*   Updated: 2023/06/08 22:13:45 by wluedara         ###   ########.fr       */
+/*   Updated: 2023/06/10 21:17:22 by wluedara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "hell.h"
 
-void	check_heredoc(t_cmd *cmd)
+int	cnt_infile(char **cmd)
 {
-	t_cmd	*tmp;
-	int		i;
+	int	i;
+	int	infile;
 
-	tmp = cmd;
-	cmd->heredoc_file = NULL;
-	while (tmp != NULL)
+	i = -1;
+	infile = 0;
+	while (cmd[++i])
 	{
-		i = 0;
-		while (tmp->str[i])
-		{
-			if (ft_strncmp(tmp->str[i], "<<", 2) == 0)
-				cmd->heredoc_file = ft_strdup(tmp->str[i - 1]);
-			i++;
-		}
-		tmp = tmp->next;
+		if (ft_strncmp(cmd[i], "<", 1) == 0 && cmd[i + 1] != NULL \
+		&& ft_strncmp(cmd[i], "<<", 2))
+			infile++;
 	}
+	return (infile);
+}
+
+int	cnt_heredoc(char **cmd)
+{
+	int	i;
+	int	heredoc;
+
+	i = -1;
+	heredoc = 0;
+	while (cmd[++i])
+	{
+		if (ft_strncmp(cmd[i], "<<", 2) == 0 && cmd[i + 1] != NULL)
+			heredoc++;
+	}
+	return (heredoc);
+}
+
+int	cnt_outfile(char **cmd)
+{
+	int	i;
+	int	outfile;
+
+	i = -1;
+	outfile = 0;
+	while (cmd[++i])
+	{
+		if (ft_strncmp(cmd[i], ">", 1) == 0 && cmd[i + 1] != NULL \
+		&& ft_strncmp(cmd[i], ">>", 2))
+			outfile++;
+	}
+	return (outfile);
+}
+
+int	cnt_append(char **cmd)
+{
+	int	i;
+	int	append;
+
+	i = -1;
+	append = 0;
+	while (cmd[++i])
+	{
+		if (ft_strncmp(cmd[i], ">>", 2) == 0 && cmd[i + 1] != NULL)
+			append++;
+	}
+	return (append);
 }

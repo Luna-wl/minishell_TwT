@@ -6,7 +6,7 @@
 /*   By: wluedara <wluedara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 16:03:55 by wluedara          #+#    #+#             */
-/*   Updated: 2023/06/08 22:11:06 by wluedara         ###   ########.fr       */
+/*   Updated: 2023/06/10 21:22:40 by wluedara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,15 +54,20 @@ void	add_last_cmd(t_cmd **cmd, t_cmd *last)
 	t_cmd	*tmp;
 
 	if (*cmd == NULL)
-	{
 		*cmd = last;
-		return ;
+	else
+	{
+		tmp = *cmd;
+		while (tmp->next != NULL)
+			tmp = tmp->next;
+		tmp->next = last;
 	}
-	tmp = *cmd;
-	while (tmp->next != NULL)
-		tmp = tmp->next;
-	tmp->next = last;
 }
+
+// char			**infile_name;
+// 	char			**outfile_name;
+// 	char			**heredoc_file;
+// 	char			**append_file;
 
 void	create_list_cmd(t_cmd **cmd, t_lexer *list)
 {
@@ -72,6 +77,17 @@ void	create_list_cmd(t_cmd **cmd, t_lexer *list)
 	if (!tmp)
 		return ;
 	tmp->str = copy_two_stars(&list);
+	tmp->cnt_infile = cnt_infile(tmp->str);
+	tmp->cnt_heredoc = cnt_heredoc(tmp->str);
+	tmp->cnt_outfile = cnt_outfile(tmp->str);
+	tmp->cnt_append = cnt_append(tmp->str);
+	tmp->all_infile = tmp->cnt_infile + tmp->cnt_heredoc;
+	tmp->all_outfile = tmp->cnt_outfile + tmp->cnt_append;
+	tmp->heredoc_file = check_heredoc(tmp->str, tmp->cnt_heredoc);
+	tmp->infile_name = check_infile(tmp->str, tmp->cnt_infile);
+	tmp->outfile_name = check_outfile(tmp->str, tmp->cnt_outfile);
+	tmp->append_file = check_append(tmp->str, tmp->cnt_append);
 	tmp->next = NULL;
 	add_last_cmd(cmd, tmp);
 }
+

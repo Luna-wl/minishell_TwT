@@ -13,6 +13,13 @@
 # include <readline/history.h>
 # include "colours.h"
 
+enum token {
+	GREAT, // output >
+	LESS, // input <
+	APPEND, // >>
+	HEREDOC, // <<
+};
+
 typedef struct s_lexer
 {
 	char			*str;
@@ -23,17 +30,18 @@ typedef struct s_lexer
 typedef struct s_cmd
 {
 	char			**str;
-	int				num_redirect;
-	char			*infile;
-	char			*heredoc_file;
+	int				all_infile;
+	int				all_outfile;
+	int				cnt_infile;
+	int				cnt_heredoc;
+	int				cnt_outfile;
+	int				cnt_append;
+	char			**infile_name;
+	char			**outfile_name;
+	char			**heredoc_file;
+	char			**append_file;
 	struct s_cmd	*next;
 }	t_cmd;
-
-// typedef struct s_mini
-// {
-// 	char	**env;
-// 	t_cmd	*cmd;
-// }	t_mini;
 
 typedef struct s_main
 {
@@ -105,7 +113,15 @@ char		**copy_two_stars(t_lexer **list);
 void		add_last_cmd(t_cmd **cmd, t_cmd *last);
 void		create_list_cmd(t_cmd **cmd, t_lexer *list);
 // parser_3.c
-void		check_heredoc(t_cmd *cmd);
+int			cnt_infile(char **cmd);
+int			cnt_heredoc(char **cmd);
+int			cnt_outfile(char **cmd);
+int			cnt_append(char **cmd);
+// parser_4.c
+char		**check_heredoc(char **cmd, int hc);
+char		**check_infile(char **cmd, int inf);
+char		**check_outfile(char **cmd, int of);
+char		**check_append(char **cmd, int ap);
 // print_sth.c
 void		pim_cmd(t_cmd *cmd);
 void		pim_split(char **s);
