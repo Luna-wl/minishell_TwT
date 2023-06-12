@@ -6,19 +6,18 @@
 /*   By: wluedara <wluedara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 18:26:04 by wluedara          #+#    #+#             */
-/*   Updated: 2023/06/12 16:15:07 by wluedara         ###   ########.fr       */
+/*   Updated: 2023/06/12 16:25:49 by wluedara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "hell.h"
 
-void	init_mimi(t_main *main, char *str)
+void	init_mimi(t_main *main)
 {
 	main->lexer = NULL;
 	main->cmd = NULL;
-	main->input = ft_strdup(str);
 	main->num_pipe = 0;
-	environ = get_envp();
+	environ = get_envp(); // make extern environ to malloc
 	main->envp = get_envp2(); // word that before '=' in env to check sth. as USER PWD
 	main->path = get_path(main->envp); // value after that spilt with ':' PATH=
 }
@@ -42,8 +41,8 @@ int	main(int argc, char **argv)
 			printf(BCYN"========= ~Bye Bye~ =========\n"RESET);
 			break ;
 		}
-		init_mimi(&main, str); // init value in struct
-		get_cmd(&main); // start cut cmd
+		init_mimi(&main); // init value in struct
+		get_cmd(&main, str); // start cut cmd
 		// expander(&main); // after split cmd then go to expander to detact quote and $
 		// start_process(&main);
 		// into_builtin(&main); // if want to get to buildin use this nah
