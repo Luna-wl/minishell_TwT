@@ -6,17 +6,16 @@
 /*   By: wluedara <wluedara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 18:26:04 by wluedara          #+#    #+#             */
-/*   Updated: 2023/06/12 00:41:49 by wluedara         ###   ########.fr       */
+/*   Updated: 2023/06/12 16:43:52 by wluedara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "hell.h"
 
-void	init_mimi(t_main *main, char *str)
+void	init_mimi(t_main *main)
 {
 	main->lexer = NULL;
 	main->cmd = NULL;
-	main->input = ft_strdup(str);
 	main->num_pipe = 0;
 	environ = get_envp();
 	main->envp = get_envp2();
@@ -42,8 +41,8 @@ int	main(int argc, char **argv)
 			printf(BCYN"========= ~Bye Bye~ =========\n"RESET);
 			break ;
 		}
-		init_mimi(&main, str);
-		get_cmd(&main);
+		init_mimi(&main);
+		get_cmd(&main, str);
 		// expander(&main);
 		// start_process(&main);
 		// into_builtin(&main);

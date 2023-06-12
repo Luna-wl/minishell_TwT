@@ -6,7 +6,7 @@
 /*   By: wluedara <wluedara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 16:21:40 by wluedara          #+#    #+#             */
-/*   Updated: 2023/06/10 21:37:29 by wluedara         ###   ########.fr       */
+/*   Updated: 2023/06/12 16:42:25 by wluedara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,16 @@ char	**get_envp()
 	return (tmp);
 }
 
-void	get_cmd(t_main *main)
+void	get_cmd(t_main *main, char *str)
 {
-	if (!cut_cmd(main->input))
+	if (!cut_cmd(str))
 		return ;
-	main->str_cmd = cut_cmd(main->input);
+	main->str_cmd = cut_cmd(str);
+	if (!check_error(main->str_cmd))
+	{
+		del_split(main->str_cmd);
+		return ;
+	}
 	main->lexer = spilt_to_list(main->str_cmd, main->lexer);
 	// pim_list(main->lexer);
 	main->cmd = list_cmd(main);

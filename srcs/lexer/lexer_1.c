@@ -6,7 +6,7 @@
 /*   By: wluedara <wluedara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 14:29:35 by wluedara          #+#    #+#             */
-/*   Updated: 2023/06/10 21:38:04 by wluedara         ###   ########.fr       */
+/*   Updated: 2023/06/12 16:44:22 by wluedara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,18 +53,18 @@ char	*my_split_lexer(char *s)
 	return (str);
 }
 
-int	check_error(char *s)
+int	check_error(char **s)
 {
 	int	len;
 
-	len = ft_strlen(s) - 1;
-	if (s[len] == '|')
+	len = find_len_split(s) - 1;
+	if (!ft_strncmp(s[len], "|", 1))
 	{
 		print_str(BCYN"Pipe is at the end ¯\\_ಠ_ಠ_/¯\n"RESET);
 		return (0);
 	}
-	else if (s[len] == '<' || s[len] == '>' || !ft_strncmp(&s[len], "<<", 2) \
-	|| !ft_strncmp(&s[len], ">>", 2))
+	else if (!ft_strncmp(s[len], "<", 1) || !ft_strncmp(s[len], ">", 1) || \
+	!ft_strncmp(s[len], ">>", 2) || !ft_strncmp(s[len], "<<", 2))
 	{
 		print_str(BCYN"Command is not complete ۹( ÒہÓ )۶\n"RESET);
 		return (0);
@@ -80,8 +80,6 @@ char	**cut_cmd(char *s)
 	int		j;
 	int		letter;
 
-	if (!s || !check_error(s))
-		return (0);
 	i = 0;
 	word = check_word_lexer(s, ft_strlen(s), i);
 	new = malloc(sizeof(char *) * (word + 1));
