@@ -1,21 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_strlen_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pnamwayk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/31 22:12:50 by wluedara          #+#    #+#             */
-/*   Updated: 2023/07/02 00:24:16 by pnamwayk         ###   ########.fr       */
+/*   Created: 2023/06/02 00:51:23 by pnamwayk          #+#    #+#             */
+/*   Updated: 2023/07/01 23:15:07 by pnamwayk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "hell.h"
 
-void	ft_putstr_fd(char *s, int fd)
+size_t	ft_strlen(char *str)
 {
-	if (s != NULL)
-	{
-		write(fd, s, ft_strlen(s));
-	}
+	size_t	len;
+
+	len = 0;
+	while (str[len] != '\0')
+		len++;
+	return (len);
 }

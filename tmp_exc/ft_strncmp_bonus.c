@@ -1,21 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_strncmp_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pnamwayk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/31 22:12:50 by wluedara          #+#    #+#             */
-/*   Updated: 2023/07/02 00:24:16 by pnamwayk         ###   ########.fr       */
+/*   Created: 2023/06/02 00:51:33 by pnamwayk          #+#    #+#             */
+/*   Updated: 2023/07/01 23:15:11 by pnamwayk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "hell.h"
 
-void	ft_putstr_fd(char *s, int fd)
+int	ft_strncmp(char *s1, char *s2, size_t n)
 {
-	if (s != NULL)
+	int				diff;
+	unsigned int	index;
+
+	index = 0;
+	diff = 0;
+	while (index < n && (s1[index] != 0 || s2[index] != 0))
 	{
-		write(fd, s, ft_strlen(s));
+		if (s1[index] != s2[index])
+			return (1);
+		index++;
 	}
+	return (0);
 }

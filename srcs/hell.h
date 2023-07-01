@@ -30,12 +30,14 @@ typedef struct s_lexer
 typedef struct s_cmd
 {
 	char			**str;
+	char			**command;
 	int				all_infile;
 	int				all_outfile;
 	int				cnt_infile;
 	int				cnt_heredoc;
 	int				cnt_outfile;
 	int				cnt_append;
+	int				cnt_cmd;
 	char			**infile_name;
 	char			**outfile_name;
 	char			**heredoc_file;
@@ -160,6 +162,55 @@ char		**get_path(char **envp);
 char		*cut_quote(char *str);
 char		*detact_quote(char *str, t_main *main, char *val);
 char		*detact_quote2(char *str, t_main *main, char *val);
+
+//mobile///////////////////////////////////////////////////
+
+
+//	ft_dup2.c
+// void	ft_dup2(t_main *main, char **argv, int id);
+// void	dup_first_child(t_main *main, char *infile);
+// void	dup_last_child(t_main *main, char *outfile);
+
+// void	ft_putstr_fd(char *str, int fd);
+// char	**ft_split(char const *s, char c);
+// char	*ft_strdup(char *str);
+// char	*ft_strjoin(char *s1, char *s2);
+// size_t	ft_strlcpy(char *dst, char *src, size_t dstsize);
+// size_t	ft_strlen(char *str);
+// int		ft_strncmp(char *s1, char *s2, size_t n);
+// int		ft_strstr(char *str, char *find);
+
+//	here_doc.c
+void	get_heredoc(t_cmd	*command);
+int		read_heredoc(t_cmd	*tmp, size_t len_filename, int i);
+int		check_limiter(char *line, char *limiter, size_t n);
+
+//	pipex_bonus.c
+// void	init_value(t_main *main, int argc);
+
+//	process.c
+void	start_process(t_main *main);
+// void	create_process(t_main *main, char **argv, char **env);
+// void	child_process(t_main *main, char **argv, char **env, int id);
+// void	parent_process(t_main *main);
+// void	waiting_process(t_main *main);
+
+//	utils_cmd.c
+// int		ft_find_slash(char *str);
+// void	count_cmd(t_main *main, char *filename);
+// void	free_cmd(t_main *main);
+
+//	utils_error.c
+// void	err_file(t_main *main, char *file);
+// void	err_cmd(t_main *main, char *cmd, int err);
+// void	err_msg_free(t_main *main, char *msg);
+// void	err_msg(char *msg);
+// void	ft_exit(int err);
+
+//	utils_path.c
+// int		find_path(char **env);
+// int		check_access_path(t_main *main, char *cmd);
+// void	free_path(t_main *main);
 
 
 #endif

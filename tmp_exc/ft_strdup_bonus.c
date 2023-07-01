@@ -1,21 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_strdup_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pnamwayk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/31 22:12:50 by wluedara          #+#    #+#             */
-/*   Updated: 2023/07/02 00:24:16 by pnamwayk         ###   ########.fr       */
+/*   Created: 2023/06/02 00:50:31 by pnamwayk          #+#    #+#             */
+/*   Updated: 2023/07/01 23:14:52 by pnamwayk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "hell.h"
 
-void	ft_putstr_fd(char *s, int fd)
+char	*ft_strdup(char *str)
 {
-	if (s != NULL)
+	char	*new;
+	int		index;
+
+	new = malloc(sizeof(char) * ft_strlen(str) + 1);
+	if (!new)
+		return (NULL);
+	index = 0;
+	while (str[index] != 0)
 	{
-		write(fd, s, ft_strlen(s));
+		new[index] = str[index];
+		index++;
 	}
+	new[index] = 0;
+	return (new);
 }

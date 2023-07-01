@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expander.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wluedara <Warintorn_L@outlook.com>         +#+  +:+       +#+        */
+/*   By: pnamwayk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 14:29:53 by wluedara          #+#    #+#             */
-/*   Updated: 2023/06/03 18:19:42 by wluedara         ###   ########.fr       */
+/*   Updated: 2023/07/01 22:35:18 by pnamwayk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void	expander(t_main *main)
 		while (tmp->str[++i])
 		{
 			expan = expander_handel(main, tmp->str[i]);
-			printf("In expan main value = %s\n", expan);
+			// printf("In expan main value = %s\n", expan);
 		}
 		tmp = tmp->next;
 	}

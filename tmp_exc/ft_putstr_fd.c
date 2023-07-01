@@ -5,17 +5,23 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: pnamwayk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/31 22:12:50 by wluedara          #+#    #+#             */
-/*   Updated: 2023/07/02 00:24:16 by pnamwayk         ###   ########.fr       */
+/*   Created: 2023/06/02 00:49:45 by pnamwayk          #+#    #+#             */
+/*   Updated: 2023/07/01 23:14:43 by pnamwayk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "hell.h"
 
-void	ft_putstr_fd(char *s, int fd)
+void	ft_putstr_fd(char *str, int fd)
 {
-	if (s != NULL)
+	int	s;
+
+	if (!str)
+		return ;
+	s = 0;
+	while (str[s] != '\0')
 	{
-		write(fd, s, ft_strlen(s));
+		write(fd, &str[s], 1);
+		s++;
 	}
 }
