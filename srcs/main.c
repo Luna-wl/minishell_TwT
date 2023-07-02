@@ -6,7 +6,7 @@
 /*   By: pnamwayk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 18:26:04 by wluedara          #+#    #+#             */
-/*   Updated: 2023/07/02 01:14:33 by pnamwayk         ###   ########.fr       */
+/*   Updated: 2023/07/02 21:33:25 by pnamwayk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	main(int argc, char **argv)
 		get_cmd(&main, str); // start cut cmd
 		// expander(&main); // after split cmd then go to expander to detact quote and $
 		start_process(&main);
-		printf("num_pipe = %d\n", main.num_pipe);
+		// printf("num_pipe = %d\n", main.num_pipe);
 		// get_heredoc(main);
 		// into_builtin(&main); // if want to get to buildin use this nah
 		free(str); // free input

@@ -1,11 +1,13 @@
 #include "hell.h"
 
 void	start_process(t_main *main);
-// void	create_process(t_main *main, char **argv, char **env);
-// void	child_process(t_main *main, char **argv, char **env, int id);
-// void	parent_process(t_main *main);
-// void	waiting_process(t_main *main);
-int	check_redirect(char *s);
+void	create_process(t_main *main);
+void	child_process(t_main *main, t_cmd *tmp, int id);
+void	parent_process(t_main *main);
+void	waiting_process(t_main *main);
+int		check_redirect(char *s);
+void	ft_close_pipe(t_main *main, int pfd);
+
 void	get_command(t_main *main, t_cmd *tmp);
 
 void get_letter_cmd(t_cmd *tmp, char *s, int cnt_word);
@@ -18,75 +20,88 @@ void	start_process(t_main *main)
 	// 	main->path = ft_split(&main->envp[main->found_path][5], ':');
 
 	// count_cmd(p, argv[1]);
-	// main->pid = malloc(sizeof(pid_t) * main->cmd_nbr);
+	main->pid = malloc(sizeof(pid_t) * main->cmd_nbr);
 	// if (p->heredoc == 1)
-		get_heredoc(main->cmd);
-		get_command(main, main->cmd);
-	// create_process(main);
-	// close(p->pfd[0]);
-	// close(p->pfd[1]);
-	// waiting_process(p);
+	get_heredoc(main);
+		// get_command(main, main->cmd);
+	create_process(main);
+	// close(main->pfd[0]);
+	// close(main->pfd[1]);
+	waiting_process(main);
 	// free_path(p);
 }
 
-// void	create_process(t_main *main, char **argv, char **env)
-// {
-// 	tmd *tmp;
-// 	int	id;
+void	create_process(t_main *main)
+{
+	t_cmd *tmp;
+	int	id;
 
-// 	id = 0;
-// 	tmp = main->cmd;
-// 	while (id < main->cmd_nbr)
-// 	{
-// 		if (id != p->cmd_nbr - 1)
-// 		{
-// 			if (pipe(p->pfd) == -1)
-// 				err_msg_free(p, "Pipe error: ");
-// 		}
-// 		main->pid[id] = fork();
-// 		if (main->pid[id] == -1)
-// 			err_msg_free(main, "Fork error: ");
-// 		else if (main->pid[id] == 0)
-// 			child_process(main, id, tmp);
-// 		else
-// 			parent_process(main);
-// 		id++;
-// 		tmp = tmp->next;
-// 	}
-// }
+	id = -1;
+	tmp = main->cmd;
+	while (++id < main->cmd_nbr)
+	{
+		if (id != main->cmd_nbr - 1)
+		{
+			if (pipe(main->pfd) == -1)
+				err_msg_free(main, "Pipe error: ");
+		}
+		main->pid[id] = fork();
+		if (main->pid[id] == -1)
+			err_msg_free(main, "Fork error: ");
+		else if (main->pid[id] == 0)
+			child_process(main, tmp, id);
+			// printf("child process = %d, id = %d\n", main->pid[id], id);
+		else
+			parent_process(main);
+			// printf("parent process = %d, id = %d\n", main->pid[id], id);
+		// id++;
+		tmp = tmp->next;
+	}
+}
 
-// void	child_process(t_main *main, int id, t_cmd *tmp)
-// {
-// 	close(main->pfd[0]);
-// 	ft_dup2(main, id);
-// 	close(main->pfd[1]);
-// 	get_command(main, tmp);
-// 	// p->cmd = ft_split(argv[p->cur], ' ');
-// 	if (check_access_path(p, p->cmd[0]) == 0)
-// 	{
-// 		if (execve(p->cur_path, p->cmd, env) == -1)
-// 		{
-// 			free(p->cur_path);
-// 			err_cmd(p, p->cmd[0], 13);
-// 		}
-// 	}
-// }
+void	ft_close_pipe(t_main *main, int pfd)
+{
+	if (main->num_pipe > 0)
+		close(pfd);
+}
 
-// void	parent_process(t_main *main)
-// {
-// 	close(p->pfd[1]);
-// 	p->tmp_fd = dup(p->pfd[0]);
-// 	close(p->pfd[0]);
-// }
+void	child_process(t_main *main, t_cmd *tmp, int id)
+{
+	ft_close_pipe(main, main->pfd[0]);
+	// ft_dup2(main, tmp, id);
+	dup_infile(main, tmp, id);
+	dup_outfile(main, tmp, id);
+	ft_close_pipe(main, main->pfd[1]);
+	get_command(main, tmp);
 
-// void	waiting_process(t_main *main)
-// {
-// 	int	id;
+	// p->cmd = ft_split(argv[p->cur], ' ');
+	if (check_access_path(main, tmp->command[0]) == 0)
+	{
+		dprintf(2, "cur_path = %s\n", main->cur_path);
+		if (execve(main->cur_path, tmp->command, main->envp) == -1)
+		{
+			free(main->cur_path);
+			err_cmd(main, tmp->command[0], 13);
+		}
+	}
+}
 
-// 	id = -1;
-// 	while (++id < p->cmd_nbr)
-// 		waitpid(p->pid[id], &p->status, WUNTRACED);
-// }
+void	parent_process(t_main *main)
+{
+	ft_close_pipe(main, main->pfd[1]);
+	if (main->num_pipe > 0)
+		main->tmp_fd = dup(main->pfd[0]);
+	ft_close_pipe(main, main->pfd[0]);
+}
+
+void	waiting_process(t_main *main)
+{
+	int	id;
+
+	id = -1;
+	while (++id < main->cmd_nbr)
+		waitpid(main->pid[id], &main->status, WUNTRACED);
+}
 
 void	get_command(t_main *main, t_cmd *tmp)
 {
@@ -99,7 +114,6 @@ void	get_command(t_main *main, t_cmd *tmp)
 	while (tmp->str[++i])
 		 cnt_word++;
 	cnt_word -= (main->cmd->all_infile + main->cmd->all_outfile) * 2;
-	printf("af w %d\n", cnt_word);
 	tmp->command = malloc(sizeof(char *) * (cnt_word + 1));
 	if (!tmp->command)
 		return ;
@@ -117,16 +131,16 @@ void	get_command(t_main *main, t_cmd *tmp)
 			i ++;
 		// printf("re = %d, str = %s, cnt_word = %d, i = %d\n",check_redirect(tmp->str[i]), tmp->command[cnt_word], cnt_word, i);
 	}
-	i = -1;
-	while(tmp->command[++i])
-		printf("cmd[%d] = %s\n", i, tmp->command[i]);
+	// i = -1;
+	// while(++i <= cnt_word)
+	// 	dprintf(2, "get cmd[%d] = %s\n", i, tmp->command[i]);
 }
 
 void get_letter_cmd(t_cmd *tmp, char *s, int cnt_word)
 {
 	int	i;
 
-	printf("cmd = %s\n", s);
+	// printf("cmd = %s\n", s);
 	tmp->command[cnt_word] = malloc(sizeof(char) * (ft_strlen(s) + 1));
 	if (!tmp->command[cnt_word])
 		return ;

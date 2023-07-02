@@ -59,6 +59,7 @@ typedef struct s_main
 	char	**path;
 
 	pid_t	*pid;
+	char	*cur_path;
 	int		heredoc;
 	int		cur;
 	int		fd_file;
@@ -167,9 +168,13 @@ char		*detact_quote2(char *str, t_main *main, char *val);
 
 
 //	ft_dup2.c
-// void	ft_dup2(t_main *main, char **argv, int id);
-// void	dup_first_child(t_main *main, char *infile);
-// void	dup_last_child(t_main *main, char *outfile);
+// void	ft_dup2(t_main *main, t_cmd *tmp, int id);
+// void	dup_first_child(t_main *main, t_cmd *tmp);
+// void	dup_last_child(t_main *main, t_cmd *tmp);
+void	open_infile(t_main *main, t_cmd *tmp, char **file_name, int file_nbr);
+void	open_outfile(t_main *main, t_cmd *tmp, char **file_name, int file_nbr);
+void	dup_infile(t_main *main, t_cmd *tmp, int id);
+void	dup_outfile(t_main *main, t_cmd *tmp, int id);
 
 // void	ft_putstr_fd(char *str, int fd);
 // char	**ft_split(char const *s, char c);
@@ -181,35 +186,38 @@ char		*detact_quote2(char *str, t_main *main, char *val);
 // int		ft_strstr(char *str, char *find);
 
 //	here_doc.c
-void	get_heredoc(t_cmd	*command);
-int		read_heredoc(t_cmd	*tmp, size_t len_filename, int i);
+void	get_heredoc(t_main *main);
+void	read_heredoc(t_main *main, t_cmd *tmp, size_t len_filename, int i);
 int		check_limiter(char *line, char *limiter, size_t n);
+int		check_append_file(t_cmd *tmp, char *file_name);
+int		check_heredoc_file(t_cmd *tmp, char *file_name);
 
 //	pipex_bonus.c
 // void	init_value(t_main *main, int argc);
 
 //	process.c
 void	start_process(t_main *main);
-// void	create_process(t_main *main, char **argv, char **env);
-// void	child_process(t_main *main, char **argv, char **env, int id);
-// void	parent_process(t_main *main);
-// void	waiting_process(t_main *main);
+void	create_process(t_main *main);
+void	child_process(t_main *main, t_cmd *tmp, int id);
+void	parent_process(t_main *main);
+void	waiting_process(t_main *main);
+int		check_redirect(char *s);
 
-//	utils_cmd.c
-// int		ft_find_slash(char *str);
+	// utils_cmd .c
+int		ft_find_slash(char *str);
 // void	count_cmd(t_main *main, char *filename);
 // void	free_cmd(t_main *main);
 
-//	utils_error.c
-// void	err_file(t_main *main, char *file);
-// void	err_cmd(t_main *main, char *cmd, int err);
-// void	err_msg_free(t_main *main, char *msg);
-// void	err_msg(char *msg);
-// void	ft_exit(int err);
+	// utils_error.c
+void	err_file(t_main *main, char *file);
+void	err_cmd(t_main *main, char *cmd, int err);
+void	err_msg_free(t_main *main, char *msg);
+void	err_msg(char *msg);
+void	ft_exit(int err);
 
-//	utils_path.c
+// 	utils_path.c
 // int		find_path(char **env);
-// int		check_access_path(t_main *main, char *cmd);
+int		check_access_path(t_main *main, char *cmd);
 // void	free_path(t_main *main);
 
 
