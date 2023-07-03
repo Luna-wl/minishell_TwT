@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_4.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wluedara <wluedara@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pnamwayk <pnamwayk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 21:17:02 by wluedara          #+#    #+#             */
-/*   Updated: 2023/06/10 21:22:48 by wluedara         ###   ########.fr       */
+/*   Updated: 2023/07/03 13:45:09 by pnamwayk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,10 @@ char	**check_infile(char **cmd, int inf)
 	i = -1;
 	j = 0;
 	str = malloc(sizeof(char *) * inf + 1);
-	while (cmd[++i])
+	while (cmd[++i] && j < inf)
 	{
-		if (ft_strncmp(cmd[i], "<", 1) == 0 && cmd[i + 1] != NULL \
-		&& ft_strncmp(cmd[i], "<<", 2))
+		if ((!ft_strncmp(cmd[i], "<<", 2) || !ft_strncmp(cmd[i], "<", 1))
+		&& cmd[i + 1] != NULL)
 			str[j++] = ft_strdup(cmd[i + 1]);
 	}
 	str[j] = NULL;
@@ -58,10 +58,10 @@ char	**check_outfile(char **cmd, int of)
 	i = -1;
 	j = 0;
 	str = malloc(sizeof(char *) * of + 1);
-	while (cmd[++i])
+	while (cmd[++i] && j < of)
 	{
-		if (ft_strncmp(cmd[i], ">", 1) == 0 && cmd[i + 1] != NULL \
-		&& ft_strncmp(cmd[i], ">>", 2))
+		if ((!ft_strncmp(cmd[i], ">", 1) || !ft_strncmp(cmd[i], ">>", 2))
+ 		&& cmd[i + 1] != NULL)
 			str[j++] = ft_strdup(cmd[i + 1]);
 	}
 	str[j] = NULL;

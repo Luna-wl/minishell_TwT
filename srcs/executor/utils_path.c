@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_path.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pnamwayk <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: pnamwayk <pnamwayk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 00:52:48 by pnamwayk          #+#    #+#             */
-/*   Updated: 2023/07/02 21:22:00 by pnamwayk         ###   ########.fr       */
+/*   Updated: 2023/07/03 14:06:14 by pnamwayk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ int	check_access_path(t_main *main, char *cmd)
 	if (ft_find_slash(cmd) == 0)
 	{
 		main->cur_path = ft_strdup(cmd);
-		dprintf(2, "dup cur_path = %s\n", main->cur_path);
 		if (access(cmd, F_OK & X_OK) == 0)
 			return (0);
 		free(main->cur_path);
@@ -68,7 +67,6 @@ int	check_access_path(t_main *main, char *cmd)
 		while (main->path[++i])
 		{
 			main->cur_path = ft_join_path(main->path[i], cmd);
-			dprintf(2, "%zu cur_path = %s\n", i, main->cur_path);
 			if (access(main->cur_path, F_OK & X_OK) == 0)
 				return (0);
 			free(main->cur_path);

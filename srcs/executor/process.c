@@ -68,16 +68,12 @@ void	ft_close_pipe(t_main *main, int pfd)
 void	child_process(t_main *main, t_cmd *tmp, int id)
 {
 	ft_close_pipe(main, main->pfd[0]);
-	// ft_dup2(main, tmp, id);
 	dup_infile(main, tmp, id);
 	dup_outfile(main, tmp, id);
 	ft_close_pipe(main, main->pfd[1]);
 	get_command(main, tmp);
-
-	// p->cmd = ft_split(argv[p->cur], ' ');
 	if (check_access_path(main, tmp->command[0]) == 0)
 	{
-		dprintf(2, "cur_path = %s\n", main->cur_path);
 		if (execve(main->cur_path, tmp->command, main->envp) == -1)
 		{
 			free(main->cur_path);
@@ -129,18 +125,13 @@ void	get_command(t_main *main, t_cmd *tmp)
 		}
 		else
 			i ++;
-		// printf("re = %d, str = %s, cnt_word = %d, i = %d\n",check_redirect(tmp->str[i]), tmp->command[cnt_word], cnt_word, i);
 	}
-	// i = -1;
-	// while(++i <= cnt_word)
-	// 	dprintf(2, "get cmd[%d] = %s\n", i, tmp->command[i]);
 }
 
 void get_letter_cmd(t_cmd *tmp, char *s, int cnt_word)
 {
 	int	i;
 
-	// printf("cmd = %s\n", s);
 	tmp->command[cnt_word] = malloc(sizeof(char) * (ft_strlen(s) + 1));
 	if (!tmp->command[cnt_word])
 		return ;

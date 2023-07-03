@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_2.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wluedara <wluedara@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pnamwayk <pnamwayk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 16:03:55 by wluedara          #+#    #+#             */
-/*   Updated: 2023/06/10 21:27:34 by wluedara         ###   ########.fr       */
+/*   Updated: 2023/07/03 13:38:21 by pnamwayk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,8 +79,9 @@ void	create_list_cmd(t_cmd **cmd, t_lexer *list)
 	tmp->all_infile = tmp->cnt_infile + tmp->cnt_heredoc;
 	tmp->all_outfile = tmp->cnt_outfile + tmp->cnt_append;
 	tmp->heredoc_file = check_heredoc(tmp->str, tmp->cnt_heredoc);
-	tmp->infile_name = check_infile(tmp->str, tmp->cnt_infile);
-	tmp->outfile_name = check_outfile(tmp->str, tmp->cnt_outfile);
+	// tmp->infile_name = check_infile(tmp->str, tmp->cnt_infile);
+	tmp->infile_name = check_infile(tmp->str, tmp->all_infile);
+	tmp->outfile_name = check_outfile(tmp->str, tmp->all_outfile);
 	tmp->append_file = check_append(tmp->str, tmp->cnt_append);
 	tmp->next = NULL;
 	add_last_cmd(cmd, tmp);

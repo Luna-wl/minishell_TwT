@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   into_cmd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pnamwayk <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: pnamwayk <pnamwayk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 16:21:40 by wluedara          #+#    #+#             */
-/*   Updated: 2023/07/03 03:41:33 by pnamwayk         ###   ########.fr       */
+/*   Updated: 2023/07/03 13:57:33 by pnamwayk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,5 +47,5 @@ void	get_cmd(t_main *main, char *str)
 	// pim_list(main->lexer);
 	main->cmd = list_cmd(main); // convert lexer to parser and redirect info
 	del_list_lexer(&main->lexer); // del lexer after finish parser
-	pim_cmd(main->cmd);
+	// pim_cmd(main->cmd);
 }
