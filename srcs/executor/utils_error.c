@@ -6,7 +6,7 @@
 /*   By: pnamwayk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 00:52:36 by pnamwayk          #+#    #+#             */
-/*   Updated: 2023/07/15 16:34:45 by pnamwayk         ###   ########.fr       */
+/*   Updated: 2023/07/31 22:58:20 by pnamwayk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	err_file(t_main *main, char *file)
 {
 	(void) main;
 	// free_path(p);
-	write(STDERR_FILENO, "pipex: ", 8);
+	write(STDERR_FILENO, "minishell: ", 11);
 	write(STDERR_FILENO, file, ft_strlen(file));
 	write(STDERR_FILENO, ": ", 3);
 	perror("");
@@ -33,7 +33,7 @@ void	err_file(t_main *main, char *file)
 void	err_cmd(t_main *main, char *cmd, int err)
 {
 	(void) main;
-	write(STDERR_FILENO, "pipex: ", 8);
+	write(STDERR_FILENO, "minishell: ", 11);
 	if (cmd)
 		write(STDERR_FILENO, cmd, ft_strlen(cmd));
 	if (ft_find_slash(cmd) == 0 && err == 9)
@@ -51,6 +51,7 @@ int	err_builtin(t_main *main, t_cmd *cmd, int err)
 {
 	(void) main;
 	// write(STDERR_FILENO, "pipex: ", 8);
+	write(STDERR_FILENO, "minishell: ", 11);
 	if (cmd->command[0])
 		write(STDERR_FILENO, cmd->command[0], ft_strlen(cmd->command[0]));
 	write(STDERR_FILENO, ": ", 2);

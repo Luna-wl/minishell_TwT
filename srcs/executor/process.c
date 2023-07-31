@@ -62,7 +62,7 @@ void	create_process(t_main *main)
 		// 	printf("hiii\n");
 		// 	builtin_parent_process(main, tmp, id);
 		// }
-		// free_command(tmp->command);
+		free_command(tmp->command);
 		tmp = tmp->next;
 	}
 }

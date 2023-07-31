@@ -22,6 +22,7 @@ int	builtin_export(t_main *main, t_cmd *cmd)
 	int	i;
 	char	*vrb;
 
+
 	if (!cmd->command[1])
 		print_sorted_env(main);
 	else
@@ -30,7 +31,7 @@ int	builtin_export(t_main *main, t_cmd *cmd)
 		while (cmd->command[++i])
 		{
 			vrb = ft_strtrim_vrb(cmd->command[i], '=');
-			printf("cmd->command[i] = |%s| vrb = |%s|\n", cmd->command[i], vrb);
+			// printf("1 cmd->command[i] = |%s| vrb = |%s|\n", cmd->command[i], vrb);
 			if (check_format_variable(vrb))
 			{
 				row_vrb = find_variable_inenv(vrb);
@@ -38,12 +39,18 @@ int	builtin_export(t_main *main, t_cmd *cmd)
 					instead_variable(cmd->command[i], row_vrb);
 				else
 					environ = add_variable(cmd->command[i]);
+				// printf("--------------------\n");
+				// printf("2 vrb = %s %p\n", vrb, &vrb);
 			}
 			else
 				err_msg_builtin("export", cmd->command[i]); //error but not exit
 			// exit(0);
-			// if (*vrb)
-			// 	free(vrb);
+			if (vrb)
+			{
+				printf("--------------------\n");
+				printf("3 vrb = %s %p\n", vrb, &vrb);
+				free(vrb);
+			}
 		}
 	}
 	// char **str = ft_strdup2();
