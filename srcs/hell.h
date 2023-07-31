@@ -13,13 +13,6 @@
 # include <readline/history.h>
 # include "colours.h"
 
-enum token {
-	GREAT, // output >
-	LESS, // input <
-	APPEND, // >>
-	HEREDOC, // <<
-};
-
 typedef struct s_lexer
 {
 	char			*str;
@@ -138,9 +131,9 @@ void		pim_split(char **s);
 void		pim_list(t_lexer *list);
 // signal.c
 void		init_signal(void);
-// void		sig_handler_c(int sig);
-void	sig_handler_c(void);
-void	sig_handler_c_space(int sig);
+void		sigint_handle(int mode);
+void		sighandle(int sig);
+void		handel_c(int sig);
 // builtin.c
 void		into_builtin(t_main *main);
 void		into_builtin2(t_cmd *cmd, int i);

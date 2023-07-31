@@ -6,39 +6,39 @@
 /*   By: wluedara <wluedara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 11:44:26 by wluedara          #+#    #+#             */
-/*   Updated: 2023/07/31 12:32:55 by wluedara         ###   ########.fr       */
+/*   Updated: 2023/07/31 20:04:50 by wluedara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "hell.h"
 
-void	sig_handler_c(void)
+void	sighandle(int sig)
 {
-	ft_putstr_fd("\n", STDOUT_FILENO);
-	rl_on_new_line();
-	rl_replace_line("", 0);
-	rl_redisplay();
+	if (sig == SIGINT)
+	{
+		ft_putstr_fd("\n", STDOUT_FILENO);
+		rl_on_new_line();
+		rl_replace_line("", 0);
+		rl_redisplay();
+	}
 }
 
-void	sig_handler_c_space(int sig)
+void	handel_c(int sig)
 {
-	(void)sig;
-	ft_putstr_fd("\n", STDOUT_FILENO);
-	rl_on_new_line();
-	rl_replace_line("", 0);
-	rl_redisplay();
+	if (sig == SIGINT)
+		ft_putstr_fd("\n", STDOUT_FILENO);
 }
 
-// void	sighandle(int sig, int mode)
-// {
-// 	if (mode == 1)
-// 		sig_handler_c(sig);
-// 	else
-// 		sig_handler_c_space(sig);
-// }
+void	sigint_handle(int mode)
+{
+	if (mode == 1)
+		signal(SIGINT, sighandle);
+	else
+		signal(SIGINT, handel_c);
+}
 
 void	init_signal(void)
 {
-	signal(SIGINT, sig_handler_c_space);
 	signal(SIGQUIT, SIG_IGN);
+	sigint_handle(1);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   into_cmd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pnamwayk <pnamwayk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wluedara <wluedara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 16:21:40 by wluedara          #+#    #+#             */
-/*   Updated: 2023/07/03 13:57:33 by pnamwayk         ###   ########.fr       */
+/*   Updated: 2023/07/31 14:50:17 by wluedara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ void	get_cmd(t_main *main, char *str)
 	main->str_cmd = cut_cmd(str); // put lexer after split into main->str_cmd
 	if (!check_error(main->str_cmd))
 	{
+		pim_split(main->str_cmd);
 		del_split(main->str_cmd);
 		return ;
 	}
