@@ -138,7 +138,9 @@ void		pim_split(char **s);
 void		pim_list(t_lexer *list);
 // signal.c
 void		init_signal(void);
-void		sig_handler_c(int sig);
+// void		sig_handler_c(int sig);
+void	sig_handler_c(void);
+void	sig_handler_c_space(int sig);
 // builtin.c
 void		into_builtin(t_main *main);
 void		into_builtin2(t_cmd *cmd, int i);

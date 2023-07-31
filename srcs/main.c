@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pnamwayk <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: wluedara <wluedara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 18:26:04 by wluedara          #+#    #+#             */
-/*   Updated: 2023/07/02 21:33:25 by pnamwayk         ###   ########.fr       */
+/*   Updated: 2023/07/31 12:33:01 by wluedara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	main(int argc, char **argv)
 	printf(YEL"====> ~ HELLO WELCOME ~ <====\n"RESET); // welcome message
 	while (1) // loop till want to exit
 	{
-		// init_signal(); // catch signal
+		init_signal(); // catch signal
 		str = readline(RED"mini(s)hell >> "RESET); // รับinputเข้ามา
 		add_history(str); // ใส่ในhistory
 		if (!str) // detact for ctrl-D if it NULL break
