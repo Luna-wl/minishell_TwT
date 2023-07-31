@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_echo.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wluedara <wluedara@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pnamwayk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 11:45:01 by wluedara          #+#    #+#             */
-/*   Updated: 2023/05/29 17:15:29 by wluedara         ###   ########.fr       */
+/*   Updated: 2023/07/15 20:58:35 by pnamwayk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	print_word(char *str)
 	}
 }
 
-void	builtin_echo(t_cmd *cmd)
+int	builtin_echo(t_main *main, t_cmd *cmd)
 {
 	t_cmd	*tmp;
 	int		opt;
@@ -32,6 +32,7 @@ void	builtin_echo(t_cmd *cmd)
 
 	i = 0;
 	opt = 0;
+	(void) main;
 	tmp = cmd;
 	while (tmp->str[i])
 	{
@@ -52,4 +53,7 @@ void	builtin_echo(t_cmd *cmd)
 	}
 	if (opt == 0)
 		ft_putchar_fd('\n', 1);
+	// return (EXIT_SUCCESS);
+	exit(0);
+	return (0);
 }

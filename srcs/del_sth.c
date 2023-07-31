@@ -59,7 +59,8 @@ void	del_split(char **str)
 		free(str[i]);
 		i++;
 	}
-	free(str);
+	if (str)
+		free(str);
 }
 
 void	print_str(char *s)

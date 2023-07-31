@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expander.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pnamwayk <pnamwayk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pnamwayk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 14:29:53 by wluedara          #+#    #+#             */
-/*   Updated: 2023/07/03 13:20:58 by pnamwayk         ###   ########.fr       */
+/*   Updated: 2023/07/19 22:30:58 by pnamwayk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ char	*detact_dollar(char *str, t_main *main)
 
 char	*expander_handel(t_main *main, char *str)
 {
-	char	*val;
+	char	*val; 
 
 	val = ft_strdup("\0");
 	if (str[0] == '$')

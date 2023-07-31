@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wluedara <wluedara@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pnamwayk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 18:26:04 by wluedara          #+#    #+#             */
-/*   Updated: 2023/07/31 12:33:01 by wluedara         ###   ########.fr       */
+/*   Updated: 2023/07/31 02:51:47 by pnamwayk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,14 @@ int	main(int argc, char **argv)
 	t_main		main;
 
 	(void)argv;
+	(void)argc;
 	if (argc > 1)
 		print_str(YEL"You put the wrong input\n"RESET);
 	printf(YEL"====> ~ HELLO WELCOME ~ <====\n"RESET); // welcome message
+	int tmp = dup(0);
 	while (1) // loop till want to exit
 	{
-		init_signal(); // catch signal
+		// init_signal(); // catch signal
 		str = readline(RED"mini(s)hell >> "RESET); // รับinputเข้ามา
 		add_history(str); // ใส่ในhistory
 		if (!str) // detact for ctrl-D if it NULL break
@@ -44,13 +46,14 @@ int	main(int argc, char **argv)
 		init_mimi(&main); // init value in struct
 		get_cmd(&main, str); // start cut cmd
 		// expander(&main); // after split cmd then go to expander to detact quote and $
+		// into_builtin(&main); // if want to get to buildin use this nah
 		start_process(&main);
 		// printf("num_pipe = %d\n", main.num_pipe);
 		// get_heredoc(main);
-		// into_builtin(&main); // if want to get to buildin use this nah
-		free(str); // free input
-		// free_all(&main); // free everything after finish execue cmd or reset everything to start again
+		// free(str); // free input
+		dup2(0,tmp);
 	}
+	// free_all(&main); // free everything after finish execue cmd or reset everything to start again
 	return (0);
 }
 

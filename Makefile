@@ -30,7 +30,7 @@ HEADER_I := -I$(SRCS_DIR) -I$(RL_DIR)include/
 all: $(NAME)
 
 $(NAME): $(SRCS) $(LIBFT)
-	@$(CC) $(CFLAGS) $^ $(LIB_I) $(HEADER_I) -o $@ 
+	@$(CC) $(CFLAGS) $^ $(LIB_I) $(HEADER_I) -o $@
 # @printf "$(RED)"
 # @cat hell.txt
 
@@ -82,7 +82,7 @@ re: fclean all libft
 # all: $(NAME)
 
 # $(NAME): $(SRCS) $(LIBFT)
-# 	@$(CC) $(CFLAGS) $^ $(LIB_I) $(HEADER_I) -o $@ 
+# 	@$(CC) $(CFLAGS) $^ $(LIB_I) $(HEADER_I) -o $@
 
 # $(LIBFT):
 # 	@make -C ./libft

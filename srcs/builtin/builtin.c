@@ -3,47 +3,86 @@
 /*                                                        :::      ::::::::   */
 /*   builtin.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wluedara <wluedara@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pnamwayk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 21:13:32 by wluedara          #+#    #+#             */
-/*   Updated: 2023/05/17 20:23:35 by wluedara         ###   ########.fr       */
+/*   Updated: 2023/07/31 01:41:37 by pnamwayk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "hell.h"
 
-void	into_builtin2(t_cmd *cmd, int i)
+int check_builtin(t_cmd *tmp);
+int	into_builtin_parent(t_main *main, t_cmd *cmd);
+int	into_builtin_child(t_main *main, t_cmd *cmd);
+
+int	into_builtin_parent(t_main *main, t_cmd *cmd)
 {
-	if (ft_strncmp(cmd->str[i], "echo", 4) == 0)
-		builtin_echo(cmd);
-	// else if (ft_strncmp(cmd->str[i], "cd", 2) == 0)
-	// 	builtin_cd(cmd);
-	else if (ft_strncmp(cmd->str[i], "pwd", 3) == 0)
-		builtin_pwd(cmd);
-	// else if (ft_strncmp(cmd->str[i], "export", 6) == 0)
-	// 	builtin_export(cmd);
-	// else if (ft_strncmp(cmd->str[i], "unset", 5) == 0)
-	// 	builtin_unset(cmd);
-	else if (ft_strncmp(cmd->str[i], "env", 3) == 0)
-		builtin_env();
-	// else if (ft_strncmp(cmd->str[i], "exit", 4) == 0)
-	// 	builtin_exit(cmd);
+	(void) main;
+	if (!ft_strncmp(cmd->command[0], "cd", 3))
+		return (builtin_cd(main, cmd));
+	else if (!ft_strncmp(cmd->command[0], "export", 7))
+		return (builtin_export(main, cmd));
+	else if (!ft_strncmp(cmd->command[0], "unset", 6))
+		return (builtin_unset(main, cmd));
+	// else if (!ft_strncmp(cmd->command[0], "exit", 5))
+	// 	return (builtin_exit(cmd));
+	return (-1);
 }
 
-void	into_builtin(t_main *main)
+int	into_builtin_child(t_main *main, t_cmd *cmd)
 {
-	t_cmd	*tmp;
-	int		j;
+	if (!ft_strncmp(cmd->command[0], "echo", 5))
+		return (builtin_echo(main, cmd));
+	else if (!ft_strncmp(cmd->command[0], "pwd", 4))
+		return (builtin_pwd(main, cmd));
+	else if (!ft_strncmp(cmd->command[0], "env", 4))
+		return (builtin_env(main, cmd));
+	else if (!ft_strncmp(cmd->command[0], "export", 7))
+		return (builtin_export(main, cmd));
+	return (-1);
+}
 
-	tmp = main->cmd;
-	while (tmp != NULL)
+// void	into_builtin(t_main *main)
+// {
+// 	t_cmd	*tmp;
+// 	int		j;
+
+// 	tmp = main->cmd;
+// 	while (tmp != NULL)
+// 	{
+// 		j = 0;
+// 		while (tmp->command[0])
+// 		{
+// 			if(into_builtin2(main, tmp, j)
+// 				j++;
+// 		}
+// 		tmp = tmp->next;
+// 	}
+// }
+
+int check_builtin(t_cmd *tmp)
+{
+	if (!ft_strncmp(tmp->command[0], "echo", 5) ||
+		!ft_strncmp(tmp->command[0], "pwd", 4) ||
+		!ft_strncmp(tmp->command[0], "env", 4))
+		return (1);
+	if (!ft_strncmp(tmp->command[0], "cd", 3) ||
+		!ft_strncmp(tmp->command[0], "unset", 5) ||
+		!ft_strncmp(tmp->command[0], "exit", 4))
+		return (2);
+	if (!ft_strncmp(tmp->command[0], "export", 6))
 	{
-		j = 0;
-		while (tmp->str[j])
+		if (!tmp->command[1])
 		{
-			into_builtin2(tmp, j);
-			j++;
+			// dprintf(2, "return 1\n");
+			return (1);
 		}
-		tmp = tmp->next;
+		else
+		{
+			// dprintf(2, "return (2)\n");
+			return (2);
+		}
 	}
+	return (0);
 }
