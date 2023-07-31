@@ -3,20 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   lexer_1.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wluedara <Warintorn_L@outlook.com>         +#+  +:+       +#+        */
+/*   By: wluedara <wluedara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 14:29:35 by wluedara          #+#    #+#             */
-/*   Updated: 2023/05/23 21:29:52 by wluedara         ###   ########.fr       */
+/*   Updated: 2023/07/31 14:50:24 by wluedara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "hell.h"
-
-void	init_int(void)
-{
-	g_i.i = 0;
-	g_i.j = 0;
-}
 
 int	check_quote(char **s)
 {
@@ -36,7 +30,7 @@ int	check_quote(char **s)
 	return (1);
 }
 
-char	*my_split(char *s)
+char	*my_split_lexer(char *s)
 {
 	char	*str;
 	char	*s2;
@@ -45,7 +39,8 @@ char	*my_split(char *s)
 	int		j;
 
 	s2 = ft_strtrim(s, " ");
-	letter = count_letter_split(s2);
+	i = 0;
+	letter = count_letter_split(s2, i);
 	str = malloc(sizeof(char) * (letter + 1));
 	if (!str)
 		return (0);
@@ -58,16 +53,26 @@ char	*my_split(char *s)
 	return (str);
 }
 
-void	check_pipe(char *s)
+int	check_error(char **s)
 {
 	int	len;
 
-	len = ft_strlen(s) - 1;
-	if (s[len] == '|')
+	len = find_len_split(s);
+	if (len > 0)
 	{
-		print_str(BCYN"Pipe is at the end ¯\\_ಠ_ಠ_/¯\n"RESET);
-		exit(EXIT_FAILURE);
+		if (!ft_strncmp(s[len - 1], "|", 1))
+		{
+			print_str(BCYN"Pipe is at the end ¯\\_ಠ_ಠ_/¯\n"RESET);
+			return (0);
+		}
+		else if (!ft_strncmp(s[len - 1], "<", 1) || !ft_strncmp(s[len - 1], ">", 1) || \
+		!ft_strncmp(s[len - 1], ">>", 2) || !ft_strncmp(s[len - 1], "<<", 2) )
+		{
+			print_str(BCYN"Command is not complete ۹( ÒہÓ )۶\n"RESET);
+			return (0);
+		}
 	}
+	return (1);
 }
 
 char	**cut_cmd(char *s)
@@ -78,10 +83,8 @@ char	**cut_cmd(char *s)
 	int		j;
 	int		letter;
 
-	if (!s)
-		return (0);
-	check_pipe(s);
-	word = check_word(s, ft_strlen(s));
+	i = 0;
+	word = check_word_lexer(s, ft_strlen(s), i);
 	new = malloc(sizeof(char *) * (word + 1));
 	if (!new)
 		return (0);
@@ -89,8 +92,8 @@ char	**cut_cmd(char *s)
 	j = 0;
 	while (i < word)
 	{
-		new[i++] = my_split(&s[j]);
-		letter = count_letter(&s[j]);
+		new[i++] = my_split_lexer(&s[j]);
+		letter = count_letter_lexer(&s[j]);
 		j += letter;
 	}
 	new[i] = NULL;

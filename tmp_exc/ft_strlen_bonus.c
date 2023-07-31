@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   builtin_cd.c                                       :+:      :+:    :+:   */
+/*   ft_strlen_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wluedara <wluedara@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pnamwayk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/01 15:10:12 by wluedara          #+#    #+#             */
-/*   Updated: 2023/05/29 17:14:29 by wluedara         ###   ########.fr       */
+/*   Created: 2023/06/02 00:51:23 by pnamwayk          #+#    #+#             */
+/*   Updated: 2023/07/01 23:15:07 by pnamwayk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "hell.h"
 
-// void	builtin_cd(t_cmd *cmd)
-// {
-// 	DIR	*dir;
-//	int	i;
+size_t	ft_strlen(char *str)
+{
+	size_t	len;
 
-// 	i = 1;
-// 	if (ft_strncmp(cmd->str[i], ".", 1) == 0)
-// 		dir;
-// }
+	len = 0;
+	while (str[len] != '\0')
+		len++;
+	return (len);
+}

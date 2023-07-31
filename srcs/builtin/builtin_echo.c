@@ -6,7 +6,7 @@
 /*   By: wluedara <wluedara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 11:45:01 by wluedara          #+#    #+#             */
-/*   Updated: 2023/05/08 14:12:27 by wluedara         ###   ########.fr       */
+/*   Updated: 2023/05/29 17:15:29 by wluedara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,25 +28,26 @@ void	builtin_echo(t_cmd *cmd)
 {
 	t_cmd	*tmp;
 	int		opt;
+	int		i;
 
-	g_i.i = 0;
+	i = 0;
 	opt = 0;
 	tmp = cmd;
-	while (tmp->str[g_i.i])
+	while (tmp->str[i])
 	{
-		if (ft_strncmp(tmp->str[g_i.i], "echo", 4) == 0)
-			g_i.i++;
-		if (ft_strncmp(tmp->str[g_i.i], "-n", 2) == 0)
+		if (ft_strncmp(tmp->str[i], "echo", 4) == 0)
+			i++;
+		if (ft_strncmp(tmp->str[i], "-n", 2) == 0)
 		{
 			opt = 1;
-			g_i.i++;
+			i++;
 		}
 		else
 		{
-			print_word(tmp->str[g_i.i]);
-			if (tmp->str[g_i.i + 1] && tmp->str[g_i.i][0] != '\0' )
+			print_word(tmp->str[i]);
+			if (tmp->str[i + 1] && tmp->str[i][0] != '\0' )
 				ft_putchar_fd(' ', 1);
-			g_i.i++;
+			i++;
 		}
 	}
 	if (opt == 0)

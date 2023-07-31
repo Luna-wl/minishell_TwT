@@ -1,23 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   builtin_cd.c                                       :+:      :+:    :+:   */
+/*   ft_strncmp_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wluedara <wluedara@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pnamwayk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/01 15:10:12 by wluedara          #+#    #+#             */
-/*   Updated: 2023/05/29 17:14:29 by wluedara         ###   ########.fr       */
+/*   Created: 2023/06/02 00:51:33 by pnamwayk          #+#    #+#             */
+/*   Updated: 2023/07/02 16:40:47 by pnamwayk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "hell.h"
 
-// void	builtin_cd(t_cmd *cmd)
+// int	ft_strncmp(char *s1, char *s2, size_t n)
 // {
-// 	DIR	*dir;
-//	int	i;
+// 	int				diff;
+// 	unsigned int	index;
 
-// 	i = 1;
-// 	if (ft_strncmp(cmd->str[i], ".", 1) == 0)
-// 		dir;
+// 	index = 0;
+// 	diff = 0;
+// 	while (index < n && (s1[index] != 0 || s2[index] != 0))
+// 	{
+// 		if (s1[index] != s2[index])
+// 			return (1);
+// 		index++;
+// 	}
+// 	return (0);
 // }

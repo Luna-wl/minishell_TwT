@@ -6,7 +6,7 @@
 /*   By: wluedara <wluedara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 15:06:28 by wluedara          #+#    #+#             */
-/*   Updated: 2023/05/03 14:31:53 by wluedara         ###   ########.fr       */
+/*   Updated: 2023/06/09 17:19:43 by wluedara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,88 +50,57 @@ int	count_len_quote(char *s)
 	return (i);
 }
 
-int	check_word(char *s, int len)
+int	check_word_lexer(char *s, int len, int i)
 {
 	int	count;
 
-	g_i.i = 0;
 	count = 0;
-	while (g_i.i < len)
+	while (i < len)
 	{
-		if (is_tokens(s[g_i.i]) != -1 && is_tokens(s[g_i.i + 1]) == -1)
+		if (is_tokens(s[i]) != -1 && is_tokens(s[i + 1]) == -1)
 			count++;
-		if (is_quote(s[g_i.i]) > 0)
+		if (is_quote(s[i]) > 0)
 		{
-			count += check_word_2(&s[g_i.i]);
-			g_i.i += count_len_quote(&s[g_i.i]);
+			count += check_word_2(&s[i]);
+			i += count_len_quote(&s[i]);
 		}
-		if (is_space(s[g_i.i]) == 0 && is_tokens(s[g_i.i]) == -1 && \
-		is_quote(s[g_i.i]) == 0 && s[g_i.i])
+		if (is_space(s[i]) == 0 && is_tokens(s[i]) == -1 && \
+		is_quote(s[i]) == 0 && s[i])
 		{
-			while (is_space(s[g_i.i]) == 0 && is_tokens(s[g_i.i]) == -1 && \
-			is_quote(s[g_i.i]) == 0 && s[g_i.i])
-				g_i.i++;
+			while (is_space(s[i]) == 0 && is_tokens(s[i]) == -1 && \
+			is_quote(s[i]) == 0 && s[i])
+				i++;
 			count++;
 		}
 		else
-			g_i.i++;
+			i++;
 	}
 	return (count);
 }
 
-int	count_letter_split(char *s)
+int	count_letter_split(char *s, int i)
 {
-	g_i.i = 0;
-	while (s[g_i.i] && is_tokens(s[g_i.i]) != -1)
+	while (s[i] && is_tokens(s[i]) != -1)
 	{
-		if (is_tokens(s[g_i.i]) != -1)
-			g_i.i++;
+		if (is_tokens(s[i]) != -1)
+			i++;
 	}
-	if (is_quote(s[g_i.i]) > 0)
+	if (is_quote(s[i]) > 0)
 	{
-		while (s[g_i.i])
+		while (s[i])
 		{
-			g_i.i++;
-			if (is_quote(s[g_i.i]) == is_quote(s[0]))
-				return (g_i.i + 1);
+			i++;
+			if (is_quote(s[i]) == is_quote(s[0]))
+				return (i + 1);
 		}
 	}
-	while (s[g_i.i] && is_space(s[g_i.i]) == 0 && is_tokens(s[g_i.i]) == -1 && \
-		is_quote(s[g_i.i]) == 0)
+	while (s[i] && is_space(s[i]) == 0 && is_tokens(s[i]) == -1 && \
+		is_quote(s[i]) == 0)
 	{
-		if (g_i.i > 0 && is_tokens(s[g_i.i - 1]) != -1)
-			return (g_i.i);
-		if (is_space(s[g_i.i]) == 0 && is_tokens(s[g_i.i]) == -1)
-			g_i.i++;
+		if (i > 0 && is_tokens(s[i - 1]) != -1)
+			return (i);
+		if (is_space(s[i]) == 0 && is_tokens(s[i]) == -1)
+			i++;
 	}
-	return (g_i.i);
-}
-
-int	count_letter(char *s)
-{
-	init_int();
-	while (s[g_i.i] && is_space(s[g_i.i]) == 1)
-	{
-		g_i.i++;
-		g_i.j++;
-	}
-	while (s[g_i.i] && is_tokens(s[g_i.i]) != -1 && is_space(s[g_i.i]) == 0)
-	{
-		g_i.i++;
-		if (is_tokens(s[g_i.i]) == -1)
-			return (g_i.i);
-	}
-	while (s[g_i.i] && is_quote(s[g_i.i]) > 0)
-	{
-		g_i.j++;
-		if (is_quote(s[g_i.i]) == is_quote(s[g_i.j]))
-			return (g_i.j + 1);
-	}
-	while (s[g_i.i] && is_tokens(s[g_i.i]) == -1 && is_space(s[g_i.i]) == 0)
-	{
-		g_i.i++;
-		if (is_quote(s[g_i.i]) > 0)
-			return (g_i.i);
-	}
-	return (g_i.i);
+	return (i);
 }

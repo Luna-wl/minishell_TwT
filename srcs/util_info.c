@@ -6,13 +6,13 @@
 /*   By: wluedara <wluedara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 21:51:22 by wluedara          #+#    #+#             */
-/*   Updated: 2023/05/26 13:49:18 by wluedara         ###   ########.fr       */
+/*   Updated: 2023/06/09 17:23:34 by wluedara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "hell.h"
 
-int	find_path2(char *str)
+int	find_envp2(char *str)
 {
 	int	i;
 
@@ -26,24 +26,28 @@ int	find_path2(char *str)
 	return (i);
 }
 
-char	*find_path(char *str)
+char	*find_envp(char *str)
 {
 	char	*path;
 	int		len;
+	int		i;
+	int		j;
 
-	len = find_path2(str);
+	i = 0;
+	j = 0;
+	len = find_envp2(str);
 	path = malloc(len + 1);
 	if (!path)
 		return (0);
-	g_i.i = 0;
-	g_i.j = 0;
-	while (g_i.i < len)
-		path[g_i.j++] = str[g_i.i++];
-	path[g_i.j] = '\0';
+	i = 0;
+	j = 0;
+	while (i < len)
+		path[j++] = str[i++];
+	path[j] = '\0';
 	return (path);
 }
 
-char	**get_path()
+char	**get_envp2()
 {
 	char	**path;
 	int		i;
@@ -55,10 +59,27 @@ char	**get_path()
 	path = malloc(sizeof(char *) * (i + 1));
 	if (!path)
 		return (0);
-	i = -1;
-	j = -1;
-	while (environ[++i])
-		path[++j] = find_path(environ[i]);
+	i = 0;
+	j = 0;
+	while (environ[i])
+		path[j++] = find_envp(environ[i++]);
 	path[j] = NULL;
+	return (path);
+}
+
+char	**get_path(char **envp)
+{
+	int		i;
+	char	**path;
+
+	i = -1;
+	path = NULL;
+	while (envp[++i])
+	{
+		if (ft_strncmp(environ[i], "PATH", 4) == 0)
+		{
+			path = ft_split(&environ[i][5], ':');
+		}
+	}
 	return (path);
 }

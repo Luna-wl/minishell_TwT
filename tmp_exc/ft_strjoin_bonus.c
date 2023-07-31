@@ -1,21 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_strjoin_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pnamwayk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/31 22:12:50 by wluedara          #+#    #+#             */
-/*   Updated: 2023/07/02 00:24:16 by pnamwayk         ###   ########.fr       */
+/*   Created: 2023/06/02 00:50:51 by pnamwayk          #+#    #+#             */
+/*   Updated: 2023/07/01 23:14:58 by pnamwayk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "hell.h"
 
-void	ft_putstr_fd(char *s, int fd)
+char	*ft_strjoin(char *s1, char *s2)
 {
-	if (s != NULL)
-	{
-		write(fd, s, ft_strlen(s));
-	}
+	char	*str;
+	size_t	s1_len;
+	size_t	s2_len;
+
+	if (!s1 && !s2)
+		return (NULL);
+	s1_len = ft_strlen(s1);
+	s2_len = ft_strlen(s2);
+	str = malloc(sizeof(char) * (s1_len + s2_len + 2));
+	if (!str)
+		return (NULL);
+	ft_strlcpy(str, s1, s1_len + 1);
+	str[s1_len] = '/';
+	ft_strlcpy(&str[s1_len + 1], s2, s2_len + 1);
+	return (str);
 }

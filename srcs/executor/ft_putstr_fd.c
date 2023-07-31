@@ -1,23 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   builtin_cd.c                                       :+:      :+:    :+:   */
+/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wluedara <wluedara@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pnamwayk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/01 15:10:12 by wluedara          #+#    #+#             */
-/*   Updated: 2023/05/29 17:14:29 by wluedara         ###   ########.fr       */
+/*   Created: 2023/06/02 00:49:45 by pnamwayk          #+#    #+#             */
+/*   Updated: 2023/07/02 16:40:25 by pnamwayk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "hell.h"
 
-// void	builtin_cd(t_cmd *cmd)
+// void	ft_putstr_fd(char *str, int fd)
 // {
-// 	DIR	*dir;
-//	int	i;
+// 	int	s;
 
-// 	i = 1;
-// 	if (ft_strncmp(cmd->str[i], ".", 1) == 0)
-// 		dir;
+// 	if (!str)
+// 		return ;
+// 	s = 0;
+// 	while (str[s] != '\0')
+// 	{
+// 		write(fd, &str[s], 1);
+// 		s++;
+// 	}
 // }

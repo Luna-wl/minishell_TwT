@@ -3,63 +3,73 @@
 /*                                                        :::      ::::::::   */
 /*   parser_3.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wluedara <Warintorn_L@outlook.com>         +#+  +:+       +#+        */
+/*   By: wluedara <wluedara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 18:25:35 by wluedara          #+#    #+#             */
-/*   Updated: 2023/05/25 14:24:34 by wluedara         ###   ########.fr       */
+/*   Updated: 2023/06/10 21:17:22 by wluedara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "hell.h"
 
-int	check_redirect(char *s)
+int	cnt_infile(char **cmd)
 {
 	int	i;
-	int	j;
+	int	infile;
 
-	i = 0;
-	j = 0;
-	while (s[i])
+	i = -1;
+	infile = 0;
+	while (cmd[++i])
 	{
-		while (j < 4)
-		{
-			if (ft_strncmp(s, "<", 1) == 0)
-				return (1);
-			else if (ft_strncmp(s, "<<", 2) == 0)
-				return (2);
-			else if (ft_strncmp(s, ">", 1) == 0)
-				return (3);
-			else if (ft_strncmp(s, ">>", 2) == 0)
-				return (4);
-			j++;
-		}
-		i++;
+		if (ft_strncmp(cmd[i], "<", 1) == 0 && cmd[i + 1] != NULL \
+		&& ft_strncmp(cmd[i], "<<", 2))
+			infile++;
 	}
-	return (-1);
+	return (infile);
 }
 
-void	add_fd_redi(t_cmd *cmd)
+int	cnt_heredoc(char **cmd)
 {
-	t_cmd	*tmp;
-	int		i;
+	int	i;
+	int	heredoc;
 
-	tmp = cmd;
-	while (tmp != NULL)
+	i = -1;
+	heredoc = 0;
+	while (cmd[++i])
 	{
-		i = 0;
-		while (tmp->str[i])
-		{
-			if (check_redirect(tmp->str[i]) == 1)
-				cmd->num_redirect = 0;
-			else if (check_redirect(tmp->str[i]) == 2)
-				cmd->num_redirect = -2;
-			else if (check_redirect(tmp->str[i]) == 3)
-				cmd->num_redirect = 1;
-			else if (check_redirect(tmp->str[i]) == 4)
-				cmd->num_redirect = -3;
-			else
-				cmd->num_redirect = -1;
-		}
-		tmp = tmp->next;
+		if (ft_strncmp(cmd[i], "<<", 2) == 0 && cmd[i + 1] != NULL)
+			heredoc++;
 	}
+	return (heredoc);
+}
+
+int	cnt_outfile(char **cmd)
+{
+	int	i;
+	int	outfile;
+
+	i = -1;
+	outfile = 0;
+	while (cmd[++i])
+	{
+		if (ft_strncmp(cmd[i], ">", 1) == 0 && cmd[i + 1] != NULL \
+		&& ft_strncmp(cmd[i], ">>", 2))
+			outfile++;
+	}
+	return (outfile);
+}
+
+int	cnt_append(char **cmd)
+{
+	int	i;
+	int	append;
+
+	i = -1;
+	append = 0;
+	while (cmd[++i])
+	{
+		if (ft_strncmp(cmd[i], ">>", 2) == 0 && cmd[i + 1] != NULL)
+			append++;
+	}
+	return (append);
 }

@@ -1,21 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_strstr_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pnamwayk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/31 22:12:50 by wluedara          #+#    #+#             */
-/*   Updated: 2023/07/02 00:24:16 by pnamwayk         ###   ########.fr       */
+/*   Created: 2023/06/02 00:51:49 by pnamwayk          #+#    #+#             */
+/*   Updated: 2023/07/02 16:40:51 by pnamwayk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "hell.h"
 
-void	ft_putstr_fd(char *s, int fd)
-{
-	if (s != NULL)
-	{
-		write(fd, s, ft_strlen(s));
-	}
-}
+// int	ft_strstr(char *str, char *find)
+// {
+// 	int	i;
+// 	int	j;
+// 	int	cp;
+
+// 	i = 0;
+// 	cp = 0;
+// 	j = 0;
+// 	while (str[i])
+// 	{
+// 		if (str[i] == find[0])
+// 		{
+// 			j = 0;
+// 			while (find[j])
+// 			{
+// 				if (str[i] == find[j])
+// 					cp++;
+// 				j++;
+// 				i++;
+// 			}
+// 			if (cp == j)
+// 				return (0);
+// 		}
+// 		i++;
+// 	}
+// 	return (-1);
+// }
