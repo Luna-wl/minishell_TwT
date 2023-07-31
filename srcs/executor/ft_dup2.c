@@ -6,7 +6,7 @@
 /*   By: pnamwayk <pnamwayk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 00:49:38 by pnamwayk          #+#    #+#             */
-/*   Updated: 2023/07/03 14:02:58 by pnamwayk         ###   ########.fr       */
+/*   Updated: 2023/07/11 12:10:56 by pnamwayk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	dup_outfile(t_main *main, t_cmd *tmp, int id)
 		dup2(main->fd_file, STDOUT_FILENO);
 		close(main->fd_file);
 	}
-	else if (id != main->cmd_nbr - 1 || main->num_pipe > 0)
+	else if (id != main->cmd_nbr - 1 && main->num_pipe > 0)
 		dup2(main->pfd[1], STDOUT_FILENO);
 }
 
