@@ -6,7 +6,7 @@
 /*   By: pnamwayk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 18:26:04 by wluedara          #+#    #+#             */
-/*   Updated: 2023/08/01 16:34:32 by pnamwayk         ###   ########.fr       */
+/*   Updated: 2023/08/01 21:43:54 by pnamwayk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,10 @@ int	main(int argc, char **argv)
 		init_mimi(&main); // init value in struct
 		if(get_cmd(&main, str)) // start cut cmd
 		{
+			expander(&main); // after split cmd then go to expander to detact quote and $
 			sigint_handle(2);
 			start_process(&main);
 		}
-		// expander(&main); // after split cmd then go to expander to detact quote and $
 		// into_builtin(&main); // if want to get to buildin use this nah
 
 		// printf("num_pipe = %d\n", main.num_pipe);
