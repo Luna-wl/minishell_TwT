@@ -14,13 +14,6 @@
 # include "colours.h"
 # include <limits.h>
 
-enum token {
-	GREAT, // output >
-	LESS, // input <
-	APPEND, // >>
-	HEREDOC, // <<
-};
-
 typedef struct s_lexer
 {
 	char			*str;
@@ -82,10 +75,11 @@ typedef struct s_command
 extern char **environ;
 
 // into_cmd.c
-void		get_cmd(t_main *main, char *str);
+int		get_cmd(t_main *main, char *str);
 char		**get_envp();
 //del everything
 void		free_all(t_main *main);
+void		reset_tool(t_main *main);
 // lexer1
 int			check_quote(char **s);
 char		*my_split_lexer(char *s);
@@ -139,7 +133,9 @@ void		pim_split(char **s);
 void		pim_list(t_lexer *list);
 // signal.c
 void		init_signal(void);
-void		sig_handler_c(int sig);
+void		sigint_handle(int mode);
+void		sighandle(int sig);
+void		handel_c(int sig);
 // builtin.c
 // void		into_builtin(t_main *main);
 // void		into_builtin2(t_main *main, t_cmd *cmd, int i);

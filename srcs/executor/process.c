@@ -159,7 +159,10 @@ void	get_command(t_main *main, t_cmd *tmp)
 
 	cnt_word = 0;
 	while (tmp->str[++i])
-		 cnt_word++;
+	{
+		// printf("tmp->str[%d] = %s\n", i, tmp->str[i]);
+		cnt_word++;
+	}
 	cnt_word -= (main->cmd->all_infile + main->cmd->all_outfile) * 2;
 	tmp->command = malloc(sizeof(char *) * (cnt_word + 1));
 	if (!tmp->command)
