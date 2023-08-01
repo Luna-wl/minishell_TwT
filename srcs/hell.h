@@ -74,7 +74,8 @@ typedef struct s_command
 extern char **environ;
 
 // into_cmd.c
-void		get_cmd(t_main *main, char *str);
+// void		get_cmd(t_main *main, char *str);
+int			get_cmd(t_main *main, char *str);
 char		**get_envp();
 //del everything
 void		free_all(t_main *main);
@@ -154,6 +155,7 @@ char		**get_envp2();
 int			find_envp2(char *str);
 char		*find_envp(char *str);
 char		**get_path(char **envp);
+void		reset_tool(t_main *main);
 //handle_quote.c
 char		*cut_quote(char *str);
 char		*detact_quote(char *str, t_main *main, char *val);
