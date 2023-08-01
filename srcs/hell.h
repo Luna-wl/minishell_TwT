@@ -13,6 +13,7 @@
 # include <readline/history.h>
 # include "colours.h"
 # include <limits.h>
+# include <errno.h>
 
 typedef struct s_lexer
 {
@@ -150,7 +151,7 @@ int			builtin_env(t_main *main, t_cmd *cmd);
 int			builtin_pwd(t_main *main, t_cmd *cmd);
 int			builtin_export(t_main *main, t_cmd *cmd);
 int			builtin_unset(t_main *main, t_cmd *cmd);
-// int			builtin_exit(t_main *main, t_cmd *cmd);
+int			builtin_exit(t_main *main, t_cmd *cmd);
 int			builtin_cd(t_main *main, t_cmd *cmd);
 // expander.c
 void		expander(t_main *main);
@@ -219,7 +220,7 @@ void	err_cmd(t_main *main, char *cmd, int err);
 void	err_msg_free(t_main *main, char *msg);
 void	err_msg(char *msg);
 void	ft_exit(int err);
-int		err_builtin(t_main *main, t_cmd *cmd, int err);
+int		err_builtin(t_main *main, t_cmd *cmd);
 // 	utils_path.c
 // int		find_path(char **env);
 int		check_access_path(t_main *main, char *cmd);

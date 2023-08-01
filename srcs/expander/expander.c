@@ -6,7 +6,7 @@
 /*   By: pnamwayk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 14:29:53 by wluedara          #+#    #+#             */
-/*   Updated: 2023/08/01 22:22:07 by pnamwayk         ###   ########.fr       */
+/*   Updated: 2023/08/02 00:55:44 by pnamwayk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ char	*expander_handel(t_main *main, char *str)
 	if (str[0] == '$')
 	{
 		val = ft_strjoin(val, detact_dollar(str, main));
-		printf("$ val = |%s|\n", val);
+		// printf("$ val = |%s|\n", val);
 	}
 	else if (str[0] == '\"')
 	{
@@ -83,8 +83,8 @@ void	expander(t_main *main)
 		while (tmp->str[++i])
 		{
 			expan = expander_handel(main, tmp->str[i]);
-			printf("In expan main value = |%s|\n", expan);
-			printf("tmp->str[%d] = |%s|\n", i, tmp->str[i]);
+			// printf("In expan main value = |%s|\n", expan);
+			// printf("tmp->str[%d] = |%s|\n", i, tmp->str[i]);
 		}
 		tmp = tmp->next;
 	}

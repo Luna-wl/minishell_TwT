@@ -128,7 +128,8 @@ void	builtin_parent_process(t_main *main, t_cmd *tmp, int id)
 	// 	main->tmp_fd = dup(main->pfd[0]);
 	// ft_close_pipe(main, main->pfd[0]);
 	if (into_builtin_parent(main, tmp))
-		err_msg_free(main, "builtin error sth");
+		err_builtin(main, tmp);
+		// err_msg_free(main, "builtin error sth");
 }
 
 void	parent_process(t_main *main, t_cmd *tmp, int id)
