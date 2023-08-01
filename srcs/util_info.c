@@ -6,7 +6,7 @@
 /*   By: wluedara <wluedara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 21:51:22 by wluedara          #+#    #+#             */
-/*   Updated: 2023/08/01 16:08:28 by wluedara         ###   ########.fr       */
+/*   Updated: 2023/08/01 17:05:29 by wluedara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ void	reset_tool(t_main *main)
 	main->lexer = NULL;
 	main->cmd = NULL;
 	main->num_pipe = 0;
-	// environ = get_envp(); // make extern environ to malloc
+	environ = get_envp(); // make extern environ to malloc
 	main->envp = get_envp2(); // word that before '=' in env to check sth. as USER PWD
 	main->path = get_path(main->envp); // value after that spilt with ':' PATH=
 }

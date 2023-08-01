@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expander.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pnamwayk <pnamwayk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wluedara <wluedara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 14:29:53 by wluedara          #+#    #+#             */
-/*   Updated: 2023/07/03 13:20:58 by pnamwayk         ###   ########.fr       */
+/*   Updated: 2023/08/01 22:28:50 by wluedara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,16 +21,16 @@ char	*detact_dollar(char *str, t_main *main)
 
 	i = 0;
 	j = 0;
-	len = ft_strlen(main->path[j]);
+	len = ft_strlen(main->envp[j]);
 	if (ft_isdigit(str[i + 1]))
 		return (&str[i + 1]);
 	else if (ft_isalpha(str[i + 1]))
 	{
-		while (main->path[j])
+		while (main->envp[j])
 		{
-			if (ft_strncmp(&str[i + 1], main->path[j], len) == 0)
+			if (ft_strncmp(&str[i + 1], main->envp[j], len) == 0)
 			{
-				val = getenv(main->path[j]);
+				val = getenv(main->envp[j]);
 				return (val);
 			}
 			j++;

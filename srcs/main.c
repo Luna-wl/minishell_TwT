@@ -6,7 +6,7 @@
 /*   By: wluedara <wluedara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 18:26:04 by wluedara          #+#    #+#             */
-/*   Updated: 2023/08/01 16:06:20 by wluedara         ###   ########.fr       */
+/*   Updated: 2023/08/01 17:08:17 by wluedara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ int	main(int argc, char **argv)
 		free(str); // free input
 		// free_all(&main); // free everything after finish execue cmd or reset everything to start again
 	}
+	// rl_clear_history();
 	// clear_minishell(&main);
 	return (0);
 }
