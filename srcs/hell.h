@@ -101,6 +101,7 @@ t_lexer		*spilt_to_list(char **str, t_lexer *list);
 int			is_space(char c);
 int			is_tokens(char c);
 int			is_quote(char c);
+int			is_pipe(char c);
 // error404.c
 void		del_split(char **str);
 void		print_str(char *s);

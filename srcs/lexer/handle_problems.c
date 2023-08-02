@@ -6,7 +6,7 @@
 /*   By: wluedara <wluedara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 15:11:40 by wluedara          #+#    #+#             */
-/*   Updated: 2023/05/03 14:31:49 by wluedara         ###   ########.fr       */
+/*   Updated: 2023/08/03 01:40:43 by wluedara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,12 @@ int	is_space(char c)
 
 int	is_quote(char c)
 {
-	if (c == '\'')
+	// if (c == '\'')
+	// 	return (1);
+	// if (c == '\"')
+	// 	return (2);
+	if (c == '\"' || c == '\'')
 		return (1);
-	if (c == '\"')
-		return (2);
 	return (0);
 }
 

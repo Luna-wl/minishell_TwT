@@ -6,7 +6,7 @@
 /*   By: wluedara <wluedara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 16:21:40 by wluedara          #+#    #+#             */
-/*   Updated: 2023/08/02 15:33:30 by wluedara         ###   ########.fr       */
+/*   Updated: 2023/08/02 23:36:42 by wluedara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,13 @@ int	get_cmd(t_main *main, char *str)
 		return (0);
 	}
 	main->lexer = spilt_to_list(main->str_cmd, main->lexer); // make char** into linked list
-	// pim_list(main->lexer);
-	main->cmd = list_cmd(main); // convert lexer to parser and redirect info
-	del_list_lexer(&main->lexer); // del lexer after finish parser
+	pim_list(main->lexer);
+	// main->cmd = list_cmd(main); // convert lexer to parser and redirect info
+	// del_list_lexer(&main->lexer); // del lexer after finish parser
 	return (1);
 	// pim_cmd(main->cmd);
 }
+
+
+
+// ". hello "|ls| echo "'hello'"""
