@@ -75,11 +75,10 @@ typedef struct s_command
 extern char **environ;
 
 // into_cmd.c
-int		get_cmd(t_main *main, char *str);
+int			get_cmd(t_main *main, char *str);
 char		**get_envp();
 //del everything
 void		free_all(t_main *main);
-void		reset_tool(t_main *main);
 // lexer1
 int			check_quote(char **s);
 char		*my_split_lexer(char *s);
@@ -136,9 +135,6 @@ void		init_signal(void);
 void		sigint_handle(int mode);
 void		sighandle(int sig);
 void		handel_c(int sig);
-void		sigint_handle(int mode);
-void		sighandle(int sig);
-void		handel_c(int sig);
 // builtin.c
 // void		into_builtin(t_main *main);
 // void		into_builtin2(t_main *main, t_cmd *cmd, int i);
@@ -159,12 +155,11 @@ int			builtin_cd(t_main *main, t_cmd *cmd);
 void		expander(t_main *main);
 char		*cut_quote(char *str);
 char		*detact_dollar(char *str, t_main *main);
-char		*expander_handel(t_main *main, char *str, char **cmd);
+char		*expander_handel(t_main *main, char *str);
 // util_expan
 char		*copy_str(char *s, int len);
 int			len_quote(char *s);
 char		*replace_val(char *s1, char *s2);
-void		check_val(char **cmd);
 // util_info
 char		**get_envp2();
 int			find_envp2(char *str);

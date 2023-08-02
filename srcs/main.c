@@ -6,7 +6,7 @@
 /*   By: wluedara <wluedara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 18:26:04 by wluedara          #+#    #+#             */
-/*   Updated: 2023/08/02 15:23:15 by wluedara         ###   ########.fr       */
+/*   Updated: 2023/08/02 15:38:40 by wluedara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,9 @@ int	main(int argc, char **argv)
 			start_process(&main);
 		}
 		free(str); // free input
-		reset_tool(&main);
+		// reset_tool(&main);
 	}
+	rl_clear_history();
 	// free_all(&main); // free everything after finish execue cmd or reset everything to start again
 	return (0);
 }
