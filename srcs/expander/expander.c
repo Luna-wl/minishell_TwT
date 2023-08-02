@@ -6,7 +6,7 @@
 /*   By: wluedara <wluedara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 14:29:53 by wluedara          #+#    #+#             */
-/*   Updated: 2023/08/02 14:12:39 by wluedara         ###   ########.fr       */
+/*   Updated: 2023/08/02 15:21:51 by wluedara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ char	*detact_dollar(char *str, t_main *main)
 	i = 0;
 	j = 0;
 	len = ft_strlen(main->envp[j]);
+	len = ft_strlen(main->envp[j]);
 	if (ft_isdigit(str[i + 1]))
 	{
 		str = replace_val(&str[i + 1], str);
@@ -30,7 +31,9 @@ char	*detact_dollar(char *str, t_main *main)
 	else if (ft_isalpha(str[i + 1]))
 	{
 		while (main->envp[j])
+		while (main->envp[j])
 		{
+			if (ft_strncmp(&str[i + 1], main->envp[j], len) == 0)
 			if (ft_strncmp(&str[i + 1], main->envp[j], len) == 0)
 			{
 				val = getenv(main->envp[j]);

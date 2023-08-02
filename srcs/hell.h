@@ -136,6 +136,9 @@ void		init_signal(void);
 void		sigint_handle(int mode);
 void		sighandle(int sig);
 void		handel_c(int sig);
+void		sigint_handle(int mode);
+void		sighandle(int sig);
+void		handel_c(int sig);
 // builtin.c
 // void		into_builtin(t_main *main);
 // void		into_builtin2(t_main *main, t_cmd *cmd, int i);
@@ -167,6 +170,7 @@ char		**get_envp2();
 int			find_envp2(char *str);
 char		*find_envp(char *str);
 char		**get_path(char **envp);
+void		reset_tool(t_main *main);
 //handle_quote.c
 char		*cut_quote(char *str);
 char		*detact_quote(char *str, t_main *main, char *val);
