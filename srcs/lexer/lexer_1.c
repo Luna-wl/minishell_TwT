@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer_1.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pnamwayk <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: wluedara <wluedara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 14:29:35 by wluedara          #+#    #+#             */
-/*   Updated: 2023/08/01 16:27:42 by pnamwayk         ###   ########.fr       */
+/*   Updated: 2023/08/02 14:00:45 by wluedara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ int	check_quote(char **s)
 	return (1);
 }
 
+
 char	*my_split_lexer(char *s)
 {
 	char	*str;
@@ -39,8 +40,7 @@ char	*my_split_lexer(char *s)
 	int		j;
 
 	s2 = ft_strtrim(s, " ");
-	i = 0;
-	letter = count_letter_split(s2, i);
+	letter = count_letter_split(s2, 0);
 	str = malloc(sizeof(char) * (letter + 1));
 	if (!str)
 		return (0);

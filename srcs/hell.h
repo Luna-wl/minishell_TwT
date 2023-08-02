@@ -156,9 +156,12 @@ int			builtin_cd(t_main *main, t_cmd *cmd);
 void		expander(t_main *main);
 char		*cut_quote(char *str);
 char		*detact_dollar(char *str, t_main *main);
+char		*expander_handel(t_main *main, char *str, char **cmd);
 // util_expan
 char		*copy_str(char *s, int len);
 int			len_quote(char *s);
+char		*replace_val(char *s1, char *s2);
+void		check_val(char **cmd);
 // util_info
 char		**get_envp2();
 int			find_envp2(char *str);
@@ -168,6 +171,7 @@ char		**get_path(char **envp);
 char		*cut_quote(char *str);
 char		*detact_quote(char *str, t_main *main, char *val);
 char		*detact_quote2(char *str, t_main *main, char *val);
+char		*detact_quote3(char *str, t_main *main, char *val);
 
 //mobile///////////////////////////////////////////////////
 

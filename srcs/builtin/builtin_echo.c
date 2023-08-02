@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_echo.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pnamwayk <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: wluedara <wluedara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 11:45:01 by wluedara          #+#    #+#             */
-/*   Updated: 2023/07/15 20:58:35 by pnamwayk         ###   ########.fr       */
+/*   Updated: 2023/08/02 14:20:39 by wluedara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,34 +26,39 @@ void	print_word(char *str)
 
 int	builtin_echo(t_main *main, t_cmd *cmd)
 {
-	t_cmd	*tmp;
+t_cmd	*tmp;
 	int		opt;
 	int		i;
+	int		j;
 
-	i = 0;
+	i = 1;
 	opt = 0;
 	(void) main;
 	tmp = cmd;
-	while (tmp->str[i])
+	// if (ft_strncmp(tmp->str[i], "echo", 4) == 0)
+	// 	i++;
+	if (ft_strncmp(tmp->command[i], "-n", 2) == 0)
 	{
-		if (ft_strncmp(tmp->str[i], "echo", 4) == 0)
-			i++;
-		if (ft_strncmp(tmp->str[i], "-n", 2) == 0)
+		opt = 1;
+		j = 0;
+		while(tmp->command[i][++j])
 		{
-			opt = 1;
-			i++;
-		}
-		else
-		{
-			print_word(tmp->str[i]);
-			if (tmp->str[i + 1] && tmp->str[i][0] != '\0' )
-				ft_putchar_fd(' ', 1);
-			i++;
+			if (tmp->command[i][j] != 'n')
+				opt = 0;
 		}
 	}
-	if (opt == 0)
+	if (opt == 1)
+		i++;
+	while (tmp->command[i])
+	{
+		print_word(tmp->command[i]);
+		if (tmp->command[i + 1] && tmp->command[i][0] != '\0' )
+			ft_putchar_fd(' ', 1);
+		i++;
+	}
+	if (opt == 0 || !tmp->command[1])
 		ft_putchar_fd('\n', 1);
 	// return (EXIT_SUCCESS);
-	exit(0);
+	// exit(0);
 	return (0);
 }

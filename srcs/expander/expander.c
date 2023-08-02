@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expander.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pnamwayk <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: wluedara <wluedara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 14:29:53 by wluedara          #+#    #+#             */
-/*   Updated: 2023/08/01 22:22:07 by pnamwayk         ###   ########.fr       */
+/*   Updated: 2023/08/02 14:12:39 by wluedara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,21 +22,20 @@ char	*detact_dollar(char *str, t_main *main)
 	i = 0;
 	j = 0;
 	len = ft_strlen(main->envp[j]);
-	// printf("str = %s str[i+1] = %c\n", str, str[i+1]);
 	if (ft_isdigit(str[i + 1]))
 	{
-		return (&str[i + 1]);
+		str = replace_val(&str[i + 1], str);
+		return (str);
 	}
 	else if (ft_isalpha(str[i + 1]))
 	{
 		while (main->envp[j])
 		{
-			// printf("path[%d] = |%s|\n", j, main->path[j]);
 			if (ft_strncmp(&str[i + 1], main->envp[j], len) == 0)
 			{
 				val = getenv(main->envp[j]);
-				// printf("path[%d] = |%s| val = |%s|\n", j, main->envp[j], val);
-				return (val);
+				str = replace_val(val, str);
+				return (str);
 			}
 			j++;
 		}
@@ -46,7 +45,7 @@ char	*detact_dollar(char *str, t_main *main)
 	return (0);
 }
 
-char	*expander_handel(t_main *main, char *str)
+char	*expander_handel(t_main *main, char *str, char **cmd)
 {
 	char	*val;
 
@@ -54,7 +53,6 @@ char	*expander_handel(t_main *main, char *str)
 	if (str[0] == '$')
 	{
 		val = ft_strjoin(val, detact_dollar(str, main));
-		printf("$ val = |%s|\n", val);
 	}
 	else if (str[0] == '\"')
 	{
@@ -67,6 +65,7 @@ char	*expander_handel(t_main *main, char *str)
 		val = ft_strjoin(val, str);
 		// printf("\' val = |%s|\n", val);
 	}
+	check_val(cmd);
 	return (val);
 }
 
@@ -82,11 +81,11 @@ void	expander(t_main *main)
 		i = -1;
 		while (tmp->str[++i])
 		{
-			expan = expander_handel(main, tmp->str[i]);
-			printf("In expan main value = |%s|\n", expan);
-			printf("tmp->str[%d] = |%s|\n", i, tmp->str[i]);
+			expan = expander_handel(main, tmp->str[i], tmp->str);
+			// printf("In expan main value = |%s|\n", expan);
+			(void)expan;
+			// printf("tmp->str[%d] = |%s|\n", i, tmp->str[i]);
 		}
 		tmp = tmp->next;
 	}
-	// free(expan);
 }

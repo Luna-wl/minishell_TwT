@@ -84,6 +84,4 @@ void	reset_tool(t_main *main)
 	main->lexer = NULL;
 	main->cmd = NULL;
 	main->num_pipe = 0;
-	main->envp = get_envp2(); // word that before '=' in env to check sth. as USER PWD
-	main->path = get_path(main->envp); // value after that spilt with ':' PATH=
 }

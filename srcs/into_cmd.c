@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   into_cmd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pnamwayk <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: wluedara <wluedara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 16:21:40 by wluedara          #+#    #+#             */
-/*   Updated: 2023/08/01 16:24:05 by pnamwayk         ###   ########.fr       */
+/*   Updated: 2023/08/02 14:01:57 by wluedara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,11 @@ char	**get_envp()
 
 int	get_cmd(t_main *main, char *str)
 {
+	// printf("str = %s\n", str);
 	if (!cut_cmd(str))
 		return (0);
 	main->str_cmd = cut_cmd(str); // put lexer after split into main->str_cmd
+	// pim_split(main->str_cmd);
 	if (!check_error(main->str_cmd))
 	{
 		del_split(main->str_cmd);
