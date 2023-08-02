@@ -6,7 +6,7 @@
 /*   By: pnamwayk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 11:45:01 by wluedara          #+#    #+#             */
-/*   Updated: 2023/08/02 00:55:18 by pnamwayk         ###   ########.fr       */
+/*   Updated: 2023/08/02 02:14:58 by pnamwayk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,22 +37,22 @@ int	builtin_echo(t_main *main, t_cmd *cmd)
 	tmp = cmd;
 	// if (ft_strncmp(tmp->str[i], "echo", 4) == 0)
 	// 	i++;
-	if (ft_strncmp(tmp->str[i], "-n", 2) == 0)
+	if (ft_strncmp(tmp->command[i], "-n", 2) == 0)
 	{
 		opt = 1;
 		j = 0;
-		while(tmp->str[i][++j])
+		while(tmp->command[i][++j])
 		{
-			if (tmp->str[i][j] != 'n')
+			if (tmp->command[i][j] != 'n')
 				opt = 0;
 		}
 	}
 	if (opt == 1)
 		i++;
-	while (tmp->str[i])
+	while (tmp->command[i])
 	{
-		print_word(tmp->str[i]);
-		if (tmp->str[i + 1] && tmp->str[i][0] != '\0' )
+		print_word(tmp->command[i]);
+		if (tmp->command[i + 1] && tmp->command[i][0] != '\0' )
 			ft_putchar_fd(' ', 1);
 		i++;
 	}
