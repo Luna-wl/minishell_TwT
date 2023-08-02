@@ -157,6 +157,7 @@ int			builtin_cd(t_main *main, t_cmd *cmd);
 void		expander(t_main *main);
 char		*cut_quote(char *str);
 char		*detact_dollar(char *str, t_main *main);
+char	*get_val_quote(char *str, t_main *main, char *val);
 // util_expan
 char		*copy_str(char *s, int len);
 int			len_quote(char *s);

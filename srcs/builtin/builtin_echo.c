@@ -6,7 +6,7 @@
 /*   By: pnamwayk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 11:45:01 by wluedara          #+#    #+#             */
-/*   Updated: 2023/08/02 02:14:58 by pnamwayk         ###   ########.fr       */
+/*   Updated: 2023/08/02 14:17:37 by pnamwayk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int	builtin_echo(t_main *main, t_cmd *cmd)
 			ft_putchar_fd(' ', 1);
 		i++;
 	}
-	if (opt == 0)
+	if (opt == 0 || !tmp->command[1])
 		ft_putchar_fd('\n', 1);
 	// return (EXIT_SUCCESS);
 	// exit(0);
