@@ -6,7 +6,7 @@
 /*   By: wluedara <wluedara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 14:49:04 by wluedara          #+#    #+#             */
-/*   Updated: 2023/07/31 20:20:57 by wluedara         ###   ########.fr       */
+/*   Updated: 2023/08/02 15:22:41 by wluedara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	pim_split(char **s)
 	i = 0;
 	while (s[i])
 	{
-		printf(MAG"s[%d] = %s\n"RESET, i, s[i]);
+		printf(MAG"{s[%d] = %s}\n"RESET, i, s[i]);
 		i++;
 	}
 }

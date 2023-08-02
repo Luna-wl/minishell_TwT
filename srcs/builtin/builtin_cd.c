@@ -3,21 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_cd.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wluedara <wluedara@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pnamwayk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 15:10:12 by wluedara          #+#    #+#             */
-/*   Updated: 2023/05/29 17:14:29 by wluedara         ###   ########.fr       */
+/*   Updated: 2023/07/15 20:58:25 by pnamwayk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "hell.h"
 
-// void	builtin_cd(t_cmd *cmd)
-// {
-// 	DIR	*dir;
-//	int	i;
+int	builtin_cd(t_main *main, t_cmd *cmd)
+{
+	(void) cmd;
+	(void) main;
+	// DIR	*dir;
+	// int	i;
 
-// 	i = 1;
-// 	if (ft_strncmp(cmd->str[i], ".", 1) == 0)
-// 		dir;
-// }
+	// i = 1;
+	// if (ft_strncmp(cmd->str[i], ".", 1) == 0)
+	// 	dir;
+	// return (EXIT_SUCCESS);
+	// exit(0)
+	return (0);
+}

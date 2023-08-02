@@ -6,7 +6,7 @@
 /*   By: wluedara <wluedara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 16:21:40 by wluedara          #+#    #+#             */
-/*   Updated: 2023/08/01 16:06:03 by wluedara         ###   ########.fr       */
+/*   Updated: 2023/08/02 15:24:37 by wluedara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,20 +34,26 @@ char	**get_envp()
 }
 
 int	get_cmd(t_main *main, char *str)
+int	get_cmd(t_main *main, char *str)
 {
+	// printf("str = %s\n", str);
 	if (!cut_cmd(str))
 		return (0);
+		return (0);
 	main->str_cmd = cut_cmd(str); // put lexer after split into main->str_cmd
+	// pim_split(main->str_cmd);
 	if (!check_error(main->str_cmd))
 	{
 		pim_split(main->str_cmd);
-		del_split(main->str_cmd);
 		return (0);
+		return (0);
+		return ;
 	}
 	main->lexer = spilt_to_list(main->str_cmd, main->lexer); // make char** into linked list
 	// pim_list(main->lexer);
 	main->cmd = list_cmd(main); // convert lexer to parser and redirect info
 	del_list_lexer(&main->lexer); // del lexer after finish parser
-	// pim_cmd(main->cmd);
 	return (1);
+	return (1);
+	// pim_cmd(main->cmd);
 }

@@ -12,6 +12,7 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 # include "colours.h"
+# include <limits.h>
 
 typedef struct s_lexer
 {
@@ -74,11 +75,11 @@ typedef struct s_command
 extern char **environ;
 
 // into_cmd.c
-// void		get_cmd(t_main *main, char *str);
-int			get_cmd(t_main *main, char *str);
+int		get_cmd(t_main *main, char *str);
 char		**get_envp();
 //del everything
 void		free_all(t_main *main);
+void		reset_tool(t_main *main);
 // lexer1
 int			check_quote(char **s);
 char		*my_split_lexer(char *s);
@@ -135,21 +136,35 @@ void		init_signal(void);
 void		sigint_handle(int mode);
 void		sighandle(int sig);
 void		handel_c(int sig);
+void		sigint_handle(int mode);
+void		sighandle(int sig);
+void		handel_c(int sig);
 // builtin.c
-void		into_builtin(t_main *main);
-void		into_builtin2(t_cmd *cmd, int i);
+// void		into_builtin(t_main *main);
+// void		into_builtin2(t_main *main, t_cmd *cmd, int i);
+
+int			check_builtin(t_cmd *tmp);
+int			into_builtin_parent(t_main *main, t_cmd *cmd);
+int			into_builtin_child(t_main *main, t_cmd *cmd);
 // buildin.c
 void		print_word(char *str);
-void		builtin_echo(t_cmd *cmd);
-void		builtin_env();
-void		builtin_pwd(t_cmd *cmd);
+int			builtin_echo(t_main *main, t_cmd *cmd);
+int			builtin_env(t_main *main, t_cmd *cmd);
+int			builtin_pwd(t_main *main, t_cmd *cmd);
+int			builtin_export(t_main *main, t_cmd *cmd);
+int			builtin_unset(t_main *main, t_cmd *cmd);
+// int			builtin_exit(t_main *main, t_cmd *cmd);
+int			builtin_cd(t_main *main, t_cmd *cmd);
 // expander.c
 void		expander(t_main *main);
 char		*cut_quote(char *str);
 char		*detact_dollar(char *str, t_main *main);
+char		*expander_handel(t_main *main, char *str, char **cmd);
 // util_expan
 char		*copy_str(char *s, int len);
 int			len_quote(char *s);
+char		*replace_val(char *s1, char *s2);
+void		check_val(char **cmd);
 // util_info
 char		**get_envp2();
 int			find_envp2(char *str);
@@ -160,6 +175,7 @@ void		reset_tool(t_main *main);
 char		*cut_quote(char *str);
 char		*detact_quote(char *str, t_main *main, char *val);
 char		*detact_quote2(char *str, t_main *main, char *val);
+char		*detact_quote3(char *str, t_main *main, char *val);
 
 //mobile///////////////////////////////////////////////////
 
@@ -196,7 +212,7 @@ int		check_heredoc_file(t_cmd *tmp, char *file_name);
 void	start_process(t_main *main);
 void	create_process(t_main *main);
 void	child_process(t_main *main, t_cmd *tmp, int id);
-void	parent_process(t_main *main);
+void	parent_process(t_main *main, t_cmd *tmp, int id);
 void	waiting_process(t_main *main);
 int		check_redirect(char *s);
 
@@ -211,11 +227,14 @@ void	err_cmd(t_main *main, char *cmd, int err);
 void	err_msg_free(t_main *main, char *msg);
 void	err_msg(char *msg);
 void	ft_exit(int err);
-
+int		err_builtin(t_main *main, t_cmd *cmd, int err);
 // 	utils_path.c
 // int		find_path(char **env);
 int		check_access_path(t_main *main, char *cmd);
 // void	free_path(t_main *main);
 
+void	err_msg_builtin(char *cmd1, char *cmd2);
+int		find_variable_inenv(char *vrb);
+int		check_format_variable(char *cmd);
 
 #endif
