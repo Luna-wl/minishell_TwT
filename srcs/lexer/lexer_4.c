@@ -6,7 +6,7 @@
 /*   By: wluedara <wluedara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 17:06:14 by wluedara          #+#    #+#             */
-/*   Updated: 2023/08/03 16:05:41 by wluedara         ###   ########.fr       */
+/*   Updated: 2023/08/03 17:19:52 by wluedara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,9 @@ int	count_letter2(char *s, int i, int j)
 		j++;
 		if (is_quote(s[j]) && (s[j + 1] == '\0' || is_space(s[j + 1])) && \
 		!is_quote(s[j + 1]))
-			break;
+			break ;
+		if (s[j + 1] == '\0' || is_space(s[j + 1]))
+			break ;
 	}
 	return (j + 1);
 }

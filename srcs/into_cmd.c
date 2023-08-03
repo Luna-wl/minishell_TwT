@@ -6,7 +6,7 @@
 /*   By: wluedara <wluedara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 16:21:40 by wluedara          #+#    #+#             */
-/*   Updated: 2023/08/03 16:00:50 by wluedara         ###   ########.fr       */
+/*   Updated: 2023/08/03 16:20:47 by wluedara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,20 @@ char	**get_envp()
 int	get_cmd(t_main *main, char *str)
 {
 	// printf("str = %s\n", str);
-	char **test = ft_split(str, '|');
+	char	**test;
+	char	***str2 = NULL;
 
-	char ***str2 = cut_test(test);
-	(void)str2;
+	test = ft_split(str, '|');
+	if (!cut_test(test))
+		return (0);
+	str2 = cut_test(test);
+	for(int x = 0; str2[x]; x++) {
+		printf("====x = |%d|=====\n", x);
+		for(int o = 0; str2[x][o] ; o++) {
+			printf("str2[%d] = |%s|\n", o, str2[x][o]);
+		}
+	}
 	(void)main;
-	// if (!cut_test(test))
-	// 	return (0);
 	// main->str_cmd = cut_test(test); // put lexer after split into main->str_cmd
 	// pim_split(main->str_cmd);
 	// if (!check_error(main->str_cmd))

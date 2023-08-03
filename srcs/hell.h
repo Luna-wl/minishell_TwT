@@ -239,7 +239,7 @@ int		check_format_variable(char *cmd);
 
 
 //test
-char ***cut_test(char **s);
-int	count_len_quote2(char *s);
+char	***cut_test(char **s);
+int		count_len_quote2(char *s);
 
 #endif
