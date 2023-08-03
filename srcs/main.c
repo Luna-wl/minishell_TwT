@@ -6,7 +6,7 @@
 /*   By: wluedara <wluedara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 18:26:04 by wluedara          #+#    #+#             */
-/*   Updated: 2023/08/03 16:16:37 by wluedara         ###   ########.fr       */
+/*   Updated: 2023/08/03 17:57:51 by wluedara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ int	main(int argc, char **argv)
 // # {echo}, {"'hello'"}, {""}, NULL.
 // if '' / "" not complete pair ret"urn ERROR in lexer.
 
+// "faf" ds"fd"
 
 /*
 echo with option -n.

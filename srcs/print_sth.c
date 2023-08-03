@@ -6,7 +6,7 @@
 /*   By: wluedara <wluedara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 14:49:04 by wluedara          #+#    #+#             */
-/*   Updated: 2023/08/02 15:22:41 by wluedara         ###   ########.fr       */
+/*   Updated: 2023/08/03 18:01:33 by wluedara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,5 +74,24 @@ void	pim_list(t_lexer *list)
 		tmp->str, tmp->index);
 		i++;
 		tmp = tmp->next;
+	}
+}
+
+void	pim_sam_dao(char ***s)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (s[i] != NULL)
+	{
+		printf("==== i = |%d| =====\n", i);
+		j = 0;
+		while (s[i][j] != NULL)
+		{
+			printf("s[%d] = |%s|\n", j, s[i][j]);
+			j++;
+		}
+		i++;
 	}
 }

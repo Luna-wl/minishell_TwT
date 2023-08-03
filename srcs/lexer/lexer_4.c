@@ -6,7 +6,7 @@
 /*   By: wluedara <wluedara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 17:06:14 by wluedara          #+#    #+#             */
-/*   Updated: 2023/08/03 17:19:52 by wluedara         ###   ########.fr       */
+/*   Updated: 2023/08/03 18:08:41 by wluedara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,11 @@ int	count_letter_lexer(char *s)
 	while (s[i] && is_space(s[i]))
 		i++;
 	j = i;
-	while (s[i] && is_tokens(s[i]) != -1 && is_space(s[i]) == 0)
+	while (s[i] && is_tokens(s[i]) != -1 && !is_space(s[i]))
 	{
 		i++;
+		if (is_quote(s[i + 1]))
+			i++;
 		if (is_tokens(s[i]) == -1)
 			return (i);
 	}

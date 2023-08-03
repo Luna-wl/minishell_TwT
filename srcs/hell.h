@@ -241,5 +241,6 @@ int		check_format_variable(char *cmd);
 //test
 char	***cut_test(char **s);
 int		count_len_quote2(char *s);
+void	pim_sam_dao(char ***s);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: wluedara <wluedara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 15:06:28 by wluedara          #+#    #+#             */
-/*   Updated: 2023/08/03 16:35:19 by wluedara         ###   ########.fr       */
+/*   Updated: 2023/08/03 18:14:35 by wluedara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,8 @@ int	count_letter_split(char *s, int i)
 	while (s[i] && is_space(s[i]) == 0 && is_tokens(s[i]) == -1 && \
 		is_quote(s[i]) == 0)
 	{
+		if (is_quote(s[i + 1]))
+			i++;
 		if (i > 0 && is_tokens(s[i - 1]) != -1)
 			return (i);
 		if (is_space(s[i]) == 0 && is_tokens(s[i]) == -1)

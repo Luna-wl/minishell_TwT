@@ -6,7 +6,7 @@
 /*   By: wluedara <wluedara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 13:24:24 by wluedara          #+#    #+#             */
-/*   Updated: 2023/08/03 17:21:18 by wluedara         ###   ########.fr       */
+/*   Updated: 2023/08/03 18:15:00 by wluedara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,16 @@ int	check_word_lexer3(char *s, int len, int i)
 			count += check_word_2(&s[i]);
 			i += count_len_quote(&s[i]);
 		}
-		if (is_space(s[i]) == 0 && is_tokens(s[i]) == -1 && \
-		is_quote(s[i]) == 0 && s[i])
+		if (!is_space(s[i])  && is_tokens(s[i]) == -1 && \
+		!is_quote(s[i]) && s[i])
 		{
-			while (is_space(s[i]) == 0 && is_tokens(s[i]) == -1 && \
-			is_quote(s[i]) == 0 && s[i])
+			while (!is_space(s[i]) && is_tokens(s[i]) == -1 && \
+			!is_quote(s[i]) && s[i])
+			{
+				if (is_quote(s[i + 1]))
+					i++;
 				i++;
+			}
 			count++;
 		}
 		else
@@ -71,7 +75,6 @@ char	***cut_test(char **s)
 	int		len;
 	char	***cmd;
 
-	pim_split(s);
 	i = 0;
 	len = find_len_split(s);
 	cmd = malloc(sizeof(char **) * find_len_split(s) + 1);
