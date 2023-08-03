@@ -6,7 +6,7 @@
 /*   By: wluedara <wluedara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 15:06:28 by wluedara          #+#    #+#             */
-/*   Updated: 2023/08/03 01:44:16 by wluedara         ###   ########.fr       */
+/*   Updated: 2023/08/03 11:49:08 by wluedara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,10 @@ int	count_len_quote2(char *s, int i)
 	while (s[i++])
 	{
 		if (is_quote(s[i]) == is_quote(s[j]))
+		{
+			
 			break;
+		}
 	}
 	// if (is_quote(s[i]) != is_quote(s[j]))
 	// {
@@ -110,8 +113,8 @@ int	check_word_lexer(char *s, int len, int i)
 		{
 			count += check_word_2(&s[i]);
 			i += count_len_quote(&s[i]);
-			printf("count = %d\n", count);
-			printf("i = %d\n", i);
+			// printf("count = %d\n", count);
+			// printf("i = %d\n", i);
 		}
 		if (is_tokens(s[i]) != -1 && is_tokens(s[i + 1]) == -1)
 		{
