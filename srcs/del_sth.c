@@ -74,14 +74,3 @@ void	print_str(char *s)
 		i++;
 	}
 }
-
-void	reset_tool(t_main *main)
-{
-	free(main->input);
-	del_split(main->path);
-	del_split(main->envp);
-
-	main->lexer = NULL;
-	main->cmd = NULL;
-	main->num_pipe = 0;
-}

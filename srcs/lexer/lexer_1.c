@@ -6,29 +6,29 @@
 /*   By: wluedara <wluedara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 14:29:35 by wluedara          #+#    #+#             */
-/*   Updated: 2023/08/02 15:23:51 by wluedara         ###   ########.fr       */
+/*   Updated: 2023/08/03 14:35:02 by wluedara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "hell.h"
 
-int	check_quote(char **s)
-{
-	int	i;
-	int	j;
+// int	check_quote(char **s)
+// {
+// 	int	i;
+// 	int	j;
 
-	i = 0;
-	while (s[i])
-	{
-		j = ft_strlen(s[i]);
-		if (is_quote(s[i][0]) == 1 && is_quote(s[i][j - 1]) != 1)
-			return (0);
-		else if (is_quote(s[i][0]) == 2 && is_quote(s[i][j - 1]) != 2)
-			return (0);
-		i++;
-	}
-	return (1);
-}
+// 	i = 0;
+// 	while (s[i])
+// 	{
+// 		j = ft_strlen(s[i]);
+// 		if (is_quote(s[i][0]) == 1 && is_quote(s[i][j - 1]) != 1)
+// 			return (0);
+// 		else if (is_quote(s[i][0]) == 2 && is_quote(s[i][j - 1]) != 2)
+// 			return (0);
+// 		i++;
+// 	}
+// 	return (1);
+// }
 
 
 char	*my_split_lexer(char *s)
@@ -41,6 +41,7 @@ char	*my_split_lexer(char *s)
 
 	s2 = ft_strtrim(s, " ");
 	letter = count_letter_split(s2, 0);
+	// printf("letter in split = %d\n", letter);
 	str = malloc(sizeof(char) * (letter + 1));
 	if (!str)
 		return (0);
@@ -77,27 +78,28 @@ int	check_error(char **s)
 	return (1);
 }
 
-char	**cut_cmd(char *s)
-{
-	char	**new;
-	int		word;
-	int		i;
-	int		j;
-	int		letter;
+// char	**cut_cmd(char *s)
+// {
+// 	char	**new;
+// 	int		word;
+// 	int		i;
+// 	int		j;
+// 	int		letter;
 
-	i = 0;
-	word = check_word_lexer(s, ft_strlen(s), i);
-	new = malloc(sizeof(char *) * (word + 1));
-	if (!new)
-		return (0);
-	i = 0;
-	j = 0;
-	while (i < word)
-	{
-		new[i++] = my_split_lexer(&s[j]);
-		letter = count_letter_lexer(&s[j]);
-		j += letter;
-	}
-	new[i] = NULL;
-	return (new);
-}
+// 	i = 0;
+// 	word = check_word_lexer(s, ft_strlen(s), i);
+// 	// printf("word = %d\n", word);
+// 	new = malloc(sizeof(char *) * (word + 1));
+// 	if (!new)
+// 		return (0);
+// 	i = 0;
+// 	j = 0;
+// 	while (i < word)
+// 	{
+// 		new[i++] = my_split_lexer(&s[j]);
+// 		letter = count_letter_lexer(&s[j]);
+// 		j += letter;
+// 	}
+// 	new[i] = NULL;
+// 	return (new);
+// }

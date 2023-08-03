@@ -6,7 +6,7 @@
 /*   By: wluedara <wluedara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 17:06:14 by wluedara          #+#    #+#             */
-/*   Updated: 2023/06/09 17:20:00 by wluedara         ###   ########.fr       */
+/*   Updated: 2023/08/03 15:05:10 by wluedara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	count_letter_lexer(char *s)
 
 	i = 0;
 	j = 0;
-	while (s[i] && is_space(s[i]) == 1)
+	while (s[i] && is_space(s[i]))
 		i++;
 	j = i;
 	while (s[i] && is_tokens(s[i]) != -1 && is_space(s[i]) == 0)
@@ -28,12 +28,11 @@ int	count_letter_lexer(char *s)
 		if (is_tokens(s[i]) == -1)
 			return (i);
 	}
-	if (is_quote(s[i]) > 0)
+	if (is_quote(s[i]))
 		return (count_letter2(s, i, j));
-	while (s[i] && is_tokens(s[i]) == -1 && is_space(s[i]) == 0)
+	while (s[i++] && is_tokens(s[i]) == -1 && !is_space(s[i]))
 	{
-		i++;
-		if (is_quote(s[i]) > 0)
+		if (is_quote(s[i]))
 			return (i);
 	}
 	return (i);
@@ -41,11 +40,12 @@ int	count_letter_lexer(char *s)
 
 int	count_letter2(char *s, int i, int j)
 {
-	while (s[i] && is_quote(s[i]) > 0)
+	while (s[i])
 	{
 		j++;
-		if (is_quote(s[i]) == is_quote(s[j]))
-			break ;
+		if (is_quote(s[j]) && (s[j + 1] == '\0' || is_space(s[j + 1])) && \
+		!is_quote(s[j + 1]))
+			break;
 	}
-	return (j + 1);
+	return (j);
 }

@@ -102,6 +102,7 @@ t_lexer		*spilt_to_list(char **str, t_lexer *list);
 int			is_space(char c);
 int			is_tokens(char c);
 int			is_quote(char c);
+int			is_pipe(char c);
 // error404.c
 void		del_split(char **str);
 void		print_str(char *s);
@@ -170,7 +171,6 @@ char		**get_envp2();
 int			find_envp2(char *str);
 char		*find_envp(char *str);
 char		**get_path(char **envp);
-void		reset_tool(t_main *main);
 //handle_quote.c
 char		*cut_quote(char *str);
 char		*detact_quote(char *str, t_main *main, char *val);
@@ -236,5 +236,10 @@ int		check_access_path(t_main *main, char *cmd);
 void	err_msg_builtin(char *cmd1, char *cmd2);
 int		find_variable_inenv(char *vrb);
 int		check_format_variable(char *cmd);
+
+
+//test
+char ***cut_test(char **s);
+int	count_len_quote2(char *s);
 
 #endif
