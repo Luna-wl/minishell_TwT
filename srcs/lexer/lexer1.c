@@ -6,7 +6,7 @@
 /*   By: wluedara <wluedara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 13:24:24 by wluedara          #+#    #+#             */
-/*   Updated: 2023/08/03 15:45:21 by wluedara         ###   ########.fr       */
+/*   Updated: 2023/08/03 16:03:00 by wluedara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,10 +63,10 @@ char	**split_to_cmd(char *s)
 	{
 		cmd[i++] = my_split_lexer(&s[j]);
 		letter = count_letter_lexer(&s[j]);
+		printf("letter = %d\n", letter);
 		j += letter;
 	}
 	cmd[i] = NULL;
-	free(s);
 	return (cmd);
 }
 
@@ -95,5 +95,5 @@ char ***cut_test(char **s)
 			printf("cmd[%d] = |%s|\n", o, cmd[x][o]);
 		}
 	}
-	return (0);
+	return (cmd);
 }
