@@ -44,6 +44,14 @@ void	del_cmd(t_cmd **cmd)
 		tmp = del->next;
 		if (del->str != NULL)
 			del_split(del->str);
+		if (del->infile_name != NULL)
+			del_split(del->infile_name);
+		if (del->outfile_name != NULL)
+			del_split(del->outfile_name);
+		if (del->heredoc_file != NULL)
+			del_split(del->heredoc_file);
+		if (del->append_file != NULL)
+			del_split(del->append_file);
 		free(del);
 		del = tmp;
 	}
@@ -61,6 +69,29 @@ void	del_split(char **str)
 	}
 	if (str)
 		free(str);
+}
+
+void	del_sam_dao(char ***s)
+{
+	int	i;
+	int	j;
+
+	if (s)
+	{
+		i = 0;
+		while (s[i] != NULL)
+		{
+			j = 0;
+			while (s[i][j] != NULL)
+			{
+				free(s[i][j]);
+				j++;
+			}
+			free(s[i]);
+			i++;
+		}
+		free(s);
+	}
 }
 
 void	print_str(char *s)

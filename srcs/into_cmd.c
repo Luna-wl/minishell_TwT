@@ -6,7 +6,7 @@
 /*   By: wluedara <wluedara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 16:21:40 by wluedara          #+#    #+#             */
-/*   Updated: 2023/08/03 17:53:40 by wluedara         ###   ########.fr       */
+/*   Updated: 2023/08/04 01:14:14 by wluedara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,14 +37,19 @@ int	get_cmd(t_main *main, char *str)
 {
 	// printf("str = %s\n", str);
 	char	**test;
-	char	***str2 = NULL;
+	char	***str2;
 
 	test = ft_split(str, '|');
+	str2 = NULL;
 	if (!cut_test(test))
 		return (0);
 	str2 = cut_test(test);
-	pim_sam_dao(str2);
-	(void)main;
+	del_split(test);
+	// pim_sam_dao(str2);
+	main->cmd = list_cmd(main, str2);
+	// del_cmd(&main->cmd);
+	del_sam_dao(str2);
+	exit(0);
 	// main->str_cmd = cut_test(test); // put lexer after split into main->str_cmd
 	// pim_split(main->str_cmd);
 	// if (!check_error(main->str_cmd))
@@ -57,6 +62,6 @@ int	get_cmd(t_main *main, char *str)
 	// exit(0);
 	// main->cmd = list_cmd(main); // convert lexer to parser and redirect info
 	// del_list_lexer(&main->lexer); // del lexer after finish parser
-	return (1);
 	// pim_cmd(main->cmd);
+	return (1);
 }
