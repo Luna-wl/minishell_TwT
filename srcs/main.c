@@ -6,7 +6,7 @@
 /*   By: wluedara <wluedara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 18:26:04 by wluedara          #+#    #+#             */
-/*   Updated: 2023/08/04 19:00:55 by wluedara         ###   ########.fr       */
+/*   Updated: 2023/08/04 23:51:09 by wluedara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ int	main(int argc, char **argv)
 			break ;
 		}
 		init_mimi(&main); // init value in struct
+		sigint_handle(2);
 		if(get_cmd(&main, str)) // start cut cmd
 		{
 			// expander(&main); // after split cmd then go to expander to detact quote and $
@@ -52,14 +53,12 @@ int	main(int argc, char **argv)
 			// start_process(&main);
 		}
 		// into_builtin(&main); // if want to get to buildin use this nah
-
-		// printf("num_pipe = %d\n", main.num_pipe);
 		// get_heredoc(main);
 		// dup2(0,tmp);
-		free(str); // free input
-		reset_tool(&main);
+		// reset_tool(&main);
+		free(str);
 	}
-	// free_all(&main); // free everything after finish execue cmd or reset everything to start again
+	free_all(&main); // free everything after finish execue cmd or reset everything to start again
 	return (0);
 }
 
