@@ -6,7 +6,7 @@
 /*   By: pnamwayk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 16:21:40 by wluedara          #+#    #+#             */
-/*   Updated: 2023/08/01 16:24:05 by pnamwayk         ###   ########.fr       */
+/*   Updated: 2023/08/04 18:46:31 by pnamwayk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,18 +35,32 @@ char	**get_envp()
 
 int	get_cmd(t_main *main, char *str)
 {
-	if (!cut_cmd(str))
+	// printf("str = %s\n", str);
+	char	**test;
+	char	***str2;
+
+	test = ft_split(str, '|');
+	str2 = NULL;
+	if (!cut_test(test))
 		return (0);
-	main->str_cmd = cut_cmd(str); // put lexer after split into main->str_cmd
-	if (!check_error(main->str_cmd))
-	{
-		del_split(main->str_cmd);
-		return (0);
-	}
-	main->lexer = spilt_to_list(main->str_cmd, main->lexer); // make char** into linked list
+	str2 = cut_test(test);
+	del_split(test);
+	// pim_sam_dao(str2);
+	main->cmd = list_cmd(main, str2);
+	// del_cmd(&main->cmd);
+	// del_sam_dao(str2);
+	// main->str_cmd = cut_test(test); // put lexer after split into main->str_cmd
+	// pim_split(main->str_cmd);
+	// if (!check_error(main->str_cmd))
+	// {
+		// pim_split(main->str_cmd);
+	// 	return (0);
+	// }
+	// main->lexer = spilt_to_list(main->str_cmd, main->lexer); // make char** into linked list
 	// pim_list(main->lexer);
-	main->cmd = list_cmd(main); // convert lexer to parser and redirect info
-	del_list_lexer(&main->lexer); // del lexer after finish parser
+	// exit(0);
+	// main->cmd = list_cmd(main); // convert lexer to parser and redirect info
+	// del_list_lexer(&main->lexer); // del lexer after finish parser
 	// pim_cmd(main->cmd);
 	return (1);
 }

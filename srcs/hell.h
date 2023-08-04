@@ -13,7 +13,6 @@
 # include <readline/history.h>
 # include "colours.h"
 # include <limits.h>
-# include <errno.h>
 
 typedef struct s_lexer
 {
@@ -74,7 +73,6 @@ typedef struct s_command
 }	t_command;
 
 extern char **environ;
-
 // into_cmd.c
 int		get_cmd(t_main *main, char *str);
 char		**get_envp();
@@ -103,16 +101,19 @@ t_lexer		*spilt_to_list(char **str, t_lexer *list);
 int			is_space(char c);
 int			is_tokens(char c);
 int			is_quote(char c);
+int			is_pipe(char c);
 // error404.c
 void		del_split(char **str);
 void		print_str(char *s);
 void		del_list_lexer(t_lexer **list);
 void		del_cmd(t_cmd **cmd);
+void		del_sam_dao(char ***s);
 // parser_1.c
 int			find_pipe(t_main *main);
 int			find_cmd_num(t_lexer *list);
 void		next_cmd(t_lexer **list, int index);
-t_cmd		*list_cmd(t_main *main);
+// t_cmd		*list_cmd(t_main *main);
+t_cmd		*list_cmd(t_main *main, char ***str);
 // parser_2.c
 int			stack_lenght(t_lexer **list);
 char		**copy_two_stars(t_lexer **list);
@@ -128,6 +129,7 @@ char		**check_heredoc(char **cmd, int hc);
 char		**check_infile(char **cmd, int inf);
 char		**check_outfile(char **cmd, int of);
 char		**check_append(char **cmd, int ap);
+int			find_size3(char ***s);
 // print_sth.c
 void		pim_cmd(t_cmd *cmd);
 void		pim_split(char **s);
@@ -137,10 +139,10 @@ void		init_signal(void);
 void		sigint_handle(int mode);
 void		sighandle(int sig);
 void		handel_c(int sig);
+void		sigint_handle(int mode);
+void		sighandle(int sig);
+void		handel_c(int sig);
 // builtin.c
-// void		into_builtin(t_main *main);
-// void		into_builtin2(t_main *main, t_cmd *cmd, int i);
-
 int			check_builtin(t_cmd *tmp);
 int			into_builtin_parent(t_main *main, t_cmd *cmd);
 int			into_builtin_child(t_main *main, t_cmd *cmd);
@@ -158,9 +160,12 @@ void		expander(t_main *main);
 char		*cut_quote(char *str);
 char		*detact_dollar(char *str, t_main *main);
 char	*get_val_quote(char *str, t_main *main, char *val);
+// char		*expander_handel(t_main *main, char *str, char **cmd);
 // util_expan
 char		*copy_str(char *s, int len);
 int			len_quote(char *s);
+char		*replace_val(char *s1, char *s2);
+void		check_val(char **cmd);
 // util_info
 char		**get_envp2();
 int			find_envp2(char *str);
@@ -170,6 +175,15 @@ char		**get_path(char **envp);
 char		*cut_quote(char *str);
 char		*detact_quote(char *str, t_main *main, char *val);
 char		*detact_quote2(char *str, t_main *main, char *val);
+char		*detact_quote3(char *str, t_main *main, char *val);
+//test
+char	***cut_test(char **s);
+int		count_len_quote2(char *s);
+void	pim_sam_dao(char ***s);
+void	create_list(t_cmd **cmd, char **s);
+void	add_last_new(t_cmd **cmd, t_cmd *last);
+char	**copy_two_stars_new(char **s);
+
 
 //mobile///////////////////////////////////////////////////
 
@@ -230,5 +244,14 @@ int		check_access_path(t_main *main, char *cmd);
 void	err_msg_builtin(char *cmd1, char *cmd2);
 int		find_variable_inenv(char *vrb);
 int		check_format_variable(char *cmd);
+
+
+//test
+char	***cut_test(char **s);
+int		count_len_quote2(char *s);
+void	pim_sam_dao(char ***s);
+void	create_list(t_cmd **cmd, char **s);
+void	add_last_new(t_cmd **cmd, t_cmd *last);
+char	**copy_two_stars_new(char **s);
 
 #endif
