@@ -74,16 +74,17 @@ typedef struct s_command
 
 extern char **environ;
 // into_cmd.c
-int		get_cmd(t_main *main, char *str);
+int			get_cmd(t_main *main, char *str);
 char		**get_envp();
 //del everything
 void		free_all(t_main *main);
 void		reset_tool(t_main *main);
-// lexer1
-int			check_quote(char **s);
+// lexer_1
+// int			check_quote(char **s);
 char		*my_split_lexer(char *s);
-char		**cut_cmd(char *s);
-int			check_error(char **s);
+// char		**cut_cmd(char *s);
+int			check_error(char *s);
+// int			check_error(char **s);
 // lexer2
 int			check_word_2(char *s);
 int			count_len_quote(char *s);

@@ -6,7 +6,7 @@
 /*   By: wluedara <wluedara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 18:26:04 by wluedara          #+#    #+#             */
-/*   Updated: 2023/08/05 00:03:55 by wluedara         ###   ########.fr       */
+/*   Updated: 2023/08/05 00:18:29 by wluedara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ int	main(int argc, char **argv)
 		init_mimi(&main); // init value in struct
 		if(get_cmd(&main, str)) // start cut cmd
 		{
+			printf("before excute\n");
 			expander(&main); // after split cmd then go to expander to detact quote and $
 			sigint_handle(2);
 			start_process(&main);

@@ -6,7 +6,7 @@
 /*   By: wluedara <wluedara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 14:29:35 by wluedara          #+#    #+#             */
-/*   Updated: 2023/08/04 22:58:51 by wluedara         ###   ########.fr       */
+/*   Updated: 2023/08/05 00:23:44 by wluedara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,27 +35,22 @@ char	*my_split_lexer(char *s)
 	return (str);
 }
 
-int	check_error(char **s)
+int	check_error(char *s)
 {
 	int	len;
 
-	len = find_len_split(s);
+	len = ft_strlen(s) - 1;
 	if (len == 0)
 		return (0);
-	if (len > 0)
+	if (s[len] == '|')
 	{
-		if (!ft_strncmp(s[len - 1], "|", 1))
-		{
-			print_str(BCYN"Pipe is at the end ¯\\_ಠ_ಠ_/¯\n"RESET);
-			return (0);
-		}
-		else if (!ft_strncmp(s[len - 1], "<", 1) || \
-		!ft_strncmp(s[len - 1], ">", 1) || !ft_strncmp(s[len - 1], ">>", 2) \
-		|| !ft_strncmp(s[len - 1], "<<", 2))
-		{
-			print_str(BCYN"Command is not complete ۹( ÒہÓ )۶\n"RESET);
-			return (0);
-		}
+		print_str(BCYN"Pipe is at the end ¯\\_ಠ_ಠ_/¯\n"RESET);
+		return (0);
+	}
+	else if (s[len] == '>' || s[len] == '<')
+	{
+		print_str(BMAG"Command is not complete ۹( ÒہÓ )۶\n"RESET);
+		return (0);
 	}
 	return (1);
 }
