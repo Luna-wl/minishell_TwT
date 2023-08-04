@@ -6,7 +6,7 @@
 /*   By: wluedara <wluedara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 21:17:02 by wluedara          #+#    #+#             */
-/*   Updated: 2023/08/03 18:24:41 by wluedara         ###   ########.fr       */
+/*   Updated: 2023/08/04 23:10:27 by wluedara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	**check_heredoc(char **cmd, int hc)
 
 	i = -1;
 	j = 0;
-	str = malloc(sizeof(char *) * hc + 1);
+	str = malloc(sizeof(char *) * (hc + 1));
 	while (cmd[++i])
 	{
 		if (ft_strncmp(cmd[i], "<<", 2) == 0 && cmd[i + 1] != NULL)
@@ -38,7 +38,7 @@ char	**check_infile(char **cmd, int inf)
 
 	i = -1;
 	j = 0;
-	str = malloc(sizeof(char *) * inf + 1);
+	str = malloc(sizeof(char *) * (inf + 1));
 	while (cmd[++i] && j < inf)
 	{
 		if ((!ft_strncmp(cmd[i], "<<", 2) || !ft_strncmp(cmd[i], "<", 1))
@@ -57,7 +57,7 @@ char	**check_outfile(char **cmd, int of)
 
 	i = -1;
 	j = 0;
-	str = malloc(sizeof(char *) * of + 1);
+	str = malloc(sizeof(char *) * (of + 1));
 	while (cmd[++i] && j < of)
 	{
 		if ((!ft_strncmp(cmd[i], ">", 1) || !ft_strncmp(cmd[i], ">>", 2))
@@ -76,7 +76,7 @@ char	**check_append(char **cmd, int ap)
 
 	i = -1;
 	j = 0;
-	str = malloc(sizeof(char *) * ap + 1);
+	str = malloc(sizeof(char *) * (ap + 1));
 	while (cmd[++i])
 	{
 		if (ft_strncmp(cmd[i], ">>", 2) == 0 && cmd[i + 1] != NULL)

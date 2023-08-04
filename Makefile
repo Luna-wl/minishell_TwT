@@ -17,7 +17,7 @@ LIB_RL := -L$(RL_DIR)lib/
 # LIB_RL := -L$(RL_DIR)
 
 CC := gcc
-CFLAGS := -Wall -Werror -Wextra -lreadline $(LIB_RL) -g
+CFLAGS := -Wall -Werror -Wextra -lreadline $(LIB_RL) -g #-fsanitize=address
 
 LIBFT_DIR := ./libft
 LIBFT := $(LIBFT_DIR)/libft.a

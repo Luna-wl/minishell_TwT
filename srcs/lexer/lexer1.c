@@ -6,7 +6,7 @@
 /*   By: wluedara <wluedara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 13:24:24 by wluedara          #+#    #+#             */
-/*   Updated: 2023/08/03 18:26:24 by wluedara         ###   ########.fr       */
+/*   Updated: 2023/08/04 23:09:52 by wluedara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ char	**split_to_cmd(char *s)
 
 	i = 0;
 	word = check_word_lexer3(s, ft_strlen(s), i);
+	// printf("word = %d\n", word);
 	cmd = malloc(sizeof(char *) * (word + 1));
 	if (!cmd)
 		return (0);
@@ -77,7 +78,7 @@ char	***cut_test(char **s)
 
 	i = 0;
 	len = find_len_split(s);
-	cmd = malloc(sizeof(char **) * find_len_split(s) + 1);
+	cmd = malloc(sizeof(char **) * (find_len_split(s) + 1));
 	if (!cmd)
 		return (0);
 	while (i < len)
