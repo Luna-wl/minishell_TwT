@@ -6,7 +6,7 @@
 /*   By: wluedara <wluedara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 15:11:40 by wluedara          #+#    #+#             */
-/*   Updated: 2023/05/03 14:31:49 by wluedara         ###   ########.fr       */
+/*   Updated: 2023/08/03 13:16:59 by wluedara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,19 @@ int	is_tokens(char c)
 	int		i;
 
 	i = 0;
-	tokens = "|<>";
-	while (i < 3)
+	tokens = "<>";
+	while (i < 2)
 	{
 		if (c == tokens[i])
 			return (i);
 		i++;
 	}
 	return (-1);
+}
+
+int	is_pipe(char c)
+{
+	if (c == '|')
+		return (1);
+	return (0);
 }

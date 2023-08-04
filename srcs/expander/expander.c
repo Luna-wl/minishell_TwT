@@ -6,7 +6,7 @@
 /*   By: wluedara <wluedara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 14:29:53 by wluedara          #+#    #+#             */
-/*   Updated: 2023/08/04 18:57:53 by wluedara         ###   ########.fr       */
+/*   Updated: 2023/08/04 18:58:49 by wluedara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,23 +50,26 @@ char	*expander_handel(t_main *main, char *str)
 {
 	char	*val;
 
-	val = ft_strdup("\0");
-	if (str[0] == '$')
-	{
-		val = ft_strjoin(val, detact_dollar(str, main));
-		printf("$ val = |%s|\n", val);
-	}
-	else if (str[0] == '\"')
-	{
-		val = ft_strjoin(val, detact_quote(str, main, val));
-		// printf("\" val = |%s|\n", val);
-	}
-	else if (str[0] == '\'')
-	{
-		str = cut_quote(str);
-		val = ft_strjoin(val, str);
-		// printf("\' val = |%s|\n", val);
-	}
+	val = NULL;
+	// val = ft_strdup("\0");
+	// if (str[0] == '$')
+	// {
+	// 	val = ft_strjoin(val, detact_dollar(str, main));
+	// 	// printf("$ val = |%s|\n", val);
+	// }
+	// else if (str[0] == '\"')
+	// {
+	// 	val = ft_strjoin(val, detact_quote(str, main, val));
+	// 	// printf("\" val = |%s|\n", val);
+	// }
+	// else if (str[0] == '\'')
+	// {
+	// 	str = cut_quote(str);
+	// 	val = ft_strjoin(val, str);
+	// 	// printf("\' val = |%s|\n", val);
+	// }
+	val = get_val_quote(str, main, val);
+	// printf("val = %s\n", val);
 	return (val);
 }
 
@@ -82,9 +85,17 @@ void	expander(t_main *main)
 		i = -1;
 		while (tmp->str[++i])
 		{
+			// printf("----------------------------------------\n");
+			// printf("Before tmp->str[%d] = |%s|\n", i, tmp->str[i]);
 			expan = expander_handel(main, tmp->str[i]);
-			printf("In expan main value = |%s|\n", expan);
-			printf("tmp->str[%d] = |%s|\n", i, tmp->str[i]);
+			if (expan)
+			{
+				free(tmp->str[i]);
+				tmp->str[i] = ft_strdup(expan);
+				free(expan);
+			}
+			// printf("In expan main value = |%s|\n", expan);
+			// printf("After tmp->str[%d] = |%s|\n", i, tmp->str[i]);
 		}
 		tmp = tmp->next;
 	}

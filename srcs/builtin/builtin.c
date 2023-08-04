@@ -6,7 +6,7 @@
 /*   By: pnamwayk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 21:13:32 by wluedara          #+#    #+#             */
-/*   Updated: 2023/07/31 01:41:37 by pnamwayk         ###   ########.fr       */
+/*   Updated: 2023/08/02 00:38:57 by pnamwayk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ int	into_builtin_parent(t_main *main, t_cmd *cmd)
 		return (builtin_export(main, cmd));
 	else if (!ft_strncmp(cmd->command[0], "unset", 6))
 		return (builtin_unset(main, cmd));
-	// else if (!ft_strncmp(cmd->command[0], "exit", 5))
-	// 	return (builtin_exit(cmd));
+	else if (!ft_strncmp(cmd->command[0], "exit", 5))
+		return (builtin_exit(main, cmd));
 	return (-1);
 }
 
@@ -47,7 +47,6 @@ int	into_builtin_child(t_main *main, t_cmd *cmd)
 // {
 // 	t_cmd	*tmp;
 // 	int		j;
-
 // 	tmp = main->cmd;
 // 	while (tmp != NULL)
 // 	{

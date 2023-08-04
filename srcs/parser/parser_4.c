@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_4.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pnamwayk <pnamwayk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wluedara <wluedara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 21:17:02 by wluedara          #+#    #+#             */
-/*   Updated: 2023/07/03 13:45:09 by pnamwayk         ###   ########.fr       */
+/*   Updated: 2023/08/03 18:24:41 by wluedara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,4 +84,14 @@ char	**check_append(char **cmd, int ap)
 	}
 	str[j] = NULL;
 	return (str);
+}
+
+int	find_size3(char ***s)
+{
+	int	i;
+
+	i = 0;
+	while (s[i] != NULL)
+		i++;
+	return (i);
 }
