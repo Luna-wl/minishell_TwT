@@ -6,7 +6,7 @@
 /*   By: pnamwayk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 00:51:59 by pnamwayk          #+#    #+#             */
-/*   Updated: 2023/07/03 03:21:34 by pnamwayk         ###   ########.fr       */
+/*   Updated: 2023/08/06 01:24:19 by pnamwayk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,6 @@ void	get_heredoc(t_main *main)
 		i = -1;
 		while (++i < tmp->cnt_heredoc)
 		{
-			// printf("i = %d, cnt_heredic =- %d\n", i, tmp->cnt_heredoc);
-			// printf("tmp->heredoc_file[%d] = %s\n", i, tmp->heredoc_file[i]);
 			len_filename = ft_strlen(tmp->heredoc_file[i]);
 			read_heredoc(main, tmp, len_filename, i);
 		}

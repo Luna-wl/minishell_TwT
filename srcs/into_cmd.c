@@ -6,7 +6,7 @@
 /*   By: pnamwayk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 16:21:40 by wluedara          #+#    #+#             */
-/*   Updated: 2023/08/05 23:50:15 by pnamwayk         ###   ########.fr       */
+/*   Updated: 2023/08/06 00:30:27 by pnamwayk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,16 +35,22 @@ char	**get_envp(void)
 
 int	get_cmd(t_main *main, char *str)
 {
-	char	**test;
+	char	**test1;
+	char	**test2;
 	char	***str2;
 
 	if (str[0] == '\0' || !check_error(str))
 		return (0);
-	test = ft_split(str, '|');
-	if (!check_quote_pair(test))
-		return (0);
-	str2 = cut_test(test);
-	del_split(test);
+	test1 = ft_split(str, ' ');
+	test2 = ft_split(str, '|');
+	if (!test1[0] || !check_quote_pair(test2))
+	{
+		del_split(test1);
+		return (del_split(test2), 0);
+	}
+	str2 = cut_test(test2);
+	del_split(test1);
+	del_split(test2);
 	main->cmd = list_cmd(main, str2);
 	del_sam_dao(str2);
 	return (1);

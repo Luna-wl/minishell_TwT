@@ -6,7 +6,7 @@
 /*   By: pnamwayk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 00:49:38 by pnamwayk          #+#    #+#             */
-/*   Updated: 2023/07/15 16:52:17 by pnamwayk         ###   ########.fr       */
+/*   Updated: 2023/08/06 01:41:23 by pnamwayk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,15 @@ void	open_infile(t_main *main, t_cmd *tmp, char **file_name, int file_nbr)
 	i = -1;
 	while (++i < file_nbr && file_name[i])
 	{
-
 		main->fd_file = open(file_name[i], O_RDONLY);
 		if (main->fd_file == -1)
 			err_file(main, file_name[i]);
 		if (i != file_nbr - 1)
 		{
 			close(main->fd_file);
-			if (!check_heredoc_file(tmp, file_name[i])
-			&& ft_strncmp(file_name[i], file_name[file_nbr - 1], ft_strlen(file_name[i])))
+			if (!check_heredoc_file(tmp, file_name[i]) \
+			&& ft_strncmp(file_name[i], file_name[file_nbr - 1], \
+			ft_strlen(file_name[i])))
 				unlink(file_name[i]);
 		}
 	}
@@ -46,9 +46,11 @@ void	open_outfile(t_main *main, t_cmd *tmp, char **file_name, int file_nbr)
 	while (++i < file_nbr && file_name[i])
 	{
 		if (!check_append_file(tmp, file_name[i]))
-			main->fd_file = open(file_name[i], O_WRONLY | O_CREAT | O_APPEND, 0644);
+			main->fd_file = open(file_name[i], O_WRONLY \
+			| O_CREAT | O_APPEND, 0644);
 		else
-			main->fd_file = open(file_name[i], O_WRONLY | O_CREAT | O_TRUNC, 0644);
+			main->fd_file = open(file_name[i], O_WRONLY \
+			| O_CREAT | O_TRUNC, 0644);
 		if (main->fd_file == -1)
 			err_file(main, file_name[i]);
 		if (i != file_nbr - 1)

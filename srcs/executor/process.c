@@ -3,64 +3,48 @@
 void	start_process(t_main *main);
 void	create_process(t_main *main);
 void	child_process(t_main *main, t_cmd *tmp, int id);
-void	parent_process(t_main *main, t_cmd *tmp, int id);
+void	parent_process(t_main *main, t_cmd *tmp);
 void	waiting_process(t_main *main);
 int		check_redirect(char *s);
 void	ft_close_pipe(t_main *main, int pfd);
-int	builtin_parent_process(t_main *main, t_cmd *tmp, int id);
-void	get_command(t_main *main, t_cmd *tmp);
-void	free_command(char	**command);
-void	get_letter_cmd(t_cmd *tmp, char *s, int cnt_word);
+int		builtin_parent_process(t_main *main, t_cmd *tmp);
+
 
 void	start_process(t_main *main)
 {
 	main->cmd_nbr = main->num_pipe + 1;
-	// main->found_path = find_path(main->envp);
-	// if (main->found_path != -1)
-	// 	main->path = ft_split(&main->envp[main->found_path][5], ':');
-
-	// count_cmd(p, argv[1]);
 	main->pid = malloc(sizeof(pid_t) * main->cmd_nbr);
-	// if (p->heredoc == 1)
 	get_heredoc(main);
-		// get_command(main, main->cmd);
 	create_process(main);
-	// close(main->pfd[0]);
-	// close(main->pfd[1]);
 	waiting_process(main);
 	free(main->pid);
-	// free_path(p);
 }
 
 void	create_process(t_main *main)
 {
-	t_cmd *tmp;
-	int	id;
+	t_cmd	*tmp;
+	int		id;
 
 	id = -1;
 	tmp = main->cmd;
 	while (++id < main->cmd_nbr)
 	{
 		get_command(main, tmp);
-		// printf("main->cmd_nbr = %d id = %d cmd = %s\n", main->cmd_nbr, id, tmp->command[0]);
 		if (id != main->cmd_nbr - 1)
 		{
 			if (pipe(main->pfd) == -1)
-				err_msg_free(main, "Pipe error: ");
+				return (err_msg_free(main, "Pipe error: "));
 		}
-		// if (check_builtin(tmp) != 2)
-		// {
-			main->do_cmd = 0;
-			if (check_builtin(tmp) == 2)
-				main->do_cmd = 1;
-			main->pid[id] = fork();
-			if (main->pid[id] == -1)
-				err_msg_free(main, "Fork error: ");
-			else if (main->pid[id] == 0)
-				child_process(main, tmp, id);
-				// printf("child process = %d, id = %d\n", main->pid[id], id);
-			else
-				parent_process(main, tmp, id);
+		main->do_cmd = 0;
+		if (check_builtin(tmp) == 2)
+			main->do_cmd = 1;
+		main->pid[id] = fork();
+		if (main->pid[id] == -1)
+			err_msg_free(main, "Fork error: ");
+		else if (main->pid[id] == 0)
+			child_process(main, tmp, id);
+		else
+			parent_process(main, tmp);
 		free_2d(tmp->command);
 		tmp = tmp->next;
 	}
@@ -78,13 +62,13 @@ void	child_process(t_main *main, t_cmd *tmp, int id)
 	{
 		ft_close_pipe(main, main->pfd[0]);
 		ft_close_pipe(main, main->pfd[1]);
+		free_2d(tmp->command);
 		exit(main->exit_status);
 	}
 	dup_infile(main, tmp, id);
 	dup_outfile(main, tmp, id);
 	ft_close_pipe(main, main->pfd[0]);
 	ft_close_pipe(main, main->pfd[1]);
-	// get_command(main, tmp);
 	if (check_builtin(tmp) == 1)
 		exit(into_builtin_child(main, tmp));
 	else if (check_access_path(main, tmp, tmp->command[0]) == 0)
@@ -92,38 +76,31 @@ void	child_process(t_main *main, t_cmd *tmp, int id)
 		if (execve(main->cur_path, tmp->command, main->envp) == -1)
 		{
 			free(main->cur_path);
+			free_2d(tmp->command);
 			err_cmd(main, tmp, tmp->command[0], 13);
 		}
 	}
 }
 
-int	builtin_parent_process(t_main *main, t_cmd *tmp, int id)
+int	builtin_parent_process(t_main *main, t_cmd *tmp)
 {
-	(void) id;
-	int	err;
-	// dup_infile(main, tmp, id);
-	// dup_outfile(main, tmp, id);
-	// ft_close_pipe(main, main->pfd[1]);
-	// if (main->num_pipe > 0)
-	// 	main->tmp_fd = dup(main->pfd[0]);
-	// ft_close_pipe(main, main->pfd[0]);
+	int		err;
+
 	err = into_builtin_parent(main, tmp);
 	if (err)
 		err_builtin(main, tmp, err);
-	// printf("exit cod = %d %d\n", err, main->exit_status);
-		// err_msg_free(main, "builtin error sth");
 	return (err);
 }
 
-void	parent_process(t_main *main, t_cmd *tmp, int id)
+void	parent_process(t_main *main, t_cmd *tmp)
 {
-		main->exit_status = 0;
-		ft_close_pipe(main, main->pfd[1]);
-		if (main->num_pipe > 0)
-			main->tmp_fd = dup(main->pfd[0]);
-		ft_close_pipe(main, main->pfd[0]);
+	main->exit_status = 0;
+	ft_close_pipe(main, main->pfd[1]);
+	if (main->num_pipe > 0)
+		main->tmp_fd = dup(main->pfd[0]);
+	ft_close_pipe(main, main->pfd[0]);
 	if (check_builtin(tmp) == 2)
-		main->exit_status = builtin_parent_process(main, tmp, id);
+		main->exit_status = builtin_parent_process(main, tmp);
 }
 
 void	waiting_process(t_main *main)
@@ -139,50 +116,6 @@ void	waiting_process(t_main *main)
 	}
 }
 
-void	get_command(t_main *main, t_cmd *tmp)
-{
-	int		i;
-	int		cnt_word;
-	i = -1;
-	(void) main;
-
-	cnt_word = 0;
-	while (tmp->str[++i])
-	{
-		// printf("tmp->str[%d] = %s\n", i, tmp->str[i]);
-		cnt_word++;
-	}
-	cnt_word -= (main->cmd->all_infile + main->cmd->all_outfile) * 2;
-	tmp->command = malloc(sizeof(char *) * (cnt_word + 1));
-	if (!tmp->command)
-		return ;
-	tmp->command[cnt_word] = NULL;
-	i = -1;
-	cnt_word = 0;
-	while (tmp->str[++i])
-	{
-		if (check_redirect(tmp->str[i]))
-		{
-			if (i == 0 || (i != 0 && check_redirect(tmp->str[i - 1])))
-				get_letter_cmd(tmp, tmp->str[i], cnt_word++);
-		}
-		else
-			i ++;
-	}
-}
-
-void get_letter_cmd(t_cmd *tmp, char *s, int cnt_word)
-{
-	int	i;
-
-	tmp->command[cnt_word] = malloc(sizeof(char) * (ft_strlen(s) + 1));
-	if (!tmp->command[cnt_word])
-		return ;
-	i = -1;
-	while (s[++i])
-		tmp->command[cnt_word][i] = s[i];
-	tmp->command[cnt_word][i] = '\0';
-}
 
 int	check_redirect(char *s)
 {

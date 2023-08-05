@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer_1.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wluedara <wluedara@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pnamwayk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 14:29:35 by wluedara          #+#    #+#             */
-/*   Updated: 2023/08/05 22:46:21 by wluedara         ###   ########.fr       */
+/*   Updated: 2023/08/06 00:31:53 by pnamwayk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ int	check_close(char *s)
 		{
 			if (close == -1)
 				quote = s[i];
-			if (close == 0)
+			if (close == 0 && s[i] == quote)
 				close = -1;
 			else
 				close = 0;

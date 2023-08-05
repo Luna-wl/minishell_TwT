@@ -6,7 +6,7 @@
 /*   By: pnamwayk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 21:12:27 by wluedara          #+#    #+#             */
-/*   Updated: 2023/08/05 23:48:54 by pnamwayk         ###   ########.fr       */
+/*   Updated: 2023/08/06 01:53:51 by pnamwayk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -219,12 +219,14 @@ int			check_heredoc_file(t_cmd *tmp, char *file_name);
 void		start_process(t_main *main);
 void		create_process(t_main *main);
 void		child_process(t_main *main, t_cmd *tmp, int id);
-void		parent_process(t_main *main, t_cmd *tmp, int id);
+void		parent_process(t_main *main, t_cmd *tmp);
 void		waiting_process(t_main *main);
 int			check_redirect(char *s);
 
 	// utils_cmd .c
-int			ft_find_slash(char *str);
+int		ft_find_slash(char *str);
+void	get_letter_cmd(t_cmd *tmp, char *s, int cnt_word);
+void	get_command(t_main *main, t_cmd *tmp);
 // void	count_cmd(t_main *main, char *filename);
 // void	free_cmd(t_main *main);
 
