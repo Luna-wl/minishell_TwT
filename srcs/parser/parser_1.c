@@ -6,30 +6,11 @@
 /*   By: wluedara <wluedara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 15:49:47 by wluedara          #+#    #+#             */
-/*   Updated: 2023/08/05 21:09:28 by wluedara         ###   ########.fr       */
+/*   Updated: 2023/08/05 21:34:59 by wluedara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "hell.h"
-
-// int	find_pipe(t_main *main)
-// {
-// 	t_lexer	*tmp;
-// 	int		num;
-
-// 	tmp = main->lexer;
-// 	num = 1;
-// 	while (tmp != NULL)
-// 	{
-// 		if (ft_strncmp(tmp->str, "|", 1) == 0)
-// 		{
-// 			num++;
-// 			main->num_pipe++;
-// 		}
-// 		tmp = tmp->next;
-// 	}
-// 	return (num);
-// }
 
 int	find_cmd_num(t_lexer *list)
 {
@@ -49,37 +30,6 @@ int	find_cmd_num(t_lexer *list)
 	return (cmd);
 }
 
-// int	find_cmd_size(t_cmd *cmd)
-// {
-// 	t_lexer	*tmp;
-// 	int		cmd;
-
-// 	tmp = cmd;
-// 	cmd = 0;
-// 	while (tmp != NULL)
-// 	{
-// 		cmd++;
-// 		tmp = tmp->next;
-// 	}
-// 	return (cmd);
-// }
-
-// void	next_cmd(t_lexer **list, int index)
-// {
-// 	t_lexer	*tmp;
-
-// 	tmp = *list;
-// 	while (tmp != NULL)
-// 	{
-// 		if (tmp->index <= index)
-// 			tmp = tmp->next;
-// 		else
-// 			break ;
-// 	}
-// 	insert_index(&tmp, stack_lenght(&tmp));
-// 	*list = tmp;
-// }
-
 void	add_last_new(t_cmd **cmd, t_cmd *last)
 {
 	t_cmd	*tmp;
@@ -93,6 +43,29 @@ void	add_last_new(t_cmd **cmd, t_cmd *last)
 			tmp = tmp->next;
 		tmp->next = last;
 	}
+}
+
+char	**copy_two_stars_new(char **s)
+{
+	char	**new;
+	int		len;
+	int		i;
+	int		j;
+
+	if (!s)
+		return (0);
+	len = find_len_split(s);
+	new = malloc(sizeof(char *) * (len + 1));
+	if (!new)
+		return (0);
+	i = 0;
+	j = 0;
+	while (i < len && s[i])
+	{
+		new[i++] = ft_strdup(s[j++]);
+	}
+	new[i] = NULL;
+	return (new);
 }
 
 void	create_list(t_cmd **cmd, char **s)

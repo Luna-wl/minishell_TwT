@@ -6,11 +6,21 @@
 /*   By: wluedara <wluedara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 13:24:24 by wluedara          #+#    #+#             */
-/*   Updated: 2023/08/05 21:07:48 by wluedara         ###   ########.fr       */
+/*   Updated: 2023/08/05 21:36:26 by wluedara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "hell.h"
+
+int	find_len_split(char **s)
+{
+	int	i;
+
+	i = 0;
+	while (s[i])
+		i++;
+	return (i);
+}
 
 int	check_word_lexer3(char *s, int len, int i)
 {

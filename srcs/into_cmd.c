@@ -6,7 +6,7 @@
 /*   By: wluedara <wluedara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 16:21:40 by wluedara          #+#    #+#             */
-/*   Updated: 2023/08/05 21:17:56 by wluedara         ###   ########.fr       */
+/*   Updated: 2023/08/05 22:08:19 by wluedara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ int	get_cmd(t_main *main, char *str)
 	test = ft_split(str, '|');
 	if (!check_quote_pair(test))
 		return (0);
+	printf("true\n");
+	exit(0);
 	str2 = cut_test(test);
 	del_split(test);
 	main->cmd = list_cmd(main, str2);
