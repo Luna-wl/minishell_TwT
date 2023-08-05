@@ -6,7 +6,7 @@
 /*   By: wluedara <wluedara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 18:26:04 by wluedara          #+#    #+#             */
-/*   Updated: 2023/08/05 16:15:44 by wluedara         ###   ########.fr       */
+/*   Updated: 2023/08/05 17:12:48 by wluedara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	init_mimi(t_main *main)
 	main->lexer = NULL;
 	main->cmd = NULL;
 	main->num_pipe = 0;
-	main->tmp = environ;
+	// main->tmp = environ;
 	environ = get_envp();
 	main->envp = get_envp2(); // word that before '=' in env to check sth. as USER PWD
 	main->path = get_path(main->envp); // value after that spilt with ':' PATH=
@@ -35,9 +35,9 @@ int	main(int argc, char **argv)
 	printf(YEL"====> ~ HELLO WELCOME ~ <====\n"RESET);
 	while (1)
 	{
+		init_mimi(&main); // init value in struct
 		init_signal(); // catch signal
 		sigint_handle(1);
-		init_mimi(&main); // init value in struct
 		str = readline(RED"mini(s)hell >> "RESET); // รับinputเข้ามา
 		add_history(str); // ใส่ในhistory
 		if (!str) // detact for ctrl-D if it NULL break
