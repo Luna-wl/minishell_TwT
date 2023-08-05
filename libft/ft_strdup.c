@@ -6,7 +6,7 @@
 /*   By: wluedara <wluedara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/03 23:28:11 by wluedara          #+#    #+#             */
-/*   Updated: 2023/05/02 20:59:01 by wluedara         ###   ########.fr       */
+/*   Updated: 2023/08/05 16:17:45 by wluedara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char	*ft_strdup(char *s1)
 	int		i;
 
 	len = ft_strlen(s1);
-	dest = (char *)malloc(sizeof(char) * len + 1);
+	dest = (char *)malloc(sizeof(char) * (len + 1));
 	if (!dest)
 		return (0);
 	i = 0;

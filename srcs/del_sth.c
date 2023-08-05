@@ -107,5 +107,6 @@ void	del_sam_dao(char ***s)
 			i++;
 		}
 		free(s);
+		s = NULL;
 	}
 }

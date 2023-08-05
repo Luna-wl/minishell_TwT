@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_2.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pnamwayk <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: wluedara <wluedara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 16:03:55 by wluedara          #+#    #+#             */
-/*   Updated: 2023/08/04 18:47:07 by pnamwayk         ###   ########.fr       */
+/*   Updated: 2023/08/05 16:17:30 by wluedara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ char	**copy_two_stars_new(char **s)
 	if (!s)
 		return (0);
 	len = find_len_split(s);
-	// printf("len = %d\n", len);
 	new = malloc(sizeof(char *) * (len + 1));
 	if (!new)
 		return (0);

@@ -6,7 +6,7 @@
 /*   By: wluedara <wluedara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 18:26:04 by wluedara          #+#    #+#             */
-/*   Updated: 2023/08/05 15:20:08 by wluedara         ###   ########.fr       */
+/*   Updated: 2023/08/05 16:15:44 by wluedara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,12 @@ int	main(int argc, char **argv)
 	(void)argc;
 	if (argc > 1)
 		print_str(YEL"You put the wrong input\n"RESET);
-	printf(YEL"====> ~ HELLO WELCOME ~ <====\n"RESET); // welcome message
-	while (1) // loop till want to exit
+	printf(YEL"====> ~ HELLO WELCOME ~ <====\n"RESET);
+	while (1)
 	{
 		init_signal(); // catch signal
-		init_mimi(&main); // init value in struct
 		sigint_handle(1);
+		init_mimi(&main); // init value in struct
 		str = readline(RED"mini(s)hell >> "RESET); // รับinputเข้ามา
 		add_history(str); // ใส่ในhistory
 		if (!str) // detact for ctrl-D if it NULL break
