@@ -6,7 +6,7 @@
 /*   By: wluedara <wluedara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 17:06:14 by wluedara          #+#    #+#             */
-/*   Updated: 2023/08/05 18:22:31 by wluedara         ###   ########.fr       */
+/*   Updated: 2023/08/05 21:07:36 by wluedara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ int	count_letter_lexer(char *s)
 		return (count_letter2(s, i, j));
 	while (s[i++] && is_tokens(s[i]) == -1 && !is_space(s[i]))
 	{
-		// printf("s[i] = %c\n", s[i]);
 		if (is_quote(s[i]))
 			return (i);
 	}
@@ -53,4 +52,15 @@ int	count_letter2(char *s, int i, int j)
 			break ;
 	}
 	return (j + 1);
+}
+
+int	check_word_lexer3_1(char *s, int i)
+{
+	while (!is_space(s[i]) && is_tokens(s[i]) == -1 && !is_quote(s[i]) && s[i])
+	{
+		if (is_quote(s[i + 1]))
+			i++;
+		i++;
+	}
+	return (i);
 }

@@ -6,7 +6,7 @@
 /*   By: wluedara <wluedara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 15:49:47 by wluedara          #+#    #+#             */
-/*   Updated: 2023/08/05 01:31:12 by wluedara         ###   ########.fr       */
+/*   Updated: 2023/08/05 21:09:28 by wluedara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,9 +102,6 @@ void	create_list(t_cmd **cmd, char **s)
 	tmp = malloc(sizeof(t_cmd));
 	if (!tmp)
 		return ;
-	// printf("====create list=====\n");
-	// pim_split(s);
-	// printf("====================\n");
 	tmp->str = copy_two_stars_new(s);
 	tmp->cnt_infile = cnt_infile(tmp->str);
 	tmp->cnt_heredoc = cnt_heredoc(tmp->str);
@@ -113,7 +110,6 @@ void	create_list(t_cmd **cmd, char **s)
 	tmp->all_infile = tmp->cnt_infile + tmp->cnt_heredoc;
 	tmp->all_outfile = tmp->cnt_outfile + tmp->cnt_append;
 	tmp->heredoc_file = check_heredoc(tmp->str, tmp->cnt_heredoc);
-	// tmp->infile_name = check_infile(tmp->str, tmp->cnt_infile);
 	tmp->infile_name = check_infile(tmp->str, tmp->all_infile);
 	tmp->outfile_name = check_outfile(tmp->str, tmp->all_outfile);
 	tmp->append_file = check_append(tmp->str, tmp->cnt_append);
@@ -135,23 +131,3 @@ t_cmd	*list_cmd(t_main *main, char ***str)
 	}
 	return (main->cmd);
 }
-
-// t_cmd	*list_cmd(t_main *main)
-// {
-// 	int			size;
-// 	int			word;
-// 	int			i;
-// 	t_lexer		*new;
-
-// 	size = find_pipe(main);
-// 	i = 0;
-// 	new = main->lexer;
-// 	while (i < size)
-// 	{
-// 		create_list_cmd(&main->cmd, new);
-// 		word = find_cmd_num(new);
-// 		next_cmd(&new, word);
-// 		i++;
-// 	}
-// 	return (main->cmd);
-// }

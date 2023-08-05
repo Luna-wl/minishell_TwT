@@ -6,7 +6,7 @@
 /*   By: wluedara <wluedara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 14:29:35 by wluedara          #+#    #+#             */
-/*   Updated: 2023/08/05 18:20:23 by wluedara         ###   ########.fr       */
+/*   Updated: 2023/08/05 21:06:08 by wluedara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ char	*my_split_lexer(char *s)
 
 	s2 = ft_strtrim(s, " ");
 	letter = count_letter_split(s2, 0);
-	printf("letter = %d\n", letter);
 	str = malloc(sizeof(char) * (letter + 1));
 	if (!str)
 		return (0);
