@@ -6,7 +6,7 @@
 /*   By: wluedara <wluedara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 14:29:35 by wluedara          #+#    #+#             */
-/*   Updated: 2023/08/05 14:44:51 by wluedara         ###   ########.fr       */
+/*   Updated: 2023/08/05 18:20:23 by wluedara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	*my_split_lexer(char *s)
 
 	s2 = ft_strtrim(s, " ");
 	letter = count_letter_split(s2, 0);
-	// printf("letter = %d\n", letter);
+	printf("letter = %d\n", letter);
 	str = malloc(sizeof(char) * (letter + 1));
 	if (!str)
 		return (0);
@@ -57,12 +57,24 @@ int	check_error(char *s)
 
 int	check_quote_pair(char **s)
 {
-	int		i;
+	int	i;
+	int	j;
 
 	i = 0;
 	while (s[i])
 	{
-
+		j = ft_strlen(s[i]);
+		if (is_quote(s[i][0]) == 1 && is_quote(s[i][j - 1]) != 1)
+		{
+			printf(BYEL"quote are not pair in lexer (ㆆ_ㆆ)\n"RESET);
+			return (0);
+		}
+		else if (is_quote(s[i][0]) == 2 && is_quote(s[i][j - 1]) != 2)
+		{
+			printf(BYEL"quote are not pair in lexer (ㆆ_ㆆ)\n"RESET);
+			return (0);
+		}
+		i++;
 	}
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: wluedara <wluedara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 16:21:40 by wluedara          #+#    #+#             */
-/*   Updated: 2023/08/05 16:56:02 by wluedara         ###   ########.fr       */
+/*   Updated: 2023/08/05 18:18:24 by wluedara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,12 @@ int	get_cmd(t_main *main, char *str)
 	if (str[0] == '\0' || !check_error(str))
 		return (0);
 	test = ft_split(str, '|');
-	// if (!check_quote_pair(test))
-	// 	return (0);
+	if (!check_quote_pair(test))
+		return (0);
 	str2 = cut_test(test);
 	del_split(test);
 	main->cmd = list_cmd(main, str2);
 	del_sam_dao(str2);
+	pim_cmd(main->cmd);
 	return (1);
 }
