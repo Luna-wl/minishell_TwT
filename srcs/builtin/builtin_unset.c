@@ -72,22 +72,21 @@ int		find_variable_inenv(char *vrb)
 {
 	int		i;
 	char	*find;
-	size_t	len;
+	size_t	len1;
+	size_t	len2;
+
 
 	find = ft_join(vrb, "=");
-	len = ft_strlen(find);
+	len1 = ft_strlen(find);
+	len2 = ft_strlen(vrb);
 	i = -1;
 	while (environ[++i])
 	{
 		// printf("find=%s environ[%d]=%s len=%zu\n",find, i, environ[i], len);
-		if (ft_strncmp(find, environ[i], len) == 0)
-		{
-			free(find);
-			return (i);
-		}
+		if (!ft_strncmp(find, environ[i], len1) || !ft_strncmp(vrb, environ[i], len2))
+			return (free(find), i);
 	}
-	free(find);
-	return (-1);
+	return (free(find), -1);
 }
 
 int	check_format_variable(char *cmd)

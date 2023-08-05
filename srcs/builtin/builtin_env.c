@@ -6,7 +6,7 @@
 /*   By: pnamwayk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 15:09:20 by wluedara          #+#    #+#             */
-/*   Updated: 2023/07/15 21:16:19 by pnamwayk         ###   ########.fr       */
+/*   Updated: 2023/08/05 16:05:17 by pnamwayk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,10 @@ int	builtin_env(t_main *main, t_cmd *cmd)
 	// 	return (-1);
 	i = -1;
 	while (environ[++i])
-		printf("%s\n", environ[i]);
+	{
+		if (ft_strrchr(environ[i], '='))
+			printf("%s\n", environ[i]);
+	}
 	// exit(EXIT_SUCCESS);
 	exit(0);
 	return (0);

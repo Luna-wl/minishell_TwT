@@ -14,6 +14,7 @@ int	strlen_quote(char *str, t_main *main)
 	i = 0;
 	j = 0;
 	quote = 0;
+	// printf("str=%s j%d\n", str, j);
 	while (str[i])
 	{
 		if (!quote && (str[i] == '\'' || str[i] == '\"'))
@@ -30,13 +31,15 @@ int	strlen_quote(char *str, t_main *main)
 			while (str[i] && str[i] != '\'' && str[i] != '\"')
 				i++;
 		}
-		if (quote || (!quote && str[i] != '\'' && str[i] != '\"'))
+		if (str[i] && (quote || (!quote && str[i] != '\'' && str[i] != '\"')))
 		{
+			// printf("str[%d] = %c j = %d\n", i, str[i], j);
 			j++;
 			i++;
 		}
 	}
-	return (j + 1);
+	// printf("j = %d\n", j);
+	return (j);
 }
 
 char	*get_val_quote(char *str, t_main *main, char *val)
@@ -50,7 +53,8 @@ char	*get_val_quote(char *str, t_main *main, char *val)
 	i = 0;
 	j = 0;
 	quote = 0;
-	val = malloc(sizeof(char) * strlen_quote(str, main));
+	// printf("strlen_quote malloc = %s %d\n", str, strlen_quote(str, main));
+	val = malloc(sizeof(char) * (strlen_quote(str, main) + 1));
 	while (str[i])
 	{
 		if (!quote && (str[i] == '\'' || str[i] == '\"'))
@@ -75,7 +79,7 @@ char	*get_val_quote(char *str, t_main *main, char *val)
 				i++;
 			}
 		}
-		if ((quote && str[i] != quote) || (!quote && str[i] != '\'' && str[i] != '\"'))
+		if (str[i] && (quote || (!quote && str[i] != '\'' && str[i] != '\"')))
 		{
 			val[j++] = str[i++];
 			// printf("val[%d] = |%c| -- str[%d]= |%c|\n", j - 1, val[j -1], i-1, str[i-1]);

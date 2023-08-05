@@ -33,14 +33,14 @@ int	builtin_export(t_main *main, t_cmd *cmd)
 			// printf("1 cmd->command[i] = |%s| vrb = |%s|\n", cmd->command[i], vrb);
 			if (vrb && check_format_variable(vrb))
 			{
-				if (ft_strrchr(cmd->command[i], '='))
-				{
+				// if (ft_strrchr(cmd->command[i], '='))
+				// {
 					row_vrb = find_variable_inenv(vrb);
 					if (row_vrb != -1) //found vrb -> return row that vrb exist
 						instead_variable(cmd->command[i], row_vrb);
 					else
 						environ = add_variable(cmd->command[i]);
-				}
+				// }
 			}
 			else
 				err_msg_builtin("export", cmd->command[i]); //error but not exit
