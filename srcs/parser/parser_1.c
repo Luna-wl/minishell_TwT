@@ -3,33 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   parser_1.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wluedara <wluedara@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pnamwayk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 15:49:47 by wluedara          #+#    #+#             */
-/*   Updated: 2023/08/05 01:31:12 by wluedara         ###   ########.fr       */
+/*   Updated: 2023/08/05 23:50:45 by pnamwayk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "hell.h"
-
-// int	find_pipe(t_main *main)
-// {
-// 	t_lexer	*tmp;
-// 	int		num;
-
-// 	tmp = main->lexer;
-// 	num = 1;
-// 	while (tmp != NULL)
-// 	{
-// 		if (ft_strncmp(tmp->str, "|", 1) == 0)
-// 		{
-// 			num++;
-// 			main->num_pipe++;
-// 		}
-// 		tmp = tmp->next;
-// 	}
-// 	return (num);
-// }
 
 int	find_cmd_num(t_lexer *list)
 {
@@ -49,37 +30,6 @@ int	find_cmd_num(t_lexer *list)
 	return (cmd);
 }
 
-// int	find_cmd_size(t_cmd *cmd)
-// {
-// 	t_lexer	*tmp;
-// 	int		cmd;
-
-// 	tmp = cmd;
-// 	cmd = 0;
-// 	while (tmp != NULL)
-// 	{
-// 		cmd++;
-// 		tmp = tmp->next;
-// 	}
-// 	return (cmd);
-// }
-
-// void	next_cmd(t_lexer **list, int index)
-// {
-// 	t_lexer	*tmp;
-
-// 	tmp = *list;
-// 	while (tmp != NULL)
-// 	{
-// 		if (tmp->index <= index)
-// 			tmp = tmp->next;
-// 		else
-// 			break ;
-// 	}
-// 	insert_index(&tmp, stack_lenght(&tmp));
-// 	*list = tmp;
-// }
-
 void	add_last_new(t_cmd **cmd, t_cmd *last)
 {
 	t_cmd	*tmp;
@@ -95,6 +45,29 @@ void	add_last_new(t_cmd **cmd, t_cmd *last)
 	}
 }
 
+char	**copy_two_stars_new(char **s)
+{
+	char	**new;
+	int		len;
+	int		i;
+	int		j;
+
+	if (!s)
+		return (0);
+	len = find_len_split(s);
+	new = malloc(sizeof(char *) * (len + 1));
+	if (!new)
+		return (0);
+	i = 0;
+	j = 0;
+	while (i < len && s[i])
+	{
+		new[i++] = ft_strdup(s[j++]);
+	}
+	new[i] = NULL;
+	return (new);
+}
+
 void	create_list(t_cmd **cmd, char **s)
 {
 	t_cmd	*tmp;
@@ -102,9 +75,6 @@ void	create_list(t_cmd **cmd, char **s)
 	tmp = malloc(sizeof(t_cmd));
 	if (!tmp)
 		return ;
-	// printf("====create list=====\n");
-	// pim_split(s);
-	// printf("====================\n");
 	tmp->str = copy_two_stars_new(s);
 	tmp->cnt_infile = cnt_infile(tmp->str);
 	tmp->cnt_heredoc = cnt_heredoc(tmp->str);
@@ -113,7 +83,6 @@ void	create_list(t_cmd **cmd, char **s)
 	tmp->all_infile = tmp->cnt_infile + tmp->cnt_heredoc;
 	tmp->all_outfile = tmp->cnt_outfile + tmp->cnt_append;
 	tmp->heredoc_file = check_heredoc(tmp->str, tmp->cnt_heredoc);
-	// tmp->infile_name = check_infile(tmp->str, tmp->cnt_infile);
 	tmp->infile_name = check_infile(tmp->str, tmp->all_infile);
 	tmp->outfile_name = check_outfile(tmp->str, tmp->all_outfile);
 	tmp->append_file = check_append(tmp->str, tmp->cnt_append);
@@ -128,6 +97,7 @@ t_cmd	*list_cmd(t_main *main, char ***str)
 
 	i = 0;
 	size = find_size3(str);
+	main->num_pipe = size - 1;
 	while (i < size)
 	{
 		create_list(&main->cmd, str[i]);
@@ -135,23 +105,3 @@ t_cmd	*list_cmd(t_main *main, char ***str)
 	}
 	return (main->cmd);
 }
-
-// t_cmd	*list_cmd(t_main *main)
-// {
-// 	int			size;
-// 	int			word;
-// 	int			i;
-// 	t_lexer		*new;
-
-// 	size = find_pipe(main);
-// 	i = 0;
-// 	new = main->lexer;
-// 	while (i < size)
-// 	{
-// 		create_list_cmd(&main->cmd, new);
-// 		word = find_cmd_num(new);
-// 		next_cmd(&new, word);
-// 		i++;
-// 	}
-// 	return (main->cmd);
-// }

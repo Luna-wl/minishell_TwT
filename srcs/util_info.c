@@ -6,7 +6,7 @@
 /*   By: wluedara <wluedara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 21:51:22 by wluedara          #+#    #+#             */
-/*   Updated: 2023/08/05 17:00:28 by wluedara         ###   ########.fr       */
+/*   Updated: 2023/08/05 21:23:17 by wluedara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ char	*find_envp(char *str)
 	return (path);
 }
 
-char	**get_envp2()
+char	**get_envp2(void)
 {
 	char	**path;
 	int		i;

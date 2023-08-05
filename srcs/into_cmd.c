@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   into_cmd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wluedara <wluedara@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pnamwayk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 16:21:40 by wluedara          #+#    #+#             */
-/*   Updated: 2023/08/05 20:15:17 by wluedara         ###   ########.fr       */
+/*   Updated: 2023/08/05 23:50:15 by pnamwayk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "hell.h"
 
-char	**get_envp()
+char	**get_envp(void)
 {
 	char	**tmp;
 	int		i;
@@ -47,6 +47,5 @@ int	get_cmd(t_main *main, char *str)
 	del_split(test);
 	main->cmd = list_cmd(main, str2);
 	del_sam_dao(str2);
-	// pim_cmd(main->cmd);
 	return (1);
 }

@@ -6,11 +6,21 @@
 /*   By: wluedara <wluedara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 13:24:24 by wluedara          #+#    #+#             */
-/*   Updated: 2023/08/05 20:11:49 by wluedara         ###   ########.fr       */
+/*   Updated: 2023/08/05 21:36:26 by wluedara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "hell.h"
+
+int	find_len_split(char **s)
+{
+	int	i;
+
+	i = 0;
+	while (s[i])
+		i++;
+	return (i);
+}
 
 int	check_word_lexer3(char *s, int len, int i)
 {
@@ -26,16 +36,9 @@ int	check_word_lexer3(char *s, int len, int i)
 			count += check_word_2(&s[i]);
 			i += count_len_quote(&s[i]);
 		}
-		if (!is_space(s[i])  && is_tokens(s[i]) == -1 && \
-		!is_quote(s[i]) && s[i])
+		if (!is_space(s[i]) && is_tokens(s[i]) == -1 && !is_quote(s[i]) && s[i])
 		{
-			while (!is_space(s[i]) && is_tokens(s[i]) == -1 && \
-			!is_quote(s[i]) && s[i])
-			{
-				if (is_quote(s[i + 1]))
-					i++;
-				i++;
-			}
+			i = check_word_lexer3_1(s, i);
 			count++;
 		}
 		else
@@ -54,7 +57,6 @@ char	**split_to_cmd(char *s)
 
 	i = 0;
 	word = check_word_lexer3(s, ft_strlen(s), i);
-	printf("word = %d\n", word);
 	cmd = malloc(sizeof(char *) * (word + 1));
 	if (!cmd)
 		return (0);

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   hell.h                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pnamwayk <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/08/05 21:12:27 by wluedara          #+#    #+#             */
+/*   Updated: 2023/08/05 23:48:54 by pnamwayk         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef HELL_H
 # define HELL_H
 
@@ -65,43 +77,35 @@ typedef struct s_main
 	int		exit_status;
 	int		do_cmd;
 	int		cmd_nbr;
-
-	struct s_command	*command;
 }	t_main;
 
-typedef struct s_command
-{
-	char				**cmd;
-	struct s_command	*next;
-}	t_command;
+extern char	**environ;
 
-extern char **environ;
 // into_cmd.c
 int			get_cmd(t_main *main, char *str);
-char		**get_envp();
+char		**get_envp(void);
 //del everything
 void		free_all(t_main *main);
-void		reset_tool(t_main *main);
+void		reset_tool(t_main *main, char *str);
+void		start_mimi(t_main *main);
 // lexer_1
-// int			check_quote(char **s);
 char		*my_split_lexer(char *s);
-// char		**cut_cmd(char *s);
 int			check_error(char *s);
 int			check_quote_pair(char **s);
-// int			check_error(char **s);
+int			find_len_split(char **s);
 // lexer2
 int			check_word_2(char *s);
 int			count_len_quote(char *s);
-// int			check_word_lexer(char *s, int len, int i);
 int			count_letter_split(char *s, int i);
 int			count_letter_lexer(char *s);
 int			count_letter2(char *s, int i, int j);
 // lexer3
-int			find_len_split(char **s);
 void		add_last(t_lexer **list, t_lexer *last);
 void		init_list(t_lexer **list, char *str);
 void		insert_index(t_lexer **list, int len);
 t_lexer		*spilt_to_list(char **str, t_lexer *list);
+//lexer4
+int			check_word_lexer3_1(char *s, int i);
 // handle_problems.c
 int			is_space(char c);
 int			is_tokens(char c);
@@ -114,16 +118,9 @@ void		del_list_lexer(t_lexer **list);
 void		del_cmd(t_cmd **cmd);
 void		del_sam_dao(char ***s);
 // parser_1.c
-// int			find_pipe(t_main *main);
 int			find_cmd_num(t_lexer *list);
-// void		next_cmd(t_lexer **list, int index);
-// t_cmd		*list_cmd(t_main *main);
 t_cmd		*list_cmd(t_main *main, char ***str);
-// parser_2.c
-// int			stack_lenght(t_lexer **list);
-// char		**copy_two_stars(t_lexer **list);
-// void		add_last_cmd(t_cmd **cmd, t_cmd *last);
-// void		create_list_cmd(t_cmd **cmd, t_lexer *list);
+char		**copy_two_stars_new(char **s);
 // parser_3.c
 int			cnt_infile(char **cmd);
 int			cnt_heredoc(char **cmd);
@@ -162,15 +159,14 @@ int			builtin_cd(t_main *main, t_cmd *cmd);
 void		expander(t_main *main);
 char		*cut_quote(char *str);
 char		*detact_dollar(char *str, t_main *main);
-char	*get_val_quote(char *str, t_main *main, char *val);
-// char		*expander_handel(t_main *main, char *str, char **cmd);
+char		*get_val_quote(char *str, t_main *main, char *val);
 // util_expan
 char		*copy_str(char *s, int len);
 int			len_quote(char *s);
 char		*replace_val(char *s1, char *s2);
 void		check_val(char **cmd);
 // util_info
-char		**get_envp2();
+char		**get_envp2(void);
 int			find_envp2(char *str);
 char		*find_envp(char *str);
 char		**get_path(char **envp);
@@ -180,13 +176,11 @@ char		*detact_quote(char *str, t_main *main, char *val);
 char		*detact_quote2(char *str, t_main *main, char *val);
 char		*detact_quote3(char *str, t_main *main, char *val);
 //test
-char	***cut_test(char **s);
-int		count_len_quote2(char *s);
-void	pim_sam_dao(char ***s);
-void	create_list(t_cmd **cmd, char **s);
-void	add_last_new(t_cmd **cmd, t_cmd *last);
-char	**copy_two_stars_new(char **s);
-
+char		***cut_test(char **s);
+int			count_len_quote2(char *s);
+void		pim_sam_dao(char ***s);
+void		create_list(t_cmd **cmd, char **s);
+void		add_last_new(t_cmd **cmd, t_cmd *last);
 
 //mobile///////////////////////////////////////////////////
 
@@ -195,10 +189,12 @@ void free_2d(char **str);
 // void	ft_dup2(t_main *main, t_cmd *tmp, int id);
 // void	dup_first_child(t_main *main, t_cmd *tmp);
 // void	dup_last_child(t_main *main, t_cmd *tmp);
-void	open_infile(t_main *main, t_cmd *tmp, char **file_name, int file_nbr);
-void	open_outfile(t_main *main, t_cmd *tmp, char **file_name, int file_nbr);
-void	dup_infile(t_main *main, t_cmd *tmp, int id);
-void	dup_outfile(t_main *main, t_cmd *tmp, int id);
+void		open_infile(t_main *main, t_cmd *tmp, char **file_name, \
+			int file_nbr);
+void		open_outfile(t_main *main, t_cmd *tmp, char **file_name, \
+			int file_nbr);
+void		dup_infile(t_main *main, t_cmd *tmp, int id);
+void		dup_outfile(t_main *main, t_cmd *tmp, int id);
 
 // void	ft_putstr_fd(char *str, int fd);
 // char	**ft_split(char const *s, char c);
@@ -210,25 +206,25 @@ void	dup_outfile(t_main *main, t_cmd *tmp, int id);
 // int		ft_strstr(char *str, char *find);
 
 //	here_doc.c
-void	get_heredoc(t_main *main);
-void	read_heredoc(t_main *main, t_cmd *tmp, size_t len_filename, int i);
-int		check_limiter(char *line, char *limiter, size_t n);
-int		check_append_file(t_cmd *tmp, char *file_name);
-int		check_heredoc_file(t_cmd *tmp, char *file_name);
+void		get_heredoc(t_main *main);
+void		read_heredoc(t_main *main, t_cmd *tmp, size_t len_filename, int i);
+int			check_limiter(char *line, char *limiter, size_t n);
+int			check_append_file(t_cmd *tmp, char *file_name);
+int			check_heredoc_file(t_cmd *tmp, char *file_name);
 
 //	pipex_bonus.c
 // void	init_value(t_main *main, int argc);
 
 //	process.c
-void	start_process(t_main *main);
-void	create_process(t_main *main);
-void	child_process(t_main *main, t_cmd *tmp, int id);
-void	parent_process(t_main *main, t_cmd *tmp, int id);
-void	waiting_process(t_main *main);
-int		check_redirect(char *s);
+void		start_process(t_main *main);
+void		create_process(t_main *main);
+void		child_process(t_main *main, t_cmd *tmp, int id);
+void		parent_process(t_main *main, t_cmd *tmp, int id);
+void		waiting_process(t_main *main);
+int			check_redirect(char *s);
 
 	// utils_cmd .c
-int		ft_find_slash(char *str);
+int			ft_find_slash(char *str);
 // void	count_cmd(t_main *main, char *filename);
 // void	free_cmd(t_main *main);
 
@@ -241,20 +237,11 @@ void	ft_exit(int err);
 int		err_builtin(t_main *main, t_cmd *cmd, int err);
 // 	utils_path.c
 // int		find_path(char **env);
-int	check_access_path(t_main *main, t_cmd *tmp, char *cmd);
+int     check_access_path(t_main *main, t_cmd *tmp, char *cmd);
 // void	free_path(t_main *main);
 
-void	err_msg_builtin(char *cmd1, char *cmd2);
-int		find_variable_inenv(char *vrb);
-int		check_format_variable(char *cmd);
-
-
-//test
-char	***cut_test(char **s);
-int		count_len_quote2(char *s);
-void	pim_sam_dao(char ***s);
-void	create_list(t_cmd **cmd, char **s);
-void	add_last_new(t_cmd **cmd, t_cmd *last);
-char	**copy_two_stars_new(char **s);
+void		err_msg_builtin(char *cmd1, char *cmd2);
+int			find_variable_inenv(char *vrb);
+int			check_format_variable(char *cmd);
 
 #endif
