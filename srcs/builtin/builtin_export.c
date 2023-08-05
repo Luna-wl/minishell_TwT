@@ -44,13 +44,44 @@ int	builtin_export(t_main *main, t_cmd *cmd)
 				// }
 			}
 			else
+			{
 				err_msg_builtin("export", cmd->command[i]); //error but not exit
+				main->exit_status = 1;
+				return (free(vrb), 1);
+			}
 			if (vrb)
 				free(vrb);
 		}
 	}
 	return (0);
 }
+
+// int	exit_stutus_export(t_main *main, t_cmd *cmd)
+// {
+// 	(void) cmd;
+// 	(void) main;
+// 	int	row_vrb;
+// 	int	i;
+// 	char	*vrb;
+
+// 	if (cmd->command[1])
+// 	{
+// 		i = 0;
+// 		while (cmd->command[++i])
+// 		{
+// 			vrb = ft_strtrim_vrb(cmd->command[i], '=');
+// 			if (!(vrb && check_format_variable(vrb)))
+// 			{
+// 				// err_msg_builtin("export", cmd->command[i]); //error but not exit
+// 				main->exit_status = 1;
+// 				return (free(vrb), 1);
+// 			}
+// 			if (vrb)
+// 				free(vrb);
+// 		}
+// 	}
+// 	return (main->exit_status);
+// }
 
 char	*ft_strtrim_vrb(char *cmd, char set)
 {
@@ -186,15 +217,7 @@ int	ft_envcpm(char *s1, char *s2)
 	return (0);
 }
 
-void free_2d(char **str)
-{
-	int		i;
 
-	i = -1;
-	while (str[++i])
-		free(str[i]);
-	free(str);
-}
 
 void	ft_swap(char **s1, char **s2)
 {

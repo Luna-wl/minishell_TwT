@@ -6,7 +6,7 @@
 /*   By: pnamwayk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 21:13:32 by wluedara          #+#    #+#             */
-/*   Updated: 2023/08/02 00:38:57 by pnamwayk         ###   ########.fr       */
+/*   Updated: 2023/08/05 23:02:45 by pnamwayk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,22 @@ int	into_builtin_parent(t_main *main, t_cmd *cmd)
 		return (builtin_unset(main, cmd));
 	else if (!ft_strncmp(cmd->command[0], "exit", 5))
 		return (builtin_exit(main, cmd));
-	return (-1);
+	return (1);
 }
+
+// int	into_builtin_parent(t_main *main, t_cmd *cmd)
+// {
+// 	(void) main;
+// 	if (!ft_strncmp(cmd->command[0], "cd", 3))
+// 		return (builtin_cd(main, cmd));
+// 	else if (!ft_strncmp(cmd->command[0], "export", 7))
+// 		return (builtin_export(main, cmd));
+// 	else if (!ft_strncmp(cmd->command[0], "unset", 6))
+// 		return (builtin_unset(main, cmd));
+// 	else if (!ft_strncmp(cmd->command[0], "exit", 5))
+// 		return (builtin_exit(main, cmd));
+// 	return (1);
+// }
 
 int	into_builtin_child(t_main *main, t_cmd *cmd)
 {
@@ -40,7 +54,7 @@ int	into_builtin_child(t_main *main, t_cmd *cmd)
 		return (builtin_env(main, cmd));
 	else if (!ft_strncmp(cmd->command[0], "export", 7))
 		return (builtin_export(main, cmd));
-	return (-1);
+	return (1);
 }
 
 // void	into_builtin(t_main *main)

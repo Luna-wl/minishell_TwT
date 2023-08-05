@@ -25,7 +25,6 @@ typedef struct s_cmd
 {
 	char			**str;
 	char			**command;
-	int				exit_status;
 	int				all_infile;
 	int				all_outfile;
 	int				cnt_infile;
@@ -63,6 +62,8 @@ typedef struct s_main
 	int		found_path;
 	int		pfd[2];
 	int		status;
+	int		exit_status;
+	int		do_cmd;
 	int		cmd_nbr;
 
 	struct s_command	*command;
@@ -189,7 +190,7 @@ char	**copy_two_stars_new(char **s);
 
 //mobile///////////////////////////////////////////////////
 
-
+void free_2d(char **str);
 //	ft_dup2.c
 // void	ft_dup2(t_main *main, t_cmd *tmp, int id);
 // void	dup_first_child(t_main *main, t_cmd *tmp);
@@ -233,14 +234,14 @@ int		ft_find_slash(char *str);
 
 	// utils_error.c
 void	err_file(t_main *main, char *file);
-void	err_cmd(t_main *main, char *cmd, int err);
+void	err_cmd(t_main *main, t_cmd *tmp, char *cmd, int err);
 void	err_msg_free(t_main *main, char *msg);
 void	err_msg(char *msg);
 void	ft_exit(int err);
-int		err_builtin(t_main *main, t_cmd *cmd);
+int		err_builtin(t_main *main, t_cmd *cmd, int err);
 // 	utils_path.c
 // int		find_path(char **env);
-int		check_access_path(t_main *main, char *cmd);
+int	check_access_path(t_main *main, t_cmd *tmp, char *cmd);
 // void	free_path(t_main *main);
 
 void	err_msg_builtin(char *cmd1, char *cmd2);

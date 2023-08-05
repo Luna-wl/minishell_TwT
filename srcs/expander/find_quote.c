@@ -107,7 +107,9 @@ char *get_val_dollar(char *str, t_main *main)
 		vrb[i] = str[i];
 	vrb[i] = '=';
 	vrb[i + 1] = '\0';
-	if (ft_isdigit(vrb[0]))
+	if(!ft_strncmp(vrb, "?=", 3))
+		return (free(vrb), ft_itoa(main->exit_status));
+	else if (ft_isdigit(vrb[0]))
 		return (&vrb[1]);
 	else if (ft_isalpha(vrb[0]))
 	{

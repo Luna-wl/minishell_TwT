@@ -6,11 +6,11 @@
 /*   By: pnamwayk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 00:52:41 by pnamwayk          #+#    #+#             */
-/*   Updated: 2023/07/02 16:33:18 by pnamwayk         ###   ########.fr       */
+/*   Updated: 2023/08/05 21:39:40 by pnamwayk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include "hell.h"
+#include "hell.h"
 
 // void	free_path(t_main *main);
 // void	free_cmd(t_main *main);
@@ -40,3 +40,15 @@
 // 		free(p->cmd[i]);
 // 	free(p->cmd);
 // }
+
+void free_2d(char **str)
+{
+	int		i;
+
+	i = -1;
+	if(!str)
+		return ;
+	while (str[++i])
+		free(str[i]);
+	free(str);
+}
