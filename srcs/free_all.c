@@ -2,8 +2,8 @@
 
 void	reset_tool(t_main *main)
 {
-	// del_split(main->envp);
-	// del_split(main->path);
+	del_split(main->envp);
+	del_split(main->path);
 	del_cmd(&main->cmd);
 }
 

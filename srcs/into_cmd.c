@@ -6,7 +6,7 @@
 /*   By: wluedara <wluedara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 16:21:40 by wluedara          #+#    #+#             */
-/*   Updated: 2023/08/05 18:18:24 by wluedara         ###   ########.fr       */
+/*   Updated: 2023/08/05 20:15:17 by wluedara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,6 @@ int	get_cmd(t_main *main, char *str)
 	del_split(test);
 	main->cmd = list_cmd(main, str2);
 	del_sam_dao(str2);
-	pim_cmd(main->cmd);
+	// pim_cmd(main->cmd);
 	return (1);
 }

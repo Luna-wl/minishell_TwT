@@ -25,6 +25,7 @@ typedef struct s_cmd
 {
 	char			**str;
 	char			**command;
+	int				exit_status;
 	int				all_infile;
 	int				all_outfile;
 	int				cnt_infile;

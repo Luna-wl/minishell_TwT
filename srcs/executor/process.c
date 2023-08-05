@@ -28,6 +28,7 @@ void	start_process(t_main *main)
 	// close(main->pfd[0]);
 	// close(main->pfd[1]);
 	waiting_process(main);
+	free(main->pid);
 	// free_path(p);
 }
 
@@ -72,6 +73,8 @@ void	free_command(char	**command)
 	int	i;
 
 	i = -1;
+	if(!command)
+		return ;
 	while(command[++i])
 		free(command[i]);
 	free(command);

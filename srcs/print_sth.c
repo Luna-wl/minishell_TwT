@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_sth.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pnamwayk <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: wluedara <wluedara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 14:49:04 by wluedara          #+#    #+#             */
-/*   Updated: 2023/07/02 00:20:39 by pnamwayk         ###   ########.fr       */
+/*   Updated: 2023/08/05 18:25:21 by wluedara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,25 +16,28 @@ void	pim_cmd(t_cmd *cmd)
 {
 	t_cmd	*tmp;
 	int		j;
+	int		i;
 
 	// cmd->cnt_cmd = 0;
 	tmp = cmd;
+	i = 0;
 	while (tmp != NULL)
 	{
-		printf(BYEL"cnt_infile = %d\n", tmp->cnt_infile);
-		printf(BYEL"cnt_heredoc = %d\n", tmp->cnt_heredoc);
-		printf(BYEL"cnt_outfile = %d\n", tmp->cnt_outfile);
-		printf(BYEL"cnt_append = %d\n", tmp->cnt_append);
-		printf(BYEL"all_infile = %d\n", tmp->all_infile);
-		printf(BYEL"all_outfile = %d\n", tmp->all_outfile);
-		printf(BMAG"heredoc_file\n");
-		pim_split(tmp->heredoc_file);
-		printf(BMAG"append_file\n");
-		pim_split(tmp->append_file);
-		printf(BMAG"infile_name\n");
-		pim_split(tmp->infile_name);
-		printf(BMAG"outfile_name\n");
-		pim_split(tmp->outfile_name);
+		// printf(BYEL"cnt_infile = %d\n", tmp->cnt_infile);
+		// printf(BYEL"cnt_heredoc = %d\n", tmp->cnt_heredoc);
+		// printf(BYEL"cnt_outfile = %d\n", tmp->cnt_outfile);
+		// printf(BYEL"cnt_append = %d\n", tmp->cnt_append);
+		// printf(BYEL"all_infile = %d\n", tmp->all_infile);
+		// printf(BYEL"all_outfile = %d\n", tmp->all_outfile);
+		// printf(BMAG"heredoc_file\n");
+		// pim_split(tmp->heredoc_file);
+		// printf(BMAG"append_file\n");
+		// pim_split(tmp->append_file);
+		// printf(BMAG"infile_name\n");
+		// pim_split(tmp->infile_name);
+		// printf(BMAG"outfile_name\n");
+		// pim_split(tmp->outfile_name);
+		printf(BMAG"=====[cmd %d]======\n", i);
 		j = 0;
 		while (tmp->str[j])
 		{

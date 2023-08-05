@@ -13,6 +13,7 @@ char	**add_variable(char *cmd);
 void	instead_variable(char *cmd, int row_vrb);
 void	print_sorted_env(t_main *main);
 char	*ft_strtrim_vrb(char *cmd, char set);
+void	free_2d(char **str);
 
 int	builtin_export(t_main *main, t_cmd *cmd)
 {
@@ -90,7 +91,8 @@ char	**add_variable(char *cmd)
 		new[i] = ft_strdup(environ[i]);
 	new[i] = ft_strdup(cmd);
 	new[i + 1] = NULL;
-	free(environ);
+	if (environ)
+		free_2d(environ);
 	return (new);
 }
 
@@ -114,6 +116,8 @@ void	print_sorted_env(t_main *main)
 	i = -1;
 	while(str[++i])
 		printf("declare -x %s\n", str[i]);
+	if (str)
+		free_2d(str);
 }
 
 void	sort_env(char **env)
