@@ -51,6 +51,7 @@ typedef struct s_main
 	char	*old_pwd;
 	char	**envp;
 	char	**path;
+	char	**tmp;
 
 	pid_t	*pid;
 	char	*cur_path;
@@ -84,11 +85,12 @@ void		reset_tool(t_main *main);
 char		*my_split_lexer(char *s);
 // char		**cut_cmd(char *s);
 int			check_error(char *s);
+int			check_quote_pair(char **s);
 // int			check_error(char **s);
 // lexer2
 int			check_word_2(char *s);
 int			count_len_quote(char *s);
-int			check_word_lexer(char *s, int len, int i);
+// int			check_word_lexer(char *s, int len, int i);
 int			count_letter_split(char *s, int i);
 int			count_letter_lexer(char *s);
 int			count_letter2(char *s, int i, int j);
@@ -110,16 +112,16 @@ void		del_list_lexer(t_lexer **list);
 void		del_cmd(t_cmd **cmd);
 void		del_sam_dao(char ***s);
 // parser_1.c
-int			find_pipe(t_main *main);
+// int			find_pipe(t_main *main);
 int			find_cmd_num(t_lexer *list);
-void		next_cmd(t_lexer **list, int index);
+// void		next_cmd(t_lexer **list, int index);
 // t_cmd		*list_cmd(t_main *main);
 t_cmd		*list_cmd(t_main *main, char ***str);
 // parser_2.c
-int			stack_lenght(t_lexer **list);
-char		**copy_two_stars(t_lexer **list);
-void		add_last_cmd(t_cmd **cmd, t_cmd *last);
-void		create_list_cmd(t_cmd **cmd, t_lexer *list);
+// int			stack_lenght(t_lexer **list);
+// char		**copy_two_stars(t_lexer **list);
+// void		add_last_cmd(t_cmd **cmd, t_cmd *last);
+// void		create_list_cmd(t_cmd **cmd, t_lexer *list);
 // parser_3.c
 int			cnt_infile(char **cmd);
 int			cnt_heredoc(char **cmd);
@@ -136,12 +138,10 @@ void		pim_cmd(t_cmd *cmd);
 void		pim_split(char **s);
 void		pim_list(t_lexer *list);
 // signal.c
+void		sighandle(int sig);
 void		init_signal(void);
 void		sigint_handle(int mode);
-void		sighandle(int sig);
-void		handel_c(int sig);
-void		sigint_handle(int mode);
-void		sighandle(int sig);
+void		sigquit_handle(int sig);
 void		handel_c(int sig);
 // builtin.c
 int			check_builtin(t_cmd *tmp);

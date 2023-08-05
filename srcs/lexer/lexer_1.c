@@ -6,7 +6,7 @@
 /*   By: wluedara <wluedara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 14:29:35 by wluedara          #+#    #+#             */
-/*   Updated: 2023/08/05 00:23:44 by wluedara         ###   ########.fr       */
+/*   Updated: 2023/08/05 14:44:51 by wluedara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,18 @@ int	check_error(char *s)
 	{
 		print_str(BMAG"Command is not complete ۹( ÒہÓ )۶\n"RESET);
 		return (0);
+	}
+	return (1);
+}
+
+int	check_quote_pair(char **s)
+{
+	int		i;
+
+	i = 0;
+	while (s[i])
+	{
+
 	}
 	return (1);
 }

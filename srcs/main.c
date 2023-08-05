@@ -6,7 +6,7 @@
 /*   By: wluedara <wluedara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 18:26:04 by wluedara          #+#    #+#             */
-/*   Updated: 2023/08/05 00:18:29 by wluedara         ###   ########.fr       */
+/*   Updated: 2023/08/05 15:20:08 by wluedara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ void	init_mimi(t_main *main)
 	main->lexer = NULL;
 	main->cmd = NULL;
 	main->num_pipe = 0;
-	environ = get_envp(); // make extern environ to malloc
+	main->tmp = environ;
+	environ = get_envp();
 	main->envp = get_envp2(); // word that before '=' in env to check sth. as USER PWD
 	main->path = get_path(main->envp); // value after that spilt with ':' PATH=
 }
@@ -32,10 +33,10 @@ int	main(int argc, char **argv)
 	if (argc > 1)
 		print_str(YEL"You put the wrong input\n"RESET);
 	printf(YEL"====> ~ HELLO WELCOME ~ <====\n"RESET); // welcome message
-	// int tmp = dup(0);
 	while (1) // loop till want to exit
 	{
 		init_signal(); // catch signal
+		init_mimi(&main); // init value in struct
 		sigint_handle(1);
 		str = readline(RED"mini(s)hell >> "RESET); // รับinputเข้ามา
 		add_history(str); // ใส่ในhistory
@@ -44,10 +45,8 @@ int	main(int argc, char **argv)
 			printf(BCYN"========= ~Bye Bye~ =========\n"RESET);
 			break ;
 		}
-		init_mimi(&main); // init value in struct
 		if(get_cmd(&main, str)) // start cut cmd
 		{
-			printf("before excute\n");
 			expander(&main); // after split cmd then go to expander to detact quote and $
 			sigint_handle(2);
 			start_process(&main);
@@ -55,7 +54,7 @@ int	main(int argc, char **argv)
 		// into_builtin(&main); // if want to get to buildin use this nah
 		// get_heredoc(main);
 		// dup2(0,tmp);
-		// reset_tool(&main);
+		reset_tool(&main);
 		free(str);
 	}
 	free_all(&main); // free everything after finish execue cmd or reset everything to start again

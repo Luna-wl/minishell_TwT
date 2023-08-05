@@ -62,13 +62,15 @@ void	del_split(char **str)
 	int	i;
 
 	i = 0;
+	if (!str)
+		return ;
 	while (str[i])
 	{
 		free(str[i]);
 		i++;
 	}
-	if (str)
-		free(str);
+	free(str);
+	str = NULL;
 }
 
 void	print_str(char *s)
@@ -76,6 +78,8 @@ void	print_str(char *s)
 	int	i;
 
 	i = 0;
+	if (!s)
+		return ;
 	while (s[i])
 	{
 		write(1, &s[i], 1);
@@ -104,17 +108,4 @@ void	del_sam_dao(char ***s)
 		}
 		free(s);
 	}
-}
-
-void	reset_tool(t_main *main)
-{
-	free(main->input);
-	del_split(main->path);
-	del_split(main->envp);
-
-	main->lexer = NULL;
-	main->cmd = NULL;
-	main->num_pipe = 0;
-	main->envp = get_envp2(); // word that before '=' in env to check sth. as USER PWD
-	main->path = get_path(main->envp); // value after that spilt with ':' PATH=
 }
