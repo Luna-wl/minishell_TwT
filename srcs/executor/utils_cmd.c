@@ -6,7 +6,7 @@
 /*   By: pnamwayk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 00:52:27 by pnamwayk          #+#    #+#             */
-/*   Updated: 2023/08/06 01:59:35 by pnamwayk         ###   ########.fr       */
+/*   Updated: 2023/08/06 02:49:19 by pnamwayk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 int		ft_find_slash(char *str);
 void	get_letter_cmd(t_cmd *tmp, char *s, int cnt_word);
 void	get_command(t_main *main, t_cmd *tmp);
+int		check_redirect(char *s);
+void	ft_close_pipe(t_main *main, int pfd);
 
 int	ft_find_slash(char *str)
 {
@@ -62,7 +64,6 @@ void	get_command(t_main *main, t_cmd *tmp)
 	cnt_word = 0;
 	while (tmp->str[++i])
 	{
-		// printf("str[%d] = |%s| rd = %d\n", i, tmp->str[i], check_redirect(tmp->str[i]));
 		if (check_redirect(tmp->str[i]))
 		{
 			if (i == 0 || (i != 0 && check_redirect(tmp->str[i - 1])))
@@ -71,4 +72,22 @@ void	get_command(t_main *main, t_cmd *tmp)
 		else
 			i++;
 	}
+}
+
+int	check_redirect(char *s)
+{
+	size_t	len;
+
+	len = ft_strlen(s);
+	if (!ft_strncmp(s, ">>", len) || !ft_strncmp(s, "<<", len))
+		return (0);
+	if (!ft_strncmp(s, ">", len) || !ft_strncmp(s, "<", len))
+		return (0);
+	return (1);
+}
+
+void	ft_close_pipe(t_main *main, int pfd)
+{
+	if (main->num_pipe > 0)
+		close(pfd);
 }

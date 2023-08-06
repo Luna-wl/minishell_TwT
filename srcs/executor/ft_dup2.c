@@ -6,7 +6,7 @@
 /*   By: pnamwayk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 00:49:38 by pnamwayk          #+#    #+#             */
-/*   Updated: 2023/08/06 01:41:23 by pnamwayk         ###   ########.fr       */
+/*   Updated: 2023/08/06 02:10:34 by pnamwayk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	open_infile(t_main *main, t_cmd *tmp, char **file_name, int file_nbr)
 	{
 		main->fd_file = open(file_name[i], O_RDONLY);
 		if (main->fd_file == -1)
-			err_file(main, file_name[i]);
+			err_file(tmp, file_name[i]);
 		if (i != file_nbr - 1)
 		{
 			close(main->fd_file);
@@ -52,7 +52,7 @@ void	open_outfile(t_main *main, t_cmd *tmp, char **file_name, int file_nbr)
 			main->fd_file = open(file_name[i], O_WRONLY \
 			| O_CREAT | O_TRUNC, 0644);
 		if (main->fd_file == -1)
-			err_file(main, file_name[i]);
+			err_file(tmp, file_name[i]);
 		if (i != file_nbr - 1)
 			close(main->fd_file);
 		else

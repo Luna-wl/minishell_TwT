@@ -6,7 +6,7 @@
 /*   By: pnamwayk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 21:12:27 by wluedara          #+#    #+#             */
-/*   Updated: 2023/08/06 01:53:51 by pnamwayk         ###   ########.fr       */
+/*   Updated: 2023/08/06 18:41:40 by pnamwayk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,24 +142,12 @@ void		init_signal(void);
 void		sigint_handle(int mode);
 void		sigquit_handle(int sig);
 void		handel_c(int sig);
-// builtin.c
-int			check_builtin(t_cmd *tmp);
-int			into_builtin_parent(t_main *main, t_cmd *cmd);
-int			into_builtin_child(t_main *main, t_cmd *cmd);
-// buildin.c
-void		print_word(char *str);
-int			builtin_echo(t_main *main, t_cmd *cmd);
-int			builtin_env(t_main *main, t_cmd *cmd);
-int			builtin_pwd(t_main *main, t_cmd *cmd);
-int			builtin_export(t_main *main, t_cmd *cmd);
-int			builtin_unset(t_main *main, t_cmd *cmd);
-int			builtin_exit(t_main *main, t_cmd *cmd);
-int			builtin_cd(t_main *main, t_cmd *cmd);
+
 // expander.c
 void		expander(t_main *main);
 char		*cut_quote(char *str);
 char		*detact_dollar(char *str, t_main *main);
-char		*get_val_quote(char *str, t_main *main, char *val);
+char		*get_val_quote(char *str, t_main *main, char *val, int i);
 // util_expan
 char		*copy_str(char *s, int len);
 int			len_quote(char *s);
@@ -184,66 +172,115 @@ void		add_last_new(t_cmd **cmd, t_cmd *last);
 
 //mobile///////////////////////////////////////////////////
 
-void free_2d(char **str);
-//	ft_dup2.c
-// void	ft_dup2(t_main *main, t_cmd *tmp, int id);
-// void	dup_first_child(t_main *main, t_cmd *tmp);
-// void	dup_last_child(t_main *main, t_cmd *tmp);
-void		open_infile(t_main *main, t_cmd *tmp, char **file_name, \
-			int file_nbr);
-void		open_outfile(t_main *main, t_cmd *tmp, char **file_name, \
-			int file_nbr);
+// builtin_cd.c
+int			builtin_cd(t_cmd *cmd);
+
+// builtin_echo.c
+int			builtin_echo(t_cmd *tmp);
+void		print_word(char *str);
+void		do_echo(t_cmd *tmp, int i, int opt);
+void		print_sorted_env(void);
+
+// builtin_env.c
+int			builtin_env(t_cmd *cmd);
+char		**ft_strdup_env(void);
+size_t		ft_min_len(char *s1, char *s2);
+int			ft_envcpm(char *s1, char *s2);
+void		sort_env(char **env);
+
+// builtin_exit.c
+int			builtin_exit(t_main *main, t_cmd *cmd);
+void		error_msg_exit(char *msg, int err);
+int			check_nbr(char *str);
+int			cal_exit_code(char *str);
+
+// builtin_export.c
+void		do_export(char *cmd, int row_vrb, char *vrb);
+int			builtin_export(t_main *main, t_cmd *cmd);
+char		*ft_strtrim_vrb(char *cmd, char set);
+char		**add_variable(char *cmd);
+void		instead_variable(char *cmd, int row_vrb);
+
+// builtin_pwd.c
+int			builtin_pwd(t_main *main, t_cmd *cmd);
+
+// builtin_unset.c
+int			builtin_unset(t_cmd *cmd);
+char		**delete_variable(int line);
+
+// builtin.c
+int			check_builtin(t_cmd *tmp);
+int			into_builtin_parent(t_main *main, t_cmd *cmd);
+int			into_builtin_child(t_main *main, t_cmd *cmd);
+int			builtin_parent_process(t_main *main, t_cmd *tmp);
+
+// utils_builtin.c
+void		ft_swap(char **s1, char **s2);
+int			find_variable_inenv(char *vrb);
+int			check_format_variable(char *cmd);
+char		*ft_join(char *s1, char *s2);
+void		err_msg_builtin(char *cmd1, char *cmd2);
+
+// utils_cmd.c
+int			ft_find_slash(char *str);
+void		get_letter_cmd(t_cmd *tmp, char *s, int cnt_word);
+void		get_command(t_main *main, t_cmd *tmp);
+int			check_redirect(char *s);
+void		ft_close_pipe(t_main *main, int pfd);
+
+// ft_dup2.c
+void		open_infile(t_main *main, t_cmd *tmp, \
+char **file_name, int file_nbr);
+void		open_outfile(t_main *main, t_cmd *tmp, \
+char **file_name, int file_nbr);
 void		dup_infile(t_main *main, t_cmd *tmp, int id);
 void		dup_outfile(t_main *main, t_cmd *tmp, int id);
 
-// void	ft_putstr_fd(char *str, int fd);
-// char	**ft_split(char const *s, char c);
-// char	*ft_strdup(char *str);
-// char	*ft_strjoin(char *s1, char *s2);
-// size_t	ft_strlcpy(char *dst, char *src, size_t dstsize);
-// size_t	ft_strlen(char *str);
-// int		ft_strncmp(char *s1, char *s2, size_t n);
-// int		ft_strstr(char *str, char *find);
-
-//	here_doc.c
-void		get_heredoc(t_main *main);
-void		read_heredoc(t_main *main, t_cmd *tmp, size_t len_filename, int i);
+// here_doc.c
+void		get_heredoc(t_main	*main);
+void		read_heredoc(t_cmd *tmp, size_t len_filename, int i);
 int			check_limiter(char *line, char *limiter, size_t n);
 int			check_append_file(t_cmd *tmp, char *file_name);
 int			check_heredoc_file(t_cmd *tmp, char *file_name);
 
-//	pipex_bonus.c
-// void	init_value(t_main *main, int argc);
-
-//	process.c
+// process.c
 void		start_process(t_main *main);
 void		create_process(t_main *main);
 void		child_process(t_main *main, t_cmd *tmp, int id);
 void		parent_process(t_main *main, t_cmd *tmp);
 void		waiting_process(t_main *main);
-int			check_redirect(char *s);
 
-	// utils_cmd .c
-int		ft_find_slash(char *str);
-void	get_letter_cmd(t_cmd *tmp, char *s, int cnt_word);
-void	get_command(t_main *main, t_cmd *tmp);
-// void	count_cmd(t_main *main, char *filename);
-// void	free_cmd(t_main *main);
+// utils_cmd .c
+int			ft_find_slash(char *str);
+void		get_letter_cmd(t_cmd *tmp, char *s, int cnt_word);
+void		get_command(t_main *main, t_cmd *tmp);
+int			check_redirect(char *s);
+void		ft_close_pipe(t_main *main, int pfd);
 
 	// utils_error.c
-void	err_file(t_main *main, char *file);
-void	err_cmd(t_main *main, t_cmd *tmp, char *cmd, int err);
-void	err_msg_free(t_main *main, char *msg);
-void	err_msg(char *msg);
-void	ft_exit(int err);
-int		err_builtin(t_main *main, t_cmd *cmd, int err);
-// 	utils_path.c
-// int		find_path(char **env);
-int     check_access_path(t_main *main, t_cmd *tmp, char *cmd);
-// void	free_path(t_main *main);
+void		err_file(t_cmd *tmp, char *file);
+void		err_cmd(t_main *main, t_cmd *tmp, char *cmd, int err);
+int			err_builtin(t_cmd *cmd, int err);
+void		err_msg(char *msg);
+void		ft_exit(int err);
 
-void		err_msg_builtin(char *cmd1, char *cmd2);
-int			find_variable_inenv(char *vrb);
-int			check_format_variable(char *cmd);
+// utils_free.c
+void		free_2d(char **str);
+
+// 	utils_path.c
+char		*ft_join_path(char *s1, char *s2);
+int			check_access_path(t_main *main, t_cmd *tmp, char *cmd);
+
+// expander.c
+char		*detact_dollar(char *str, t_main *main);
+char		*expander_handel(t_main *main, char *str);
+void		expander(t_main *main);
+
+// find_quote.c
+char		check_open_close_quote(char quote, char *str, int *i);
+int			strlen_quote(char *str, t_main *main, int i, int j);
+char		*get_val_quote(char *str, t_main *main, char *val, int i);
+char		*get_val_dollar(char *str, t_main *main, int i);
+char		*get_val(char	*vrb, char	*val);
 
 #endif

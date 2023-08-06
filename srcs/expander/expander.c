@@ -3,14 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   expander.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wluedara <wluedara@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pnamwayk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 14:29:53 by wluedara          #+#    #+#             */
-/*   Updated: 2023/08/04 18:58:49 by wluedara         ###   ########.fr       */
+/*   Updated: 2023/08/06 16:56:35 by pnamwayk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "hell.h"
+
+char	*detact_dollar(char *str, t_main *main);
+char	*expander_handel(t_main *main, char *str);
+void	expander(t_main *main);
 
 char	*detact_dollar(char *str, t_main *main)
 {
@@ -22,27 +26,20 @@ char	*detact_dollar(char *str, t_main *main)
 	i = 0;
 	j = 0;
 	len = ft_strlen(main->envp[j]);
-	// printf("str = %s str[i+1] = %c\n", str, str[i+1]);
 	if (ft_isdigit(str[i + 1]))
-	{
 		return (&str[i + 1]);
-	}
 	else if (ft_isalpha(str[i + 1]))
 	{
 		while (main->envp[j])
 		{
-			// printf("path[%d] = |%s|\n", j, main->path[j]);
 			if (ft_strncmp(&str[i + 1], main->envp[j], len) == 0)
 			{
 				val = getenv(main->envp[j]);
-				// printf("path[%d] = |%s| val = |%s|\n", j, main->envp[j], val);
 				return (val);
 			}
 			j++;
 		}
 	}
-	// else if (str[i + 1] == '?')
-	// 	find_exit_code();
 	return (0);
 }
 
@@ -51,25 +48,7 @@ char	*expander_handel(t_main *main, char *str)
 	char	*val;
 
 	val = NULL;
-	// val = ft_strdup("\0");
-	// if (str[0] == '$')
-	// {
-	// 	val = ft_strjoin(val, detact_dollar(str, main));
-	// 	// printf("$ val = |%s|\n", val);
-	// }
-	// else if (str[0] == '\"')
-	// {
-	// 	val = ft_strjoin(val, detact_quote(str, main, val));
-	// 	// printf("\" val = |%s|\n", val);
-	// }
-	// else if (str[0] == '\'')
-	// {
-	// 	str = cut_quote(str);
-	// 	val = ft_strjoin(val, str);
-	// 	// printf("\' val = |%s|\n", val);
-	// }
-	val = get_val_quote(str, main, val);
-	// printf("val = %s\n", val);
+	val = get_val_quote(str, main, val, 0);
 	return (val);
 }
 
@@ -85,8 +64,6 @@ void	expander(t_main *main)
 		i = -1;
 		while (tmp->str[++i])
 		{
-			// printf("----------------------------------------\n");
-			// printf("Before tmp->str[%d] = |%s|\n", i, tmp->str[i]);
 			expan = expander_handel(main, tmp->str[i]);
 			if (expan)
 			{
@@ -94,10 +71,7 @@ void	expander(t_main *main)
 				tmp->str[i] = ft_strdup(expan);
 				free(expan);
 			}
-			// printf("In expan main value = |%s|\n", expan);
-			// printf("After tmp->str[%d] = |%s|\n", i, tmp->str[i]);
 		}
 		tmp = tmp->next;
 	}
-	// free(expan);
 }

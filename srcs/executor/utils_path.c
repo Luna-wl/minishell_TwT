@@ -6,27 +6,15 @@
 /*   By: pnamwayk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 00:52:48 by pnamwayk          #+#    #+#             */
-/*   Updated: 2023/08/05 23:27:00 by pnamwayk         ###   ########.fr       */
+/*   Updated: 2023/08/06 02:49:00 by pnamwayk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "hell.h"
 
-// int		find_path(char **env);
-int	check_access_path(t_main *main, t_cmd *tmp, char *cmd);
+char	*ft_join_path(char *s1, char *s2);
+int		check_access_path(t_main *main, t_cmd *tmp, char *cmd);
 
-// int	find_path(char **env)
-// {
-// 	int	i;
-
-// 	i = -1;
-// 	while (env[++i] != NULL)
-// 	{
-// 		if (ft_strncmp(env[i], "PATH=", ) == 0)
-// 			return (i);
-// 	}
-// 	return (-1);
-// }
 char	*ft_join_path(char *s1, char *s2)
 {
 	char	*str;
@@ -44,7 +32,6 @@ char	*ft_join_path(char *s1, char *s2)
 	str[s1_len] = '/';
 	ft_strlcpy(&str[s1_len + 1], s2, s2_len + 1);
 	return (str);
-
 }
 
 int	check_access_path(t_main *main, t_cmd *tmp, char *cmd)

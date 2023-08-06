@@ -3,14 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   handle_quote.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wluedara <wluedara@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pnamwayk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 14:36:06 by wluedara          #+#    #+#             */
-/*   Updated: 2023/05/29 17:12:51 by wluedara         ###   ########.fr       */
+/*   Updated: 2023/08/06 16:50:14 by pnamwayk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "hell.h"
+
+char	*cut_quote(char *str);
+char	*detact_quote2(char *str, t_main *main, char *val);
+char	*detact_quote(char *str, t_main *main, char *val);
 
 char	*cut_quote(char *str)
 {

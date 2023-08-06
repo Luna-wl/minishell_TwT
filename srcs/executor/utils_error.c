@@ -6,27 +6,25 @@
 /*   By: pnamwayk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 00:52:36 by pnamwayk          #+#    #+#             */
-/*   Updated: 2023/08/05 23:24:20 by pnamwayk         ###   ########.fr       */
+/*   Updated: 2023/08/06 16:35:35 by pnamwayk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "hell.h"
 
-void	err_file(t_main *main, char *file);
+void	err_file(t_cmd *tmp, char *file);
 void	err_cmd(t_main *main, t_cmd *tmp, char *cmd, int err);
-void	err_msg_free(t_main *main, char *msg);
+int		err_builtin(t_cmd *cmd, int err);
 void	err_msg(char *msg);
 void	ft_exit(int err);
-// int	err_builtin(t_main *main, t_cmd *cmd);
 
-void	err_file(t_main *main, char *file)
+void	err_file(t_cmd *tmp, char *file)
 {
-	(void) main;
-	// free_path(p);
 	write(STDERR_FILENO, "minishell: ", 11);
 	write(STDERR_FILENO, file, ft_strlen(file));
 	write(STDERR_FILENO, ": ", 3);
 	perror("");
+	free_2d(tmp->command);
 	exit(EXIT_FAILURE);
 }
 
@@ -42,16 +40,12 @@ void	err_cmd(t_main *main, t_cmd *tmp, char *cmd, int err)
 		write(STDERR_FILENO, ": command not found\n", 20);
 	else if (err == 13)
 		write(STDERR_FILENO, ": Permission denied\n", 20);
-	// free_cmd(p);
-	// free_path(p);
 	free_2d(tmp->command);
 	ft_exit(err);
 }
 
-int	err_builtin(t_main *main, t_cmd *cmd, int err)
+int	err_builtin(t_cmd *cmd, int err)
 {
-	(void) main;
-	// write(STDERR_FILENO, "pipex: ", 8);
 	if (err == 1)
 		return (err);
 	write(STDERR_FILENO, "minishell: ", 11);
@@ -64,31 +58,13 @@ int	err_builtin(t_main *main, t_cmd *cmd, int err)
 	}
 	if (err == 127)
 		write(STDERR_FILENO, ": No such file or directory\n", 28);
-	// else if (err == 1)
-	// 	write(STDERR_FILENO, ": not a valid identifier\n", 25);
-
-	// else if (err == 13)
-	// 	write(STDERR_FILENO, ": Permission denied\n", 20);
-	// free_cmd(p);
-	// free_path(p);
-	// exit(err);
 	return (err);
-}
-
-void	err_msg_free(t_main *main, char *msg)
-{
-	(void) main;
-	// free_path(p);
-	perror(msg);
-	write(STDERR_FILENO, "\n", 1);
-	// exit(EXIT_FAILURE);
 }
 
 void	err_msg(char *msg)
 {
-	write(STDERR_FILENO, msg, ft_strlen(msg));
+	perror(msg);
 	write(STDERR_FILENO, "\n", 1);
-	exit(EXIT_FAILURE);
 }
 
 void	ft_exit(int err)

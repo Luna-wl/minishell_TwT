@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   process.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pnamwayk <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/08/06 02:27:29 by pnamwayk          #+#    #+#             */
+/*   Updated: 2023/08/06 02:49:29 by pnamwayk         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "hell.h"
 
 void	start_process(t_main *main);
@@ -5,10 +17,6 @@ void	create_process(t_main *main);
 void	child_process(t_main *main, t_cmd *tmp, int id);
 void	parent_process(t_main *main, t_cmd *tmp);
 void	waiting_process(t_main *main);
-int		check_redirect(char *s);
-void	ft_close_pipe(t_main *main, int pfd);
-int		builtin_parent_process(t_main *main, t_cmd *tmp);
-
 
 void	start_process(t_main *main)
 {
@@ -33,14 +41,12 @@ void	create_process(t_main *main)
 		if (id != main->cmd_nbr - 1)
 		{
 			if (pipe(main->pfd) == -1)
-				return (err_msg_free(main, "Pipe error: "));
+				return (err_msg("Pipe error: "));
 		}
-		main->do_cmd = 0;
-		if (check_builtin(tmp) == 2)
-			main->do_cmd = 1;
+		main->do_cmd = check_builtin(tmp);
 		main->pid[id] = fork();
 		if (main->pid[id] == -1)
-			err_msg_free(main, "Fork error: ");
+			return (err_msg("Fork error: "));
 		else if (main->pid[id] == 0)
 			child_process(main, tmp, id);
 		else
@@ -50,15 +56,9 @@ void	create_process(t_main *main)
 	}
 }
 
-void	ft_close_pipe(t_main *main, int pfd)
-{
-	if (main->num_pipe > 0)
-		close(pfd);
-}
-
 void	child_process(t_main *main, t_cmd *tmp, int id)
 {
-	if (main->do_cmd == 1)
+	if (main->do_cmd == 2)
 	{
 		ft_close_pipe(main, main->pfd[0]);
 		ft_close_pipe(main, main->pfd[1]);
@@ -69,7 +69,7 @@ void	child_process(t_main *main, t_cmd *tmp, int id)
 	dup_outfile(main, tmp, id);
 	ft_close_pipe(main, main->pfd[0]);
 	ft_close_pipe(main, main->pfd[1]);
-	if (check_builtin(tmp) == 1)
+	if (main->do_cmd == 1)
 		exit(into_builtin_child(main, tmp));
 	else if (check_access_path(main, tmp, tmp->command[0]) == 0)
 	{
@@ -82,16 +82,6 @@ void	child_process(t_main *main, t_cmd *tmp, int id)
 	}
 }
 
-int	builtin_parent_process(t_main *main, t_cmd *tmp)
-{
-	int		err;
-
-	err = into_builtin_parent(main, tmp);
-	if (err)
-		err_builtin(main, tmp, err);
-	return (err);
-}
-
 void	parent_process(t_main *main, t_cmd *tmp)
 {
 	main->exit_status = 0;
@@ -99,7 +89,7 @@ void	parent_process(t_main *main, t_cmd *tmp)
 	if (main->num_pipe > 0)
 		main->tmp_fd = dup(main->pfd[0]);
 	ft_close_pipe(main, main->pfd[0]);
-	if (check_builtin(tmp) == 2)
+	if (main->do_cmd == 2)
 		main->exit_status = builtin_parent_process(main, tmp);
 }
 
@@ -115,17 +105,3 @@ void	waiting_process(t_main *main)
 			main->exit_status = WEXITSTATUS(main->status);
 	}
 }
-
-
-int	check_redirect(char *s)
-{
-	size_t len;
-
-	len = ft_strlen(s);
-	if (!ft_strncmp(s, ">>", len) || !ft_strncmp(s, "<<", len))
-		return (0);
-	if (!ft_strncmp(s, ">", len) || !ft_strncmp(s, "<", len))
-		return (0);
-	return (1);
-}
-

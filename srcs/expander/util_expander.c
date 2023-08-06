@@ -3,14 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   util_expander.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wluedara <wluedara@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pnamwayk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 16:37:16 by wluedara          #+#    #+#             */
-/*   Updated: 2023/05/17 21:51:30 by wluedara         ###   ########.fr       */
+/*   Updated: 2023/08/06 16:38:10 by pnamwayk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "hell.h"
+
+char	*copy_str(char *s, int len);
+int		len_quote(char *s);
 
 char	*copy_str(char *s, int len)
 {

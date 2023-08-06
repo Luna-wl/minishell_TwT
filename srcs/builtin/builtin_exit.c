@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   builtin_exit.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pnamwayk <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/08/06 18:32:38 by pnamwayk          #+#    #+#             */
+/*   Updated: 2023/08/06 18:32:41 by pnamwayk         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "hell.h"
 
@@ -41,7 +52,7 @@ int	builtin_exit(t_main *main, t_cmd *cmd)
 	return (0);
 }
 
-void error_msg_exit(char *msg, int err)
+void	error_msg_exit(char *msg, int err)
 {
 	if (err == 1)
 	{
